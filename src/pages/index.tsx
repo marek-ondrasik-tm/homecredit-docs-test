@@ -1,27 +1,33 @@
 import type {ReactNode} from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
-// import HomepageFeatures from '@site/src/components/HomepageFeatures';
+import Translate, {translate} from '@docusaurus/Translate';
 import Heading from '@theme/Heading';
 
 import styles from './index.module.css';
 
 function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext();
   return (
     <header className={clsx('main main--primary', styles.mainBanner)}>
       <div className="container">
         <Heading as="h1" className="main__title">
-          {siteConfig.title}
+          <Translate id="homepage.title" description="The homepage title">
+            Home Credit Dev Documentation
+          </Translate>
         </Heading>
-        <p className="main__subtitle">{siteConfig.tagline}</p>
+        <p className="main__subtitle">
+          <Translate id="homepage.tagline" description="The homepage tagline">
+            Click on Docs to get started
+          </Translate>
+        </p>
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
             to="/docs/documentation/intro">
+            <Translate id="homepage.button" description="The button to proceed to docs">
               Proceed
+            </Translate>
           </Link>
         </div>
       </div>
@@ -30,10 +36,13 @@ function HomepageHeader() {
 }
 
 export default function Home(): ReactNode {
-  const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
+      title={translate({
+        id: 'homepage.metaTitle',
+        message: 'Welcome to Home Credit Dev Documentation',
+        description: 'The homepage meta title'
+      })}
       description="Description will go into a meta tag in <head />">
       <HomepageHeader />
       <main>

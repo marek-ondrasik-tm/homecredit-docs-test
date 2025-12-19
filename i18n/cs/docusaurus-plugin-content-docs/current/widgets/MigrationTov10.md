@@ -1,9 +1,6 @@
-# Migration from hc-calc-v9 to v10
-
-After upgrading to the new major version of the calculator, you need to modify the existing code.
-
-First, you need to remove:
-
+# Přechod hc-calc-v9 na v10
+Po přechod na novou major verzi kalkulačky je potřeba upravit stavajicí kod.
+Nejdrive je potreba odstranit
 ```html
 <head>
   <link rel="stylesheet" href="hc-calc/style/style.css">
@@ -14,32 +11,24 @@ First, you need to remove:
   ...
 </head>
 ```
-
-and replace it with:
-
+a nahradit
 ```html
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
 ```
-
-Next, remove:
-
+Nasledne odstranit
 ```html
 <script src="hc-calc/js/resize.js"></script>
 <script src="hc-calc/js/appLoader.js"></script>
 ```
-
-and replace it with:
-
+a nahradit 
 ```html
 <script src="./app.js"></script>
 ```
+Uložení scriptu je čistě na vás. Stačí pak přidat spravnou cestu pro načtení scriptu
 
-The storage location of the script is entirely up to you. You just need to add the correct path to load the script.
-
-You need to remove the old HTML code:
-
+Potreba odstranit stary kod html
 ```html
 <div id="hc-calc-container">
  <div id="hc-calc-modal" class="hc-modal" role="dialog" style="display: none">
@@ -59,9 +48,7 @@ You need to remove the old HTML code:
  </div>
 </div>
 ```
-
-Finally, you need to modify the launcher script itself. Remove:
-
+Posledni je potreba upravit samotný spouštěcí script. Odstranime 
 ```javascript
 // helper function example  
 function showCalc() {        
@@ -74,17 +61,14 @@ function showCalc() {
   showHcCalc(productSetCode, price, downPayment, fixDownPayment, dataCalculatorBaseUrl, apiKey, processCalcResult);  
 }
 ```
+a nahradime.
+* Callback je JS funkce, která se zavolá, když si zákazník zvolí některou z nabízených možností splácení.
+* Debug je možnost zapnout si debug mode, který pomůže při řešení problemů. Výchozí hodnota je false a není nutno implemenovat při spouštění pro zákazníky
+* Language je jazyk ve kterém se kalkulačka spustí. 'cs-CZ' pro čestinu 'sk-SK' pro slovenštinu.
+* Ostatní hodnoty zůstavají
 
-and replace it with:
-
-* **Callback** is a JS function that will be called when the customer selects one of the offered payment options.
-* **Debug** is an option to enable debug mode, which helps with troubleshooting. The default value is false and does not need to be implemented when launching for customers.
-* **Language** is the language in which the calculator will launch. 'cs-CZ' for Czech, 'sk-SK' for Slovak.
-* Other values remain the same.
-
-The last line "document.body.appendChild(app);" determines where the calculator will be displayed in the DOM.
-The default setting is on the body tag. You can customize it as needed.
-
+Poslední řadek "document.body.appendChild(app);" určuje kde se v DOMu kalkulačka zobrazí. 
+Výchozí nastavení je na tag body. Lze si upravit dle potřeb.
 ```javascript
 // helper function example  
 function showCalc() {
@@ -101,7 +85,5 @@ function showCalc() {
     document.body.appendChild(app);  
 }
 ```
-
-In this version, there is no longer a need to use config.json and configLoader.js.
-
-Now you need to insert the real production API key that was assigned to you into the apiKey value.
+V teto verzi již není potřeba používat config.json a configLoader.js\
+Teď je potřeba do hodnoty apiKey vkladat reálný produkční API key, který vám byl přidělen.

@@ -1,65 +1,65 @@
-# Produkční prostředí
+# Production environment
 
 ## GDPR
-Pro splnění podmínek GDPR při využívání našeho rozhraní je nezbytné, aby se na vašich stránkách v procesu nákupního košíku u naší platební metody objevil tento rozkliknutelný/rozrolovatelný text:
+In order to comply with GDPR requirements when using our interface, it is necessary that the following clickable/scrollable text appears on your website in the shopping cart process for our payment method:
 
-> CZ: Berete na vědomí, že Vaše osobní údaje v rozsahu jméno, příjmení, adresa, e-mail, telefon, budou předány společnosti Home Credit a.s., Nové sady 996/25, 602 00 Brno, IČO 26978636, e-mail: info@homecredit.cz, zapsané v obchodním rejstříku vedeném Krajským soudem v Brně, oddíl B, vložka 4401 (dále jen 'HC') za účelem předvyplnění formuláře žádosti o poskytnutí služby.
+> CZ: You acknowledge that your personal data, including your first name, last name, address, email, and phone number, will be transferred to Home Credit a.s., Nové sady 996/25, 602 00 Brno, IČO 26978636, e-mail: info@homecredit.cz, registered in the Commercial Register maintained by the Regional Court in Brno, Section B, File 4401 (hereinafter referred to as 'HC') for the purpose of pre-filling the service request form.
 
-> SK: Beriete na vedomie, že Vaše osobné údaje v rozsahu meno, priezvisko, adresa, e-mail, telefón, budú poskytnuté spoločnosti Home Credit Slovakia, a.s., Teplická 7434/147,  Piešťany 921 22, IČO 36 234 176, e-mail: posta@homecredit.sk, zapísanej v obchodnom registri vedenom Okresným súdom Trnava, oddiel Sa, vložka č. 10130/T za účelom predvyplnenia žiadosti o poskytnutie služby
+> SK: You acknowledge that your personal data, including your first name, last name, address, e-mail, and telephone number, will be provided to Home Credit Slovakia, a.s., Teplická 7434/147, Piešťany 921 22, ID No. 36 234 176, e-mail: posta@homecredit.sk, registered in the Commercial Register maintained by the District Court of Trnava, Section Sa, File No. 10130/T for the purpose of pre-filling the application for the provision of services
 
-## Prerekvizity
+## Prerequisites
 
-Pro provolávání rozhraní na produkčním prostředí jsou potřeba přístupové údaje (*username + password*), které se liší od těch pro přístup na testovací prostředí. Získat je můžete stejnou cestou jako ty pro přístup na testovací rozhraní (viz [Testovací prostředí](https://github.com/homecreditcz/oneclick-api/wiki/Testovac%C3%AD-prost%C5%99ed%C3%AD)).
+To access the interface in the production environment, you need access data (*username + password*) that differs from that used to access the test environment. You can obtain them in the same way as those for accessing the test interface (see [Test Environment](https://github.com/homecreditcz/oneclick-api/wiki/Testovac%C3%AD-prost%C5%99ed%C3%AD)).
 
-> Do kalkulačky splátek se na vstupu vyplňuje parametr udávající produktovou sadu Home Creditu, jenž se má pro výpočet použít - pokud je zboží zařazeno do speciální akce (např. "Za 0%"), na které se vztahuje kalkulace pod akční produktovou sadou, je potřeba tuto sadu v tomto kroku použít - **Je žádoucí, aby ve správě produktů e-shopu byla možnost tuto vlastnost jednoduše nastavovat (alternativou je mít tuto možnost např. pro vybranou kategorii produktů)**
+> Enter the parameter specifying the Home Credit product set to be used for the calculation into the repayment calculator - if the goods are included in a special promotion (e.g., "0%"), to which the calculation under the promotional product set applies, it is necessary to use this set in this step - **It is desirable that the e-shop product management allows this property to be easily set (an alternative is to have this option, e.g., for a selected product category)**
 
-## Prostředí
+## Environment
 
-Produkční prostředí je dostupné na
+The production environment is available at
   * CZ: https://api.homecredit.cz/
   * SK: https://api.homecredit.sk/
 
-Vzorový GET request by tak mohl být směrován např. na
+A sample GET request could be directed, for example, to
   * CZ: [https://api.homecredit.cz/*authentication/v1/partner*](https://apicz-test.homecredit.net/verdun-train/authentication/v1/partner) 
   * SK: [https://api.homecredit.sk/*authentication/v1/partner*](https://apicz-test.homecredit.net/verdun-train/authentication/v1/partner)
 
-Zda je produkční prostředí funkční (a není na něm např. technická odstávka) lze zjistit pomocí [health check endpointu](https://csoneclicknewfuture.docs.apiary.io/#reference/health-check/api-health-check/api-health-chceck)
+You can check whether the production environment is functional (and not undergoing technical maintenance, for example) using the [health check endpoint](https://csoneclicknewfuture.docs.apiary.io/#reference/health-check/api-health-check/api-health-chceck)
 * CZ: https://api.homecredit.cz/financing/v1/health
 * SK: https://api.homecredit.sk/financing/v1/health
 
-## Kalkulačka splátek
+## Payment calculator
 
-Na produkci existují 3 hlavní způsoby, jak implementovat kalkulačku splátek:
+There are three main ways to implement a payment calculator in production:
 
-### 1. Vlastní řešení partnera 
-Vývojově nejnáročnější variantou je zcela vlastní řešení partnera postavené na kalkulačních endpointech ([viz TD](https://csoneclicknewfuture.docs.apiary.io/#reference/installments-calculator-resources/cancel-application)). 
-Výhodou tohoto řešení je např. možnost tvorby uživatelského rozhraní kalkulačky zcela dle představ a UX požadavků partnera.
+### 1. Partner's own solution 
+The most developmentally demanding option is a partner's own solution built on calculation endpoints ([see TD](https://csoneclicknewfuture.docs.apiary.io/#reference/installments-calculator-resources/cancel-application)). 
+The advantage of this solution is, for example, the possibility of creating a calculator user interface entirely according to the partner's ideas and UX requirements.
 
-### 2. Částečné řešení partnera s využitím javascriptovéhéo widgetu
-Zlatou střední cestou je řešení, kdy vlastní backend e-shopu využívá javascriptový widget od Home Creditu, který obstarává frontendovou část, výpočet vhodných nabídek a na základě výsledku připravuje podklady backendu e-shopu pro provolání endpointu na vytvoření žádosti o úvěr.
-   * Javascriptový widget pro řešení kalkulačky splátek je k dispozici [zde](https://github.com/homecreditcz/widget-calculator)
+### 2. Partner's partial solution using a JavaScript widget
+The golden mean is a solution where the e-shop's own backend uses a JavaScript widget from Home Credit, which handles the frontend part, calculates suitable offers, and, based on the result, prepares the e-shop backend data for calling the endpoint to create a loan application.
+   * The JavaScript widget for the repayment calculator solution is available [here](https://github.com/homecreditcz/widget-calculator)
 
-### 3. Home Creditem vystavená externí kalkulačka splátek
-> **Jde o jedinou variantu pro partnery spolupracující v režimu "Tipař"**
+### 3. External repayment calculator issued by Home Credit
+> **This is the only option for partners cooperating in the "Tipař" mode**
 
-Nejjednodušší cestou, kdy, kromě zabezpečení přesměrování klienta na stránku pro kalkulaci splátek skrz jednoduchý link, není potřeba žádný vývoj. 
+The simplest way, where, apart from securing the redirection of the client to the repayment calculation page via a simple link, no development is required. 
 
-Vzorová URI k přesměrování může vypadat např.
- - CZ: **https://kalkulacka.homecredit.cz?productSetCode=COCHCONL&price=1000000&downPayment=0&apiKey=buhGztsSbU2Evsx57tYn&fixDownPayment=false**
+A sample URI for redirection may look like this, for example
+- CZ: **https://kalkulacka.homecredit.cz?productSetCode=COCHCONL&price=1000000&downPayment=0&apiKey=buhGztsSbU2Evsx57tYn&fixDownPayment=false**
  - SK: **https://kalkulacka.homecredit.sk?productSetCode=COCHCONL&price=200000&downPayment=0&apiKey=QWburxYCnSewbQ2zM8Qj&fixDownPayment=false**
 
-   kde jednotlivé parametry znamenají:
+   where the individual parameters mean:
 
-   - `productSetCode` – kód produktové sady, kterou máte obchodně domluvenou s Home Creditem
+   - `productSetCode` – the code of the product set that you have commercially agreed with Home Credit
 
-   - `price` – financovaná částka nákupu (tedy finální cena po odečtení případné akontace placené zákazníkem přímo) v haléřích/centech
+   - `price` – the financed purchase amount (i.e., the final price after deducting any down payment paid directly by the customer) in halers/cents
 
-   - `downPayment` – akontace v haléřích/centech
+   - `downPayment` – down payment in halers/cents
 
-   - `apiKey` - přidělený API klíč
+   - `apiKey` - assigned API key
 
-   - `fixDownPayment` – pokud je `true`, podpora akontace v kalkulačce je vypnutá (vždy nulová), pokud `false`, akontace je podporována
+   - `fixDownPayment` – if `true`, down payment support in the calculator is disabled (always zero); if `false`, down payment is supported
 
 
 ---
-***Případné chyby z produkčního prostředí, prosím, hlaste skrz helpdesk@homecredit.cz***
+***Please report any errors from the production environment via helpdesk@homecredit.cz***

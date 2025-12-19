@@ -1,23 +1,25 @@
-# Zabezpečení zpětné komunikace partnerskému e-shopu
+# Securing reverse communication with partner e-shops
 
-## Zabezpečení předávaných notifikací
+## Securing transmitted notifications
 
-Obsah notifikací zasílaných partnerskému e-shopu je chráněn proti změně informací či falšování ze strany možného útočníka přidáním kontrolního součtu zkonstruovaného z obsahu zprávy a *tajného klíče*, který není obsahem zprávy. 
+The content of notifications sent to partner e-shops is protected against information tampering or falsification by potential attackers by adding a checksum constructed from the message content and a *secret key* that is not part of the message. 
 
-### Jak to konkrétně funguje 
+### How it works in practice 
 
-Šifrují se tyto dva atrbuty: číslo objednávky (`orderNumber`) a stav žádosti (`stateReason`). Oba atributy se sestaví do řetězce `#orderNumber:#stateReason` (parametry jsou odděleny dvojtečkou). Řetězec je následně zašifrován hašovací funkcí HMAC za použití algoritmu SHA512 a `tajného klíče` a v této podobě přiřazen do těla zprávy jako atribut `checkSum`
+These two attributes are encrypted: order number (`orderNumber`) and request status (`stateReason`). Both attributes are assembled into the string `#orderNumber:#stateReason` (the parameters are separated by a colon). The string is then encrypted using the HMAC hash function with the SHA512 algorithm and the `secret key` and assigned to the body of the message as the `checkSum` attribute in this form.
 
-> Aktuálně platný ***tajný klíč*** na testovacím prostředí pro danou testovací prodejnu naleznete [zde](https://github.com/homecreditcz/oneclick-api/wiki/Testovac%C3%AD-prost%C5%99ed%C3%AD "Testovací prostředí")
+> The currently valid ***secret key*** for the test environment for a given test store can be found [here](https://github.com/homecreditcz/oneclick-api/wiki/Testovac%C3%AD-prost%C5%99ed%C3%AD "Test environment")
 
-> ***Tajný klíč*** pro produkční prostředí byste měli obdržet od zodpovědné osoby z HC na jedné z úvodních schůzek na téma integrace naší platební metody.
+> You should receive the ***secret key*** for the production environment from the responsible person at HC at one of the introductory meetings on the integration of our payment method.
 
-### Příklad 
-- podepsaná žádost s objednávkou číslo: `018884`
-- tajný klíč: `n#z?9:;a%&(\*er2`  
-- řetězec pro zahashování bude následující: `018884:PROCESSING_SIGNED`
-- výsledný kontrolní součet pak bude: `f61c69a259b702d564b2032e554984dec3b713ff7bdde17fcb727d403ea0d730816f46ad2bbc06a1914225d5dfba0396927dbf1b0698081814877b5486950a15`
+### Example 
+- signed request with order number: `018884`
+- secret key: `n#z?9:;a%&(\*er2`  
+- the string for hashing will be as follows: `018884:PROCESSING_SIGNED`
+- the resulting checksum will then be: `f61c69a259b702d564b2032e554984dec3b713ff7bdde17fcb727d403ea0d730816f46ad2bbc06a1914225d5dfba0396927dbf1b0698081 814877b5486950a15`
 
-## Zabezpečení informací předávaných při přesměrování klienta zpět na partnerské stránky
+## Securing information transmitted when redirecting the client back to the partner website
 
-Při přesměrování klienta po dokončení procesu zpět na partnerské stránky eshopu do odkazu také přidáváme některé údaje, které eshop může použít. Opět, k zabezpečení autenticity předávaných informací je do těla odkazu přidá kontrolní součet. Pro jeho konstrukci je použit stejný mechanismus, jako pro konstrukci kontrolního součtu pro notifikace.
+When redirecting the client back to the partner website after completing the process, we also add some data to the link that the e-shop can use. Again, to ensure the authenticity of the transmitted information, a checksum is added to the body of the link. The same mechanism is used to construct it as for constructing the checksum for notifications.
+
+Translated with DeepL.com (free version)

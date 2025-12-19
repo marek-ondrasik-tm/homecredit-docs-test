@@ -1,61 +1,61 @@
-# Home Credit online kalkulačka
+# Home Credit Online Calculator
 
-> Tuto variantu kalkulačky mohou využít pouze vázaní partneři. Pro nevázané partnery ("tipaře") slouží standalone varianta kalkulačky - více info např. [zde](https://github.com/homecreditcz/oneclick-api/wiki/Produk%C4%8Dn%C3%AD-prost%C5%99ed%C3%AD))
+> This calculator variant can only be used by bound partners. For unbound partners ("referrers"), a standalone calculator variant is available - more info [here](https://github.com/homecreditcz/oneclick-api/wiki/Produk%C4%8Dn%C3%AD-prost%C5%99ed%C3%AD))
 
-Kalkulačka (jejíž kód běží v prohlížeči zákazníka) potřebuje získat data o možných splátkách. Pomocí HTTP GET provolá odpovídající API endpointy Home Creditu. Tyto požadavky musí obsahovat odpovídající API key HTTP hlavičku.
+The calculator (whose code runs in the customer's browser) needs to obtain data about possible installments. It calls the corresponding Home Credit API endpoints via HTTP GET. These requests must contain the appropriate API key HTTP header.
 
-## Instalace software Kalkulačky
+## Calculator Software Installation
 
-Vlastní kód kalkulačky je třeba nahrát na webový server. Jedná se o soubor JS konrétně app.js.
+The calculator's own code must be uploaded to a web server. It is a JS file, specifically app.js.
 
-Příklad: https://eshop.example.com/js/app.js
+Example: https://eshop.example.com/js/app.js
 
-## Úprava webových stránek e-shopu
+## Modifying the E-shop Website
 
-Na stránku s produkty, u kterých si zákazník může zvolit nákup na splátky, je třeba:
+On the page with products for which the customer can choose to buy on installments, you need to:
 
-### 1. Přidat tlačítko (či obdobný prvek) "Nákup na splátky",
+### 1. Add a button (or similar element) "Buy on Installments",
 
-které vyvolá pro dané zboží kalkulačku. HTML element bude mít nastaveno zpracování události onClick - spuštění pomocné funkce showCalc.
+which will launch the calculator for the given product. The HTML element will have onClick event handling set up - launching the helper function showCalc.
 
 ```javascript
 <button onclick="showCalc()">Nákup na splátky</button>
 ```
 
-### 2. Naimplementovat pomocnou funkci `showCalc()`, 
+### 2. Implement the helper function `showCalc()`
 
-která obsahuje potřebné udaje pro zobrazení kalkulačky.
+which contains the necessary data to display the calculator.
 
-- `productSetCode` - konstanta dodaná HC 
-  - pro testovací účely:
+- `productSetCode` - constant provided by HC 
+  - for testing purposes:
     - CZ: ***COCHCONL***
     - SK: ***COCHCONL***
     
-> Tento parametr udává produktovou sadu Home Creditu, jenž se má pro výpočet použít - pokud je zboží zařazeno do speciální akce (např. "Za 0%"), na které se vztahuje kalkulace pod akční produktovou sadou, je potřeba tuto sadu v tomto kroku použít - **Je žádoucí, aby ve správě produktů e-shopu byla možnost tuto vlastnost jednoduše nastavovat (alternativou je mít tuto možnost např. pro vybranou kategorii produktů). Výběr konkrétního produktu pak vede na použití akční produktové sady (`productSetCode`) při inicializaci kalkulačky**
+> This parameter specifies the Home Credit product set to be used for calculation - if the product is included in a special promotion (e.g., "0% interest"), for which calculation falls under a promotional product set, this set needs to be used in this step - **It is desirable that the e-shop's product management has the ability to easily set this property (alternatively, this option can be set for a selected product category, for example). Selecting a specific product then leads to using the promotional product set (`productSetCode`) when initializing the calculator**
 
-- `price` - cena daného zboží (košíku)
-- `language` - jazyk ve kterém kalkulačka běží. Pokud není dodán používá se Čeština
-- `downPayment` - hodnota akontace, může být 0
-- `fixDownPayment` – vypnutí podpory volitelné akontace
-- `dataCalculatorBaseUrl` – pevně daná URL dodaná HC
-  - pro testovací účely: 
+- `price` - price of the given product (basket)
+- `language` - language in which the calculator runs. If not provided, Czech is used
+- `downPayment` - down payment value, can be 0
+- `fixDownPayment` – disable optional down payment support
+- `dataCalculatorBaseUrl` – fixed URL provided by HC
+  - for testing purposes: 
     - CZ: `https://apicz-test.homecredit.cz/verdun-train/public/v1/calculator/`
     - SK: `https://apisk-test.homecredit.sk/verdun-train/public/v1/calculator/`
-  - na produkčním prostředí: 
+  - in production environment: 
     - CZ: `https://api.homecredit.cz/public/v1/calculator/`
 
-- `apiKey` – API klíč, konstanta dodaná HC
-  - pro testovací účely:
-    - CZ: ***calculator_test_key*** / ***calculator_test_key_dp*** (s podporou pro akontace)
-    - SK: ***calculator_test_key*** / ***calculator_test_key_dp*** (s podporou pro akontace)
-  - na produkčním prostředí:
-    - obdržíte od zodpovědné osoby z HC po schválení vaší implementace
+- `apiKey` – API key, constant provided by HC
+  - for testing purposes:
+    - CZ: ***calculator_test_key*** / ***calculator_test_key_dp*** (with down payment support)
+    - SK: ***calculator_test_key*** / ***calculator_test_key_dp*** (with down payment support)
+  - in production environment:
+    - you will receive it from the responsible person at HC after approval of your implementation
 
-- `processCalcResult` - JS funkce, která se zavolá, když si zákazník zvolí některou z nabízených možností splácení.
-- `debug` - možnost zapnout si debug. pomoci app.debug=true, který pomahá při implementaci a hledání případných chyb
-- `isModal` - možnost zapnout ci vypnout zda se ma kalkulacka zobrazit v modalu a nebo ji vykreslit do prislusneho elementu, ktery se urcije pomoci document.body.appendChild(app). 
-- `hideHeader` - možnost zapnout ci vypnout ci se ma zobrazovat hlavicka, ta obsahuje logo HomeCreditu, nadpis a krizek. 
-- `document.body.appendChild(app)` - zde určujeme kde v DOMu chceme kalkulačku zobrazit. Dle příkladu se kalkulačka zobrazí v tagu body.
+- `processCalcResult` - JS function that is called when the customer selects one of the offered payment options.
+- `debug` - option to enable debug using app.debug=true, which helps during implementation and troubleshooting
+- `isModal` - option to enable or disable whether the calculator should be displayed in a modal or rendered into the corresponding element, which is determined using document.body.appendChild(app). 
+- `hideHeader` - option to enable or disable whether the header should be displayed, which contains the HomeCredit logo, title and close button. 
+- `document.body.appendChild(app)` - here we determine where in the DOM we want to display the calculator. According to the example, the calculator will be displayed in the body tag.
 
 ```javascript
 // helper function example  
@@ -75,9 +75,9 @@ function showCalc() {
 }
 ```
 
-### 3. Naimplementovat funkci `processCalcResult(calcResult)`,
+### 3. Implement the function `processCalcResult(calcResult)`
 
-která zpracuje výsledky z kalkulačky. Typicky uloží údaje pro pozdější použití a přesune zákazníka do Košíku. Příklad objektu `calcResult`, který je funkci předán jako parametr:
+which processes the results from the calculator. Typically stores the data for later use and redirects the customer to the Cart. Example of the `calcResult` object that is passed to the function as a parameter:
 
 ```javascript
 function processCalcResult(calcResult) {  
@@ -99,8 +99,8 @@ function processCalcResult(calcResult) {
 }
 ```
 
-### 4. Naimportovat fonty pro danou html stránku
-Do hlavičky přidat fonty
+### 4. Import fonts for the HTML page
+Add fonts to the header
 
 ```html
 <head>
@@ -110,8 +110,8 @@ Do hlavičky přidat fonty
 </head>
 ```
 
-### 5. Naimportovat skripty kalkulačky
-Cestu ke scriptu si zvolíte sami
+### 5. Import the calculator scripts
+Choose the script path yourself
 ```html
 <script src="./app.js"></script>
 ```

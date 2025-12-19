@@ -1,6 +1,6 @@
-# Sample requests
+# Vzorové dotazy (requesty)
 
-The following is an example of an endpoint call to obtain an *access token*, which can then be used to make a subsequent endpoint call to create a purchase financing request.
+Následuje příklad provolání endpointu pro získání *access tokenu*, díky kterému pak lze provést následné provolání endpointu pro vytvoření žádosti o financování nákupu.
 
 ## Authentication
 
@@ -20,14 +20,14 @@ Header: Content-Type:application/json; charset=UTF-8
 Body: { "username": "testovaciusername",  "password": "test" }
 ```
 
-*use the login details for the test environment that you received after registration*
+*použijte přihlašovací údaje k testovacímu prostředí, které jste získali po registraci*
 
 ### Response POST
 
 ```javascript
 {
   "expiresIn": 7200,
-  "accessToken": "25167daf5c0d489f8b50ab685004ad5f", // used for authorization in the next request
+  "accessToken": "25167daf5c0d489f8b50ab685004ad5f", // použije se pro authorizaci v dalším requestu
   "tokenType": "bearer"
 }
 ```
@@ -38,7 +38,7 @@ Body: { "username": "testovaciusername",  "password": "test" }
   * https://apicz-test.homecredit.cz/verdun-train/financing/v1/applications 
 * SK
   * https://apisk-test.homecredit.sk/verdun-train/financing/v1/applications
-  
+
 ### Request POST
 
 ```http
@@ -150,7 +150,8 @@ Body: {
   }
 }
 ```
-#### SK version of the query
+
+#### SK varianta dotazu
 
 ```http
 Header: 
@@ -250,7 +251,9 @@ Body: {
 }
 ```
 
-At the end of the response, there is an attribute with information about the gateway to which the client needs to be redirected. It may look like this:
+
+
+Na konci response se nachází atribut s údajem o bráně, na kterou je potřeba klienta obratem přesměrovat, ta může vypadat:
 
 ```javascript
 { 
@@ -260,4 +263,4 @@ At the end of the response, there is an attribute with information about the gat
 }
 ```
 
-After being redirected, the client will be taken to the first window of the MyLoan HC application, where they will complete the steps necessary for the purchase/loan to be approved.
+Po přesměrování se klient dostane na první okno HC aplikace MyLoan, ve které dokončí kroky nezbytné pro schválení nákupu/ úvěru.

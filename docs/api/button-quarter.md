@@ -1,13 +1,13 @@
-# Přidání tlačítka pro 1 / 4 na detail produktu :
-1.	na stránky eshopu do detailu produktu se přidá nové tlačítko, které otevře kalkulačku (widget nebo API) a klient potvrdí výběr splátek. 
-2.	definici klientem zvolené produktové sady si eshop uloží a vloží jej jako preferovanou variantu do createApplication
+# Adding the 1/4 Button to Product Detail:
+1.	A new button is added to the e-shop's product detail page that opens the calculator (widget or API) and the client confirms their installment selection.
+2.	The e-shop saves the definition of the product set chosen by the client and inserts it as the preferred option into createApplication
 
 
-# Návod pro vložení tlačítka:
+# Instructions for Inserting the Button:
 
-1)	Na stránku eshopu, do místa kde chceme zobrazit HC kalkulačku, vložíme kód č.1
-2)	Kamkoli do stránek eshopu (klidně hned pod část č.1 nebo kamkoli kde jsou skripty) vložíme kód č.2
-3)	Upravíme řádek skriptu č.2, kde se definuje proměnná hcCalcPrice tak, aby se hodnota vzala z hodnoty produktu, kde hcCalcPrice je cena s DPH
+1)	Insert code #1 on the e-shop page, in the place where we want to display the HC calculator
+2)	Insert code #2 anywhere on the e-shop pages (can be right below part #1 or anywhere scripts are located)
+3)	Modify the line in script #2 where the hcCalcPrice variable is defined so that the value is taken from the product value, where hcCalcPrice is the price including VAT
 
 ## Kód č.1:
 ```html
@@ -31,8 +31,8 @@
 </script>
 ```
 
-# Návod pro vložení definice preferovaného produktu do createApplication:
-•	Uložená definice, klientem preferovaného produktu, se vloží při zakládání objednávky (createApplication) do části settingInstallment:
+# Instructions for Inserting the Preferred Product Definition into createApplication:
+•	The saved definition of the client's preferred product is inserted when creating an order (createApplication) into the settingInstallment section:
 
 ```json
 {
@@ -52,7 +52,7 @@
 }
 ```
 
-•	Produkt je definován 3 parametry:
-* preferredInstallment-výše splátky
-* productCode-kód produktu
-* productSetCode-kód produktové sady
+•	The product is defined by 3 parameters:
+* preferredInstallment - installment amount
+* productCode - product code
+* productSetCode - product set code
