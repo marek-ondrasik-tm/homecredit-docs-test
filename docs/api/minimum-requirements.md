@@ -1,8 +1,8 @@
-Zde je výčet kroků nezbytných pro naplnění mimimální funkční varianty implementace:
+Here is a list of steps necessary to fulfill the minimum functional implementation variant:
 
-1. Kalkulačka splátek umístěná v detailu produktu - varianta kalkulačky označovaná jako **_Standalone pro Tipaře_**. 
-  * jde jen o odkaz obsahující **cenu** (v haléřích/eurocentech), **kód produktové sady** (*COCHCONL*) a **APIkey** (každý e-shop má vlastní)
-  * tento odkaz otevře nové okno nad stávající stránkou. **Tato kalkulačka je pouze informativní**, kliknutím na "Vybrat splátky" se okno pouze zavře - zákazník tedy musí následně vložit zboží do košíku.
-2. V košíku ve výběru platební metody klienotvi umožníte vybrat splátky.
-3. Po dokončení objednávky ve vašem eshopu u nás založíte žádost (*Application*) pomocí **_Create application_**, přičemž parametry splátek si klient vybírá až v HC - toto tedy nemusíte nijak řešit, pouze klienta přesměrujete do HC (na *redirect URI*), kde doplní nezbytné údaje a požádá o splátky
-4. Notifikace ani další věci již nejsou potřeba, jednotlivé stavy objednávek již obsloužíte přes naší aplikaci Webclient.
+1. Payment calculator located in the product details - calculator variant referred to as **_Standalone for Tipsters_**. 
+  * This is just a link containing the **price** (in cents/euro cents), **product set code** (*COCHCONL*) and **API key** (each e-shop has its own).
+  * This link opens a new window above the existing page. **This calculator is for informational purposes only**; clicking on "Select installments" will simply close the window - the customer must then add the item to their cart.
+2. In the cart, in the payment method selection, allow the customer to select installments.
+3. After completing the order in your e-shop, you will create an application (*Application*) using **_Create application_**, with the client selecting the installment parameters in HC - you do not need to deal with this in any way, just redirect the client to HC (to *redirect URI*), where they will fill in the necessary information and request installments
+4. Notifications and other things are no longer necessary; you can now manage individual order statuses through our Webclient application.

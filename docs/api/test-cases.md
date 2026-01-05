@@ -1,21 +1,21 @@
-Testovací scénáře:
-1. **Kalkulačka v detailu zboží**
+Test scenarios:
+1. **Calculator in product details**
   * **API**
-    * nesmí použít Tipař v CZ
-  * **Widget kalkulačka** se otevře ve stránce e-shopu, klient nikam neodchází. Při kliknutí na tlačítko "Vybrat splátky" si e-shop uloží hodnoty klientem preferovaných splátek, viz. popis na www.gitHub.com/homecreditcz. 
-    * nesmí použít Tipař v CZ
-  * **Standalone kalkulačka** - jde pouze o vložení odkazu do detailu produktu, kalkulačka se otevře, a po nastavení preferované varianty splátek a stisknutí tlačítka "Vybrat splátky" se pouze zavře - vybrané hodnoty se nevrací.
-    * pouze pro partnery v CZ - primárně vytvořeno pro Tipaře
+    * Tipař cannot be used in the Czech Republic.
+  * **Calculator widget** opens on the e-shop page; the client does not leave the page. When the "Select installments" button is clicked, the e-shop saves the values of the client's preferred installments, see description at www.gitHub.com/homecreditcz. 
+    * Cannot be used by Tipař in CZ
+  * **Standalone calculator** - this only involves inserting a link into the product details, the calculator opens, and after setting the preferred installment option and pressing the "Select installments" button, it simply closes - the selected values are not returned.
+    * Only for partners in CZ - primarily created for Tipař
 
 ---
 
 2. **CreateApplication**
-> na Train prostředí neodcházejí emaily ani SMS
+> No emails or SMS messages are sent in the Train environment
 
-* Chcete-li simulovat různé stavy smluv, použijte funkci [*changeState* z technické dokumentace](https://csoneclicknewfuture.docs.apiary.io/#reference/testing-&-integration/change-application-state-integration-usage-only/change-application-state-integration-usage), popis najdete v levém sloupci pod **_Testing & Integration_**. Využívá se pro kontrolu fungování notifikací
-* A) Průchod flow zákazníka **při zamítnutí** v MyLoan (HC front-end): 
-  * Stačí vybrat *Exponovaná osoba - Ano* => smlouva bude vždy zamítnuta
-* B) Průchod flow zákazníka **při schválení** v MyLoan (HC front-end) s návratem zpět na e-shop:
-  * Do příjmení je nutné dát "*Trener*"
-  * Po přesměrování do MyLoan (HC front-end) zadejte rodné číslo ve správném formátu, např. *451112 345*
-  * Po schválení podepište smlouvu pomocí OTP "*123456*"
+* To simulate different contract statuses, use the [*changeState* function from the technical documentation](https://csoneclicknewfuture. docs.apiary.io/#reference/testing-&-integration/change-application-state-integration-usage-only/change-application-state-integration-usage), the description can be found in the left column under **_Testing & Integration_**. It is used to check the functioning of notifications
+* A) Customer flow **when rejected** in MyLoan (HC front-end): 
+  * Just select *Exposed person - Yes* => the contract will always be rejected
+* B) Customer flow **when approved** in MyLoan (HC front-end) with return to the e-shop:
+  * Enter "*Trener*" in the last name field
+  * After being redirected to MyLoan (HC front-end), enter your birth number in the correct format, e.g. *451112 345*
+  * After approval, sign the contract using the OTP "*123456*"

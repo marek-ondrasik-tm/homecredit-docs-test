@@ -32,7 +32,11 @@ const config: Config = {
   // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: "en",
-    locales: ["en"],
+    locales: ["en", "cs"],
+    localeConfigs: {
+      en: { label: "English", htmlLang: "en-US" },
+      cs: { label: "Čeština", htmlLang: "cs-CZ" }
+    }
   },
 
   presets: [
@@ -40,6 +44,7 @@ const config: Config = {
       "classic",
       {
         docs: {
+          path: "docs",
           sidebarPath: "./sidebars.ts",
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
@@ -95,7 +100,7 @@ const config: Config = {
         },
         {
           type: "docSidebar",
-          sidebarId: "widgets",
+          sidebarId: "widgetsSidebar",
           position: "left",
           label: "Widgets",
         },
@@ -105,6 +110,10 @@ const config: Config = {
           label: "GitLab",
           position: "right",
         },
+        {
+          type: "localeDropdown",
+          position: "left",
+        }
       ],
     },
     footer: {
@@ -123,7 +132,7 @@ const config: Config = {
             },
             {
               label: "Widgets",
-              to: "/docs/widgets",
+              to: "/docs/widgets/install",
             },
           ],
         },

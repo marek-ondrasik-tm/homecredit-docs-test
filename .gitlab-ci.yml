@@ -1,0 +1,26 @@
+image: node:22
+
+stages:
+  - build
+
+cache:
+  paths:
+    - node_modules/
+
+# Install dependencies (runs before each job)
+before_script:
+  - npm ci
+
+# Build the site
+build:
+  stage: build
+  script:
+    - npm run build
+  artifacts:
+    paths:
+      - build/
+    expire_in: 1 week
+  only:
+    - merge_requests
+    - main
+    - develop
