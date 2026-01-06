@@ -6,6 +6,7 @@ import Translate, {translate} from '@docusaurus/Translate';
 import Heading from '@theme/Heading';
 
 import styles from './index.module.css';
+import HomepageFeatures from '../components/HomepageFeatures';
 
 function HomepageHeader() {
   return (
@@ -46,7 +47,7 @@ export default function Home(): ReactNode {
       description="Description will go into a meta tag in <head />">
       <HomepageHeader />
       <main>
-        {/* <HomepageFeatures /> */}
+        <HomepageFeatures />
       </main>
     </Layout>
   );

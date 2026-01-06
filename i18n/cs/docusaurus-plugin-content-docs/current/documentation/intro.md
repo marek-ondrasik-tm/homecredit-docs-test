@@ -46,19 +46,19 @@ Cílem zde popsaných služeb je umožnit zákazníkům plynulý průchod proces
 
 Základní a minimální způsob, jak implementovat HCO API, je implementovat alespoň:
 
-1. [Login](#reference/security/login-partner)
+1. [Login](https://csoneclicknew.docs.apiary.io/#reference/security/login-partner)
    - Musíte být autorizováni, abyste měli přístup k většině zdrojů.
 
-2. [Create application](#reference/application-resources/create-application)
+2. [Create application](https://csoneclicknew.docs.apiary.io/#reference/application-resources/create-application)
    - Jakmile shromáždíte potřebná data o zákazníkovi a jeho objednávce, zavolejte tento zdroj pro zahájení procesu schválení úvěru vytvořením `application`. Samotná `application` a její ID jsou zásadní pro úspěšné dokončení procesu.
 
 3. Obsluhu přesměrování.
-   - Speciální URL adresy pro zákazníky, které zobrazují úspěch či zamítnutí platby (více informací [zde](#introduction/getting-started/parameters-added-to-your-return-urls)).
+   - Speciální URL adresy pro zákazníky, které zobrazují úspěch či zamítnutí platby (více informací [zde](#parametry-přidané-k-vašim-návratovým-url)).
 
-4. [Application notification](#reference/merchantsite-resources/application-notification)
+4. [Application notification](https://csoneclicknew.docs.apiary.io/#reference/merchantsite-resources/application-notification)
    - Tento endpoint musí být vystaven na vaší straně, aby back‑end HC mohl asynchronně informovat o důležitých změnách týkajících se konkrétních žádostí a objednávek.
 
-5. [Mark order items as sent](#reference/application-resources/mark-order-items-as-sent) nebo [Mark order items as delivered](#reference/application-resources/mark-order-items-as-delivered) (použijte tu variantu, která odpovídá vašemu expedičnímu a fakturačnímu procesu, preferováno je `Mark order items as delivered`)
+5. [Mark order items as sent](https://csoneclicknew.docs.apiary.io/#reference/application-resources/mark-order-items-as-sent) nebo [Mark order items as delivered](https://csoneclicknew.docs.apiary.io/#reference/application-resources/mark-order-items-as-delivered) (použijte tu variantu, která odpovídá vašemu expedičnímu a fakturačnímu procesu, preferováno je `Mark order items as delivered`)
    - HC nezahájí proces finanční kompenzace, dokud není objednávka označena jako `SENT` / `DELIVERED`.
 
 [![Sekvenční diagram minimální implementace](https://github.com/mdostal-hci/oneclick-images/raw/master/SequenceDiagramInstallmentMinimum.png)](https://github.com/mdostal-hci/oneclick-images/raw/master/SequenceDiagramInstallmentMinimum.png)
@@ -181,7 +181,7 @@ Používáme následující status kódy napříč API, s výjimkou OAuth flow, 
 
 - 422 `Unprocessable Entity` – business (sémantické) chyby. Požadavek je syntakticky v pořádku, ale nelze jej zpracovat (např. datum splatnosti platby je v minulosti). Chyby jsou uvedeny v těle odpovědi (viz níže)
 
-- 429 `Too Many Requests` – partner překročil limit počtu volání (viz sekce [API calls limit](#introduction/api-calls-limits) výše)
+- 429 `Too Many Requests` – partner překročil limit počtu volání (viz sekce [API calls limit](#limity-api-volání) výše)
 
 - 500 `Internal Server Error` – došlo k chybě na naší straně
 
