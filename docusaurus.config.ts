@@ -28,6 +28,17 @@ const config: Config = {
 
   onBrokenLinks: "throw",
 
+  // Algolia site verification
+  headTags: [
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'algolia-site-verification', // Or whatever name your tag uses
+        content: '4C6B0500CCB5D6F7',
+      },
+    },
+  ],
+
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
@@ -111,6 +122,18 @@ const config: Config = {
   ],
   themes: ["docusaurus-theme-openapi-docs"],
   themeConfig: {
+    algolia: {
+      // The application ID provided by Algolia
+      appId: 'YOUR_APP_ID',
+
+      // Public API key: it is safe to commit it
+      apiKey: 'YOUR_SEARCH_API_KEY',
+
+      indexName: 'YOUR_INDEX_NAME',
+
+      // Optional: see doc section below
+      contextualSearch: true,
+    },
     // Replace with your project's social card
     image: "img/docusaurus-social-card.jpg",
     colorMode: {
