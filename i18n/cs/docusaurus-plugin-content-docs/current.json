@@ -1,10 +1,10 @@
 {
   "homepage.title": {
-    "message": "Home Credit Dev Documentation",
+    "message": "Home Credit Developer Documentation",
     "description": "Homepage title"
   },
   "homepage.tagline": {
-    "message": "Klikněte na Docs pro začátek",
+    "message": "Integrujte svůj e-commerce systém s Home Credit snadno a poskytněte svým zákazníkům bezproblémový platební zážitek.",
     "description": "Homepage tagline"
   },
   "version.label": {
@@ -12,7 +12,7 @@
     "description": "The label for version current"
   },
   "title": {
-    "message": "HC Dev Dokumentace",
+    "message": "HC Developer Dokumentace",
     "description": "The title in the navbar"
   },
   "item.label.Docs": {

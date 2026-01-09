@@ -327,11 +327,11 @@
     "description": "The title of the tag list page"
   },
   "homepage.title": {
-    "message": "Home Credit Dev Dokumentace",
+    "message": "Home Credit Developer Dokumentace",
     "description": "The homepage title"
   },
   "homepage.tagline": {
-    "message": "Klikněte na Docs pro začátek",
+    "message": "Integrujte svůj e-commerce systém s Home Credit snadno a poskytněte svým zákazníkům bezproblémový platební zážitek.",
     "description": "The homepage tagline"
   },
   "homepage.button": {
@@ -339,7 +339,7 @@
     "description": "The button to proceed to docs"
   },
   "homepage.metaTitle": {
-    "message": "Vítejte z Home Credit Dev Dokumentace",
+    "message": "Vítejte z Home Credit Developer Dokumentace",
     "description": "The homepage meta title"
   },
   "homepage.features.intro.title": {

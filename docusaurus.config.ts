@@ -6,8 +6,8 @@ import type * as OpenApiPlugin from 'docusaurus-plugin-openapi-docs';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: "Home Credit Dev Documentation",
-  tagline: "Click on Docs to get started",
+  title: "Home Credit Developer Documentation",
+  tagline: "Integrate your ecommerce system with Home Credit easily and provide your customers with a seamless payment experience.",
   favicon: "img/favicon.ico",
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -112,7 +112,7 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: "HC Dev Documentation",
+      title: "Home Credit Documentation",
       logo: {
         alt: "HC Docs Logo",
         src: "img/logo.svg",
