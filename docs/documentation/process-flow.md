@@ -1,3 +1,5 @@
+# Process Flow
+
 Below you will find a description of the purchase process flow in points:
 
 1. **Calculator in the product details in your e-shop** (via API, JavaScript widget, standalone for Tipaře). When the client selects "Installments," you redirect them to the shopping cart with the selected goods and preset the payment method to *installments*. You **save** the client's preferred option (*not applicable for the standalone calculator option*) and, after completing the order in the shopping cart, enter it into *createApplication* in the *settingsInstallments* attribute. This will transfer the client's preferred option to us, so we will no longer force the client to select an installment product again in our environment. 

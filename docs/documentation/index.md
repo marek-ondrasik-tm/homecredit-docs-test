@@ -1,4 +1,6 @@
-# Home Credit on-line: Basic Information for Partner E-shops
+# Home Credit on-line for Partner E-Shops
+
+## Basic Information
 
 - The interface for the HC On-line payment method is a **REST API**, where JSON notation is used for all communication (queries - requests and responses) and data description.
 - The **Technical Documentation** for the API (hereinafter TD) and basic description of the payment method functionality can be found at [https://csoneclicknew.docs.apiary.io/#](https://csoneclicknew.docs.apiary.io/)
@@ -10,6 +12,7 @@
 
 
 ## Navigation
+
 [API Technical Documentation](https://csoneclicknew.docs.apiary.io/)
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

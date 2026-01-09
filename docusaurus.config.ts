@@ -1,6 +1,7 @@
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import type * as OpenApiPlugin from 'docusaurus-plugin-openapi-docs';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
@@ -46,6 +47,7 @@ const config: Config = {
         docs: {
           path: "docs",
           sidebarPath: "./sidebars.ts",
+          docItemComponent: "@theme/ApiItem",
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
@@ -73,6 +75,36 @@ const config: Config = {
     ],
   ],
 
+  plugins: [
+    [
+      'docusaurus-plugin-openapi-docs',
+      {
+        id: 'api',
+        docsPluginId: 'classic',
+        config: {
+          homeCreditApi: {
+            specPath: 'api-docs-source/testopenapi.yaml',
+            outputDir: 'docs/api/Reference',
+            sidebarOptions: {
+              groupPathsBy: 'tag',
+              sidebarCollapsible: true,
+              sidebarCollapsed: false,
+            },
+          } satisfies OpenApiPlugin.Options,
+          psd2Api: {
+            specPath: 'api-docs-source/openapi.yaml',
+            outputDir: 'docs/api-psd2',
+            sidebarOptions: {
+              groupPathsBy: 'tag',
+              sidebarCollapsible: true,
+              sidebarCollapsed: false,
+            },
+          } satisfies OpenApiPlugin.Options,
+        } as any,
+      }
+    ]
+  ],
+  themes: ["docusaurus-theme-openapi-docs"],
   themeConfig: {
     // Replace with your project's social card
     image: "img/docusaurus-social-card.jpg",
@@ -100,6 +132,12 @@ const config: Config = {
         },
         {
           type: "docSidebar",
+          sidebarId: "psd2ApiSidebar",
+          position: "left",
+          label: "PSD2 API",
+        },
+        {
+          type: "docSidebar",
           sidebarId: "widgetsSidebar",
           position: "left",
           label: "Widgets",
@@ -124,11 +162,15 @@ const config: Config = {
           items: [
             {
               label: "Documentation",
-              to: "/docs/documentation/intro",
+              to: "/docs/documentation/button-quarter",
             },
             {
               label: "API reference",
-              to: "/docs/api",
+              to: "/docs/api/Introduction/application-resources",
+            },
+            {
+              label: "PSD2 API",
+              to: "/docs/api-psd2/home-credit-psd-2-api",
             },
             {
               label: "Widgets",

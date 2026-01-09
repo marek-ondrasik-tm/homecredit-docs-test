@@ -1,0 +1,28 @@
+.features {
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+  width: 100%;
+}
+
+.featureSvg {
+  height: 200px;
+  width: 200px;
+}
+
+.feature-img {
+  border-radius: 16px;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.feature-item {
+    max-width: 400px;
+    padding: 2rem 2rem 0 2rem;
+    background: var(--ifm-text-color);
+    color: black;
+    border: 1px solid;
+    border-radius: 16px;
+}

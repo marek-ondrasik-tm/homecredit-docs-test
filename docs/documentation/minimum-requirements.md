@@ -1,3 +1,5 @@
+# Minimum Requirements
+
 Here is a list of steps necessary to fulfill the minimum functional implementation variant:
 
 1. Payment calculator located in the product details - calculator variant referred to as **_Standalone for Tipsters_**. 

@@ -341,5 +341,23 @@
   "homepage.metaTitle": {
     "message": "Vítejte z Home Credit Dev Dokumentace",
     "description": "The homepage meta title"
+  },
+  "homepage.features.intro.title": {
+    "message": "Úvod",
+    "description": "The title for the Introduction feature"
+  },
+  "homepage.features.restApi.title": {
+    "message": "REST API Principy",
+    "description": "The title for the REST API Principles feature"
+  },
+  "homepage.features.apiReference.title": {
+    "message": "Úvod do API Reference",
+    "description": "The title for the API Reference feature"
+  },
+  "homepage.section.introduction": {
+    "message": "Úvod"
+  },
+  "homepage.section.apiReference": {
+    "message": "API Reference"
   }
 }

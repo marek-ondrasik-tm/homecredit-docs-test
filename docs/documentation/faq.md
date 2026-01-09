@@ -1,3 +1,5 @@
+# FAQ
+
 1. When testing in a browser, always use an incognito window and launch new requests via CTRL+F5
 2. Widget calculator – **there are separate versions for CZ and SK, they cannot be mixed**, available at https://github.com/homecreditcz/widget-calculator
 3. Calculator not working, displaying message "Something went wrong":

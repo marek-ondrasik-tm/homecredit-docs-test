@@ -6,6 +6,7 @@ import Translate, {translate} from '@docusaurus/Translate';
 import Heading from '@theme/Heading';
 
 import styles from './index.module.css';
+import HomepageFeatures from '../components/HomepageFeatures';
 
 function HomepageHeader() {
   return (
@@ -24,7 +25,7 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/documentation/intro">
+            to="/docs/api-psd2/home-credit-psd-2-api">
             <Translate id="homepage.button" description="The button to proceed to docs">
               Proceed
             </Translate>
@@ -46,7 +47,7 @@ export default function Home(): ReactNode {
       description="Description will go into a meta tag in <head />">
       <HomepageHeader />
       <main>
-        {/* <HomepageFeatures /> */}
+        <HomepageFeatures />
       </main>
     </Layout>
   );

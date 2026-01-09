@@ -1,0 +1,71 @@
+---
+id: login-partner
+title: "Login partner"
+description: "Partner authenticate himself and obtain access token"
+sidebar_label: "Login partner"
+hide_title: true
+hide_table_of_contents: true
+api: eJylVt1OIzcUfpWjszctmkyA7UqruahKERJIu4AI9AYQcjwnGS8e22t7gBDyDL3vVR+jz9MX6CtUxzOBiRLYVZub2D4/Pj+fvzNzLClIr1xU1mCBp8JHQx5EEysyUUkRCSpVB9ITEKYEO45CGRBSUggQ7S0ZzDCKacDiEvdOj2DkSKoJW7LL6ww9fW0oxF9tOcNinrbKU4lF9A1lKK2JZCKLhHO6Mxx+CRzQHIOsqBa8ijNHWKAdfyEZMes5usQmkDeiJszQiRDurS/5auetIx8VBXbwrPTiLESvzBSzV8rQc0sPonaabWhUWYeL3k3f7S+Q9BTh2XDN7SgpnC7li/TjVIOzJrRp7G5v89/qDaMmdWTS6H7vWPY/KrxavrbnN23P11JeZJgkN+3xmrjL5KftnfXgLwzHbL16JM45w5piZUss0NmQAhGxwgKHq6kN73aGrq0sZhjI35FnGM6x8RoLrGJ0oRgOhVN5ZWsubaliLh/X++Nt2UjeQOsGF9cZcoHOXsB7sGxVH0kdGvpg2NzJDJWZ2FQYFVPDD/dhACeG9rWSt8BPZwBHJkShdU0mBsyQE2oj3Ml3P+a7mOHDIKiSxsIPtBgTp8mWv7WKm7DH4tLKhn2mssHEeji0NcF+KgjHMHgOIr8yV6ZzB3ayalpAGwfrvHu3vBUOVYjWz/j06fnwCc5IkwjUW5VMJ09wTPcBnq7M02D527Tqb1m5uxvgCfZHO+/fA68+5jvb+e727gdIW09OC0kcMAdPpnRWmZhSlpUwU4LeE4AQU0BdOke1sz4KE+HYRgp8+kmF5EjE6NW4iRQg3KsoK2WmMPG2hiULQbRgU82FLth0AB3x5bIJ0dbkN53lE+VDPBY1bZRq8YZw0mj9qpBqofRGiaus2WwjytJTCJz6W9Jcqjj7hkqInijutfvv0j1u6vErNXpRfVTuGxrd6nzmVnKsyXP/44XXITc2Pk+ogw4i3LIjA5Jhyg03M0iWypoMXAtfJlIhI9jGgzKRpr6FUUlMQwl0P3Tnkm4oVNb9skI8P6bX9TP8/cef//z1O2xtHX0+PTk73zs+h+OT84OtrQLOKNjGSwIptA5Qi5JaoI20vRO3SsDni9E5TyZGsrfOK8ZwSWUa1iXk4fYZ9yGHg3yawytMGG6HE2WEkUwczKa9txGulqNDyDQ6Or7rE8eocfxieIwx2pjt25PVrJn8tJJkAvUcnabYKQo/S5zPVF8L09P4ZKfKwAvDr/Da/GWs/eevlnZCRXqIQ6eFMhxoGh3zbuJc4towvdtJZN/GdJ1hxROquMT5fCwCXXi9WPDx14b8DIvL6wzvhFdizJR/eb3IsCJRkk9j6pZmWOB+m8eAIcsXCN1wWGujepEtLfakJBff1L3uDdHTk9E5ZjjuPsBqW7KNF/f8ESXusUDMsOWuNOjT2Ry1MNNGTFm39cm/fwFnSJ6+
+sidebar_class_name: "post api-method"
+info_path: docs/api/Reference/hc-oneclick-api-installments
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Login partner"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/authentication/v1/partner"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Partner authenticate himself and obtain access token
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["username","password"],"properties":{"username":{"type":"string","description":"Partner username","example":"eShop"},"password":{"type":"string","description":"Partner secret password","example":"eShopSecretPassword"}}}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Successful authentication","content":{"application/json":{"schema":{"type":"object","properties":{"access_token":{"type":"string"},"token_type":{"type":"string"}}}}}},"401":{"description":"Unauthorized"}}}
+>
+  
+</StatusCodes>
+
+
+      

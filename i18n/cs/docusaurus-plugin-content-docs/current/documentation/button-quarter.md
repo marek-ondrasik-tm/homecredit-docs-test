@@ -1,15 +1,16 @@
-# Přidání tlačítka pro 1 / 4 na detail produktu :
+# Přidání tlačítka pro na detail produktu
+
 1.	na stránky eshopu do detailu produktu se přidá nové tlačítko, které otevře kalkulačku (widget nebo API) a klient potvrdí výběr splátek. 
 2.	definici klientem zvolené produktové sady si eshop uloží a vloží jej jako preferovanou variantu do createApplication
 
-
-# Návod pro vložení tlačítka:
+## Návod pro vložení tlačítka
 
 1)	Na stránku eshopu, do místa kde chceme zobrazit HC kalkulačku, vložíme kód č.1
 2)	Kamkoli do stránek eshopu (klidně hned pod část č.1 nebo kamkoli kde jsou skripty) vložíme kód č.2
 3)	Upravíme řádek skriptu č.2, kde se definuje proměnná hcCalcPrice tak, aby se hodnota vzala z hodnoty produktu, kde hcCalcPrice je cena s DPH
 
-## Kód č.1:
+### Kód č.1
+
 ```html
 <div>
     <a id="hcCalcLink" target="_blank" title="Splátková kalkulačka Homecredit" class="c1664">
@@ -18,7 +19,8 @@
 </div>
 ```
 
-## Kód č.2:
+### Kód č.2
+
 ```html
 <script type="text/javascript">
     const hcCalcPrice = 1000000;
@@ -31,7 +33,8 @@
 </script>
 ```
 
-# Návod pro vložení definice preferovaného produktu do createApplication:
+## Návod pro vložení definice preferovaného produktu do createApplication
+
 •	Uložená definice, klientem preferovaného produktu, se vloží při zakládání objednávky (createApplication) do části settingInstallment:
 
 ```json
