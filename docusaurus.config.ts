@@ -144,13 +144,8 @@ const config: Config = {
         },
         { to: "docs/contact", label: "Contact", position: "left" },
         {
-          href: "https://gitlab.techmates.io/techmates/homecredit-docs",
-          label: "GitLab",
-          position: "right",
-        },
-        {
           type: "localeDropdown",
-          position: "left",
+          position: "right",
         }
       ],
     },
@@ -182,17 +177,17 @@ const config: Config = {
           title: "Community",
           items: [
             {
-              label: "Stack Overflow",
-              href: "https://stackoverflow.com/questions/tagged/docusaurus",
+              label: "LinkedIn",
+              href: "https://www.linkedin.com/company/homecredit/",
             },
             {
-              label: "Discord",
-              href: "https://discordapp.com/invite/docusaurus",
+              label: "Facebook",
+              href: "https://www.facebook.com/homecreditcz",
             },
             {
-              label: "X",
-              href: "https://x.com/docusaurus",
-            },
+              label: "Home Credit",
+              href: "https://www.homecredit.cz/",
+            }
           ],
         },
         {
@@ -200,12 +195,12 @@ const config: Config = {
           items: [
             {
               label: "GitHub",
-              href: "https://github.com/facebook/docusaurus",
+              href: "https://github.com/homecreditcz",
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Home Credit a.s. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Home Credit a.s., Nové sady 996/25, 602 00 Brno`,
     },
     prism: {
       theme: prismThemes.github,
