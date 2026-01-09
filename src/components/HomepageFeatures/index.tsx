@@ -1,5 +1,4 @@
 import type {ReactNode} from 'react';
-import clsx from 'clsx';
 import Heading from '@theme/Heading';
 import styles from './styles.module.css';
 import Link from '@docusaurus/Link';
@@ -24,19 +23,19 @@ const IntroFeatures: FeatureItem[] = [
   {
     title: translate({
       id: 'homepage.features.intro.title',
-      message: 'API Docs Intro',
-      description: 'The title for the Intro feature'
+      message: 'Sample requests',
+      description: 'The title for the Sample requests feature'
     }),
-    path: '/docs/api/Introduction/getting-started',
+    path: '/docs/documentation/example-queries',
     imgPath: require('@site/static/img/image_intro_hc.png').default,
   },
   {
     title: translate({
       id: 'homepage.features.restApi.title',
-      message: 'REST API Principles',
-      description: 'The title for the REST API Principles feature'
+      message: 'Environment Setup',
+      description: 'The title for the Environment Setup feature'
     }),
-    path: 'docs/api/Introduction/restapi-principles',
+    path: 'docs/documentation/dev-env',
     imgPath: require('@site/static/img/image_intro_hc.png').default,
   },
 ];
@@ -48,16 +47,16 @@ const ApiReferenceFeatures: FeatureItem[] = [
       message: 'API Reference Intro',
       description: 'The title for the API Reference feature'
     }),
-    path: 'docs/api/Reference/hc-oneclick-api-installments',
+    path: 'docs/api/Reference/loanit-application-financing',
     imgPath: require('@site/static/img/image_api_hc.png').default,
   },
   {
     title: translate({
       id: 'homepage.features.apiReference.title',
-      message: 'PSD2 API Reference',
-      description: 'The title for the PSD2 API Reference feature'
+      message: 'Example API Call',
+      description: 'The title for the example API call feature'
     }),
-    path: 'docs/api-psd2/home-credit-psd-2-api',
+    path: 'docs/api/Reference/create-using-post-4',
     imgPath: require('@site/static/img/image_api_hc.png').default,
   },
 ];

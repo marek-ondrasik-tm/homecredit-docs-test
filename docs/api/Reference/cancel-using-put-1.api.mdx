@@ -1,0 +1,71 @@
+---
+id: cancel-using-put-1
+title: "cancel (v3)"
+description: "Requires <b>applications.cancel</b> authority for authenticated user"
+sidebar_label: "cancel (v3)"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVm1v2zYQ/ivE9UsbyC+pO6wTimKuKjfCXMeQ7GJDaxi0dLbZSaRKUm5TQ/99OFFOnDjJAmz+Ykl87rk78u457sHyjQH/M6yF5DIVctPZDWDhQYYm1aK0QknwIcZvldBo2JvVW16WuUg5rZhuymWK+Zve6i3jld0qLewVWyvdvKG0BMSMVQY1eKBK1I1hlIEPznZuhNxM57PlOXhQcs0LtKgppj1IXiD4UFUiAw8ERVJyu4W74bUA7aLMwLe6Qg9MusWCg78He1USkbFayA3U9cKB0dh3KrsiRKqkRWnp8SjB3ldDDvanVGr1FVNLIWvKygo0DU1lrCpi5K3dbcd3405KTMW69cXUmg2n03EUDGfR5WQZDCdBOB6H75eXs4swZtqR1hT60+hdGMTrtjpv/HRZoKQRGWrMGDeP+hRrJpVlBm0XPEBZFVQr91sEwziOwngZXAwnH8L34D2Mmy2Dy8ksnMz+Ffzur2UwT2aXH8P4MUwYTx9cDv+cRvEjLuaTUTSJkosnQZZx+CFKZnGDeASfzIMgTJLRfLwMxhFl+imMo1ELfZph8jFZJtGHyXA2j8NHs08uLqfLeD4OkwdhzXnCoq49sMLmVDWjQ8t/GgxvSj5oSiV23QE1GdyuqrZxTvqtKUxTKmlcK7zs9+nvtvHlH1TAL/vnp0uBRtIKWn913/pctgrz8wAanIJGSq9ElqF0iFeniImybKQqmQGlZjCtSLMauXnHjUjB/7yoGwEsNTbqBf6a5wY9KNBuFSlXWTWdT1LkQ0+jsb1r/eztBr1jieztSZ3qnmtBIJd6dxC4SufE0Cu12HGLnf5v/dev005qrul2gy4vBddXnUKlf3dTVQBFR7oU3yhY+IMXJR3qXQW6kYaDaDyxe2vS27UiRorW7d354NduvzPo/NIfvIKbQhorLiPLOuyojNh1dZ3I0mwrSHUilqm0KlBaZ5AqcsTsFtmFKpAFGjNh2ePkxOOx71uRbhlKvsrRMIO8yNEYJqTFjRs4zUy63lR2a4Z9kV/ks2fP2CeXJ4vkWumiWaSlDjs7o2jb5bMznx3vw8E6UNLy1N61HinNTFWWSlumNBOSWkag8ViZIzfIUmfnH1xNeIHk43gPEkfgAGHBRU4IOp/ft6rAtEF1059fJJ2Km+jX0/Nosp+fnMXxplIGWuU5aqi9+8xf/jfzwZPNF7UHpTK24M2Ua6lcB7Hnu8GLu0xH8/v/uqu0o9XiD9srcy4aRWn6dd92/mfSOxKC9VGpN1keuwUP/PZ+0krAwoOtMpYI9vsVNzjXeV3T528VapKihQc7rgWVc3OSmTD0fKNEDyb/vM0+e8Fap/fm0X7k8opC5nlFb+DB33h1uE41h7BFnqFuYnBLgfPUmRHBjenJlYk06loup/MZeLBqb1qFyshE8++kSvy786xKt1v+3n3bQ87lpuIbwjpK+v0DmnyREw==
+sidebar_class_name: "put api-method"
+info_path: docs/api/Reference/loanit-application-financing
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"cancel (v3)"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"put"}
+  path={"/rest/financing/v3/applications/{uuid}/cancel"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Requires <b>applications.cancel</b> authority for authenticated user
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"uuid","in":"path","description":"uuid","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"content":{"application/json":{"schema":{"type":"object","properties":{"customReason":{"type":"string","description":"Specification of APPLICATION_CANCELLED_OTHER reason"},"reason":{"type":"string","description":"Reason of cancellation. Considered as APPLICATION_CANCELLED_OTHER if not set.","enum":["APPLICATION_CANCELLED_CARRIER_CHANGED","APPLICATION_CANCELLED_CART_CONTENT_CHANGED","APPLICATION_CANCELLED_BY_CUSTOMER","APPLICATION_CANCELLED_BY_ERP","APPLICATION_CANCELLED_EXPIRED","APPLICATION_CANCELLED_UNFINISHED","APPLICATION_CANCELLED_UNFINISHED_REGISTRATION","APPLICATION_CANCELLED_UNSUCCESSFUL_CLIENT_VERIFICATION","APPLICATION_CANCELLED_UNSUCCESSFUL_SMS_SIGNATURE","APPLICATION_CANCELLED_BY_ESHOP_RULES","APPLICATION_CANCELLED_OTHER"]}},"title":"FinancingV3ApplicationCancelRequest"}}},"description":"request","required":true}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"OK"},"201":{"description":"Created"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}
+>
+  
+</StatusCodes>
+
+
+      

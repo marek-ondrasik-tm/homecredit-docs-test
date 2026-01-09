@@ -48,10 +48,6 @@ const config: Config = {
           path: "docs",
           sidebarPath: "./sidebars.ts",
           docItemComponent: "@theme/ApiItem",
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
         },
         // blog: {
         //   showReadingTime: true,
@@ -82,18 +78,27 @@ const config: Config = {
         id: 'api',
         docsPluginId: 'classic',
         config: {
+          // homeCreditApi: {
+          //   specPath: 'api-docs-source/testopenapi.yaml',
+          //   outputDir: 'docs/api/Reference',
+          //   sidebarOptions: {
+          //     groupPathsBy: 'tag',
+          //     sidebarCollapsible: true,
+          //     sidebarCollapsed: false,
+          //   },
+          // } satisfies OpenApiPlugin.Options,
+          // psd2Api: {
+          //   specPath: 'api-docs-source/openapi.yaml',
+          //   outputDir: 'docs/api-psd2',
+          //   sidebarOptions: {
+          //     groupPathsBy: 'tag',
+          //     sidebarCollapsible: true,
+          //     sidebarCollapsed: false,
+          //   },
+          // } satisfies OpenApiPlugin.Options,
           homeCreditApi: {
-            specPath: 'api-docs-source/testopenapi.yaml',
+            specPath: 'api-docs-source/swaggerspec.yaml',
             outputDir: 'docs/api/Reference',
-            sidebarOptions: {
-              groupPathsBy: 'tag',
-              sidebarCollapsible: true,
-              sidebarCollapsed: false,
-            },
-          } satisfies OpenApiPlugin.Options,
-          psd2Api: {
-            specPath: 'api-docs-source/openapi.yaml',
-            outputDir: 'docs/api-psd2',
             sidebarOptions: {
               groupPathsBy: 'tag',
               sidebarCollapsible: true,
@@ -132,12 +137,6 @@ const config: Config = {
         },
         {
           type: "docSidebar",
-          sidebarId: "psd2ApiSidebar",
-          position: "left",
-          label: "PSD2 API",
-        },
-        {
-          type: "docSidebar",
           sidebarId: "widgetsSidebar",
           position: "left",
           label: "Widgets",
@@ -161,11 +160,7 @@ const config: Config = {
             },
             {
               label: "API reference",
-              to: "/docs/api/Introduction/application-resources",
-            },
-            {
-              label: "PSD2 API",
-              to: "/docs/api-psd2/home-credit-psd-2-api",
+              to: "docs/api/Reference/loanit-application-financing",
             },
             {
               label: "Widgets",
