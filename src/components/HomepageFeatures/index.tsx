@@ -64,12 +64,29 @@ const ApiReferenceFeatures: FeatureItem[] = [
 
 function Feature({title, imgPath, path }: FeatureItem) {
   return (
-    <Link to={path} className={clsx('col margin-horiz--md', styles['feature-item'])} style={{textDecoration: 'none'}}>
-      <div className="text--center">
-        <img className='feature-img' src={imgPath} role="img" />
+    <Link to={path} className={styles.featureItem} style={{textDecoration: 'none'}}>
+      <div className={styles.featureImageWrapper}>
+        <img className={styles.featureImage} src={imgPath} alt={title} role="img" />
+        <div className={styles.featureOverlay}>
+          <svg
+            className={styles.arrowIcon}
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M5 12H19M19 12L12 5M19 12L12 19"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </div>
       </div>
-      <div className="text--center padding-horiz--md">
-        <Heading as="h3">{title}</Heading>
+      <div className={styles.featureContent}>
+        <Heading as="h3" className={styles.featureTitle}>{title}</Heading>
       </div>
     </Link>
   );
@@ -79,25 +96,25 @@ export default function HomepageFeatures(): ReactNode {
   return (
     <section className={styles.features}>
       <div className="container">
-        <div>
-          <Heading as="h2" className="text--center">
+        <div className={styles.section}>
+          <Heading as="h2" className={styles.sectionTitle}>
             <Translate id="homepage.section.introduction">Introduction</Translate>
           </Heading>
-        <div className={clsx("row", styles['justify-center'])}>
+          <div className={styles.featuresGrid}>
             {IntroFeatures.map((props, idx) => (
               <Feature key={idx} {...props} />
             ))}
           </div>
         </div>
-        <div className={clsx('margin-top--md')}>
-        <Heading as="h2" className="text--center">
-          <Translate id="homepage.section.apiReference">API Documentation</Translate>
-        </Heading>
-        <div className={clsx("row", styles['justify-center'])}>
-          {ApiReferenceFeatures.map((props, idx) => (
-            <Feature key={idx} {...props} />
-          ))}
-        </div>
+        <div className={styles.section}>
+          <Heading as="h2" className={styles.sectionTitle}>
+            <Translate id="homepage.section.apiReference">API Documentation</Translate>
+          </Heading>
+          <div className={styles.featuresGrid}>
+            {ApiReferenceFeatures.map((props, idx) => (
+              <Feature key={idx} {...props} />
+            ))}
+          </div>
         </div>    
       </div>
     </section>
