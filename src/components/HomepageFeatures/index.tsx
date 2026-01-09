@@ -15,10 +15,19 @@ const IntroFeatures: FeatureItem[] = [
   {
     title: translate({
       id: 'homepage.features.intro.title',
-      message: 'Intro',
+      message: 'Documentation Usage',
+      description: 'The title for the Documentation feature'
+    }),
+    path: '/docs/documentation/button-quarter',
+    imgPath: require('@site/static/img/image_intro_hc.png').default,
+  },
+  {
+    title: translate({
+      id: 'homepage.features.intro.title',
+      message: 'API Docs Intro',
       description: 'The title for the Intro feature'
     }),
-    path: 'docs/documentation/intro',
+    path: '/docs/api/Introduction/getting-started',
     imgPath: require('@site/static/img/image_intro_hc.png').default,
   },
   {
@@ -27,7 +36,7 @@ const IntroFeatures: FeatureItem[] = [
       message: 'REST API Principles',
       description: 'The title for the REST API Principles feature'
     }),
-    path: 'docs/documentation/intro#home-credit-rest-api-principles',
+    path: 'docs/api/Introduction/restapi-principles',
     imgPath: require('@site/static/img/image_intro_hc.png').default,
   },
 ];
@@ -39,7 +48,16 @@ const ApiReferenceFeatures: FeatureItem[] = [
       message: 'API Reference Intro',
       description: 'The title for the API Reference feature'
     }),
-    path: 'docs/api/button-quarter',
+    path: 'docs/api/Reference/hc-oneclick-api-installments',
+    imgPath: require('@site/static/img/image_api_hc.png').default,
+  },
+  {
+    title: translate({
+      id: 'homepage.features.apiReference.title',
+      message: 'PSD2 API Reference',
+      description: 'The title for the PSD2 API Reference feature'
+    }),
+    path: 'docs/api-psd2/home-credit-psd-2-api',
     imgPath: require('@site/static/img/image_api_hc.png').default,
   },
 ];

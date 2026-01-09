@@ -1,0 +1,84 @@
+openapi: 3.0.0
+info:
+  title: HC - OneClick API - Installments
+  version: 1.28.2
+  x-sidebar-label: API Versioning
+  description: |
+    API documentation for Home Credit One-Click API.
+
+    Version of documentation: 1.28.2
+
+    ## Version History
+
+    | Version | Release | Release date | News |
+    |---------|---------|--------------|------|
+    | 1.28.2  | CS133   | 8.10.2025    | replacement of endpoint for change application state |
+
+    ## Important Notes
+
+    List of attributes switching from required to optional:
+
+    - request.customer
+    - request.customer.firstName
+    - request.customer.lastName
+    - request.customer.fullName
+    - request.customer.email
+    - request.customer.phone
+    - request.customer.addresses
+    - request.customer.addresses.city
+    - request.customer.addresses.streetAddress
+    - request.customer.addresses.streetNumber
+    - request.customer.addresses.zip
+    - request.customer.addresses.addressType
+    - request.merchantUrls.notificationEndpoint
+
+    In case of any question, please contact our integration department (integrace_eshop@homecredit.cz).
+
+    > ⚠️ **IMPORTANT NOTE**: Resource calls made from Slovakia MUST use appropriate dedicated .sk endpoints. E.g. https://api.homecredit.sk/financning/v1/applications
+  contact:
+    name: Home Credit Support
+    email: support@homecredit.cz
+  license:
+    name: Proprietary
+servers:
+  - url: https://api.homecredit.cz
+    description: Production server
+paths:
+  /authentication/v1/partner: 
+    post:
+      summary: Login partner
+      description: Partner authenticate himself and obtain access token
+      tags:
+        - API Specification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: 
+              type: object
+              required:
+                - username
+                - password
+              properties: 
+                username:
+                  type: string
+                  description: Partner username
+                  example: eShop
+                password:
+                  type: string
+                  description:  Partner secret password
+                  example: eShopSecretPassword
+      responses:
+        '200':
+          description:  Successful authentication
+          content:
+            application/json:
+              schema: 
+                type: object
+                properties:
+                  access_token: 
+                    type: string
+                  token_type:
+                    type: string
+        '401':
+          description:  Unauthorized

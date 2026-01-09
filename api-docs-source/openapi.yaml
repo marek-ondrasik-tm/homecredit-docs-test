@@ -816,8 +816,8 @@ paths:
                         severity: ERROR
                         attribute: personalBirthNumber
                         ticketId: UAT1:AMS:20160516-091658.450:45e4
-      summary: Payment
-      operationId: Payment
+      summary: Initialize payment
+      operationId: initializePayment
       description: >-
         Initialize payment within given contract.
 
@@ -1442,8 +1442,8 @@ paths:
                         ticketId: UAT1:AMS:20160516-091658.450:45e4
                     authorization:
                       blockedUntil: 2017-01-18T10:34:44+01:00
-      summary: Payment
-      operationId: Payment
+      summary: Cancel payment
+      operationId: cancelPayment
       description: >-
         Cancel specific unprocessed payment order.
 
