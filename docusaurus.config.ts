@@ -124,12 +124,12 @@ const config: Config = {
   themeConfig: {
     algolia: {
       // The application ID provided by Algolia
-      appId: 'YOUR_APP_ID',
+      appId: '2LFKCQ1DQW',
 
       // Public API key: it is safe to commit it
-      apiKey: 'YOUR_SEARCH_API_KEY',
+      apiKey: '0a0f61b5d7d13fbaec8b8456de829168',
 
-      indexName: 'YOUR_INDEX_NAME',
+      indexName: 'testCrawler',
 
       // Optional: see doc section below
       contextualSearch: true,
