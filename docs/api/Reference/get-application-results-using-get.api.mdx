@@ -1,0 +1,71 @@
+---
+id: get-application-results-using-get
+title: "get application results"
+description: "Requires <b>applications.results</b> authority for authenticated user"
+sidebar_label: "get application results"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVtty4kYQ/ZWp9hslEDZOZaPa2oqDIXHiclK+7IvNwzBq0GSlGe1Miw1L6d9TLQkQyLGdZJ8oodOn76e1AZJLD9EjLLSRRmmz7K/OYBZAjF45nZO2BiK4xc+FdujF+/kHmeepVpLf+IFDX6Tk34fzD0IWlFinaS0W1lVPaIiRGIvCo4MAbI6usryKIYIl0sWe7LamevDaLH+e3EMAuXQyQ0LHEW7AyAwhAuWQKafOZhCA5vA+F+jWcBz0IdDVKcQQLWTqMQCvEswkRBugdc7Enpw2SwhgYV0mCSKIJWGfdIZQlsFxAPf2Te4r2Ldzbk26nmqjfYLxy/6PkK+HMLc2RWmgLGcM97k1Hj0DzoZD/jnk//03CEBZQ2iI3/bCHv90aO38T1TE7XTcftI1Z3uMWmjpnORcNGHmX2dpinwpCd9YzOMysaloBSO+SC8aWigDXoy6hM8UKgAdd92WVfWKlJ6LCE2R8b6NL27Gk+vrySUEcPcwHk/u7iCA28mvk/H95BJmZRkAaUrZeLrdzY9nnX2B8q1Iz9AygPPhabeZD6bZ3q911ufDURc0tW6u4xhNjTjvIm4siaktTMwzCx5VwXpQbe9P0msF0eOsrNQld1gpw24cM6TENqpQ7T4lEEHo0FO4E6dwdRa2Byds9AfYmVttlaJwKduGudMrbvzwh+G7d6qv/I5oNRrIXEu37mdWfRoomwHHpc3CclbMVGd0Ovp+MOyP+t8NR+ewL/S1leaKRF+0yix21e8M2X2ivbj440rEVhUZGqoNlGVHghIUv9gMxdhhrEm8TM48gfiSaJUINHKeohceZZai90IbwmUtsZUK7xIWB7L9ZJ7MycmJ+FjnKa5MvSnaGn7VF70eR9u87vUi0a7D1npsDUlFx9ZT64Qv8tw6EtYJbVh4NPpA5ClKj0LVdtHW1Y3MkH20a3BXE9SASSZ1ygjuz4+JzVBVqIH6+mS4K/UR24lk65iddnrRLipn4GyaooOWxh7cwv9lPnqz+awMILeeMml4ABuqJdKBNu3H/YB1s9fhb3aqG+Ei/IvCPJW6WvpqsTbNcj6yzPGuLlpzX1XsQNu3auj5syKxnthys5lLjw8uLUv+u75g3MFYex7pvS78Y6KH5/3ZcD/hugNcybRgZNWxf+2tuuav+6pg/9HT0d1+wdkRcu9vxg9Os8NKcQNIUMboqgrXthdKYU4tKz7fbLjTYf4GK8u/AZodfYY=
+sidebar_class_name: "get api-method"
+info_path: docs/api/Reference/loanit-application-financing
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"get application results"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/rest/financing/v2/applications/results"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Requires <b>applications.results</b> authority for authenticated user
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"createdFrom","in":"query","description":"createdFrom","required":false,"schema":{"type":"string","format":"date-time"}},{"name":"createdTo","in":"query","description":"createdTo","required":false,"schema":{"type":"string","format":"date-time"}},{"name":"onlyFinished","in":"query","description":"onlyFinished","required":false,"schema":{"type":"boolean"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"OK","content":{"*/*":{"schema":{"type":"object","properties":{"applications":{"type":"array","items":{"type":"object","properties":{"createdDate":{"type":"string","format":"date-time","description":"Date application was created"},"finished":{"type":"boolean"},"id":{"type":"string"},"result":{"type":"string","enum":["CANCELLED","SUCCESS","REJECTED"]}},"title":"FinancingV2ApplicationResult"}}},"title":"FinancingV2ApplicationResults"}}}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}
+>
+  
+</StatusCodes>
+
+
+      

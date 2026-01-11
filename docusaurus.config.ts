@@ -28,6 +28,17 @@ const config: Config = {
 
   onBrokenLinks: "throw",
 
+  // Algolia site verification
+  headTags: [
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'algolia-site-verification', // Or whatever name your tag uses
+        content: '4C6B0500CCB5D6F7',
+      },
+    },
+  ],
+
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
@@ -48,10 +59,6 @@ const config: Config = {
           path: "docs",
           sidebarPath: "./sidebars.ts",
           docItemComponent: "@theme/ApiItem",
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
         },
         // blog: {
         //   showReadingTime: true,
@@ -82,18 +89,27 @@ const config: Config = {
         id: 'api',
         docsPluginId: 'classic',
         config: {
+          // homeCreditApi: {
+          //   specPath: 'api-docs-source/testopenapi.yaml',
+          //   outputDir: 'docs/api/Reference',
+          //   sidebarOptions: {
+          //     groupPathsBy: 'tag',
+          //     sidebarCollapsible: true,
+          //     sidebarCollapsed: false,
+          //   },
+          // } satisfies OpenApiPlugin.Options,
+          // psd2Api: {
+          //   specPath: 'api-docs-source/openapi.yaml',
+          //   outputDir: 'docs/api-psd2',
+          //   sidebarOptions: {
+          //     groupPathsBy: 'tag',
+          //     sidebarCollapsible: true,
+          //     sidebarCollapsed: false,
+          //   },
+          // } satisfies OpenApiPlugin.Options,
           homeCreditApi: {
-            specPath: 'api-docs-source/testopenapi.yaml',
+            specPath: 'api-docs-source/swaggerspec.yaml',
             outputDir: 'docs/api/Reference',
-            sidebarOptions: {
-              groupPathsBy: 'tag',
-              sidebarCollapsible: true,
-              sidebarCollapsed: false,
-            },
-          } satisfies OpenApiPlugin.Options,
-          psd2Api: {
-            specPath: 'api-docs-source/openapi.yaml',
-            outputDir: 'docs/api-psd2',
             sidebarOptions: {
               groupPathsBy: 'tag',
               sidebarCollapsible: true,
@@ -106,6 +122,18 @@ const config: Config = {
   ],
   themes: ["docusaurus-theme-openapi-docs"],
   themeConfig: {
+    algolia: {
+      // The application ID provided by Algolia
+      appId: '2LFKCQ1DQW',
+
+      // Public API key: it is safe to commit it
+      apiKey: '0a0f61b5d7d13fbaec8b8456de829168',
+
+      indexName: 'testCrawler',
+
+      // Optional: see doc section below
+      contextualSearch: true,
+    },
     // Replace with your project's social card
     image: "img/docusaurus-social-card.jpg",
     colorMode: {
@@ -132,12 +160,6 @@ const config: Config = {
         },
         {
           type: "docSidebar",
-          sidebarId: "psd2ApiSidebar",
-          position: "left",
-          label: "PSD2 API",
-        },
-        {
-          type: "docSidebar",
           sidebarId: "widgetsSidebar",
           position: "left",
           label: "Widgets",
@@ -161,11 +183,7 @@ const config: Config = {
             },
             {
               label: "API reference",
-              to: "/docs/api/Introduction/application-resources",
-            },
-            {
-              label: "PSD2 API",
-              to: "/docs/api-psd2/home-credit-psd-2-api",
+              to: "docs/api/Reference/loanit-application-financing",
             },
             {
               label: "Widgets",

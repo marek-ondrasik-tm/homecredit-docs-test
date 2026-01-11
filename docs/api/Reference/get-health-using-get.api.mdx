@@ -1,0 +1,71 @@
+---
+id: get-health-using-get
+title: "getHealth (v1)"
+description: "getHealth (v1)"
+sidebar_label: "getHealth (v1)"
+hide_title: true
+hide_table_of_contents: true
+api: eJylVVFv2zYQ/ivE5WU1ZFuO063T04IiXo0VSZE120OSB5o6W2wkUj2e1LqG/vtwku3KVbYW2BMB3vd9Rx7vO+6A9SZAcg9r67Qz1m3G9QweI/Alkmbr3TKFBDbIb1DnnN0F6za/X72HCEpNukBGEv4OnC4QEmBboK8YIrAOEvhYIW0hghSDIVuK4AmI8GNlCVNI1joPGEEwGRYakh3wthRB6xg3SBDB2lOhudv6+aIVXesqZ0jO4zhumkeRC6V3AYMInMexLKepb/6ACIx3jI4lOpqOZBmk9asPaOSEJUkp2HaaSOQp9HCaSMsFLWMRvs/XzGRXFWMPGpis20Aj50qfDxQYgt48HwtYI1neDoMRoKsKed2r29ubW4jg78vba4hgeb24gccmArbmCVmeeCDcRjmXrWUIFUIz2HprA8t2E8FFPBvW+s7pijNP9gum0ILmQ9DC08qmKboOcTFEXHtWC1+5tD1UiiWh0dzrmVP4sVfVT/XsBUjxOPP7Lm77ljNIYEoYeHps+2k9m2YtDaSkVB/6uqJc0NOSbK0Zx/Gv8atXZmzCkVrPJ7q0mrbjwpunifEFSC9at/ZyGVHqTjab/zKJx/Pxy3gu7Xuo5Vuv3ZLVWF2WZW5N6zq1OKgPzPM+s0Fdvluq1JuqQMcdwXhJpDhD9cYXqF4TppbVf4uLTqQ+ZdZkCp1e5RhUQF3kGIJqndcNAbX2pI4XVvqrVpg8uAd3dnam/uruqZauM6r1TkJjNRrJaffh0ShR/Toc2K+9Y234W/bCkwpVWXpi5UlZJ+PCYohUmaMOqEzHSw6prnWBkqNfgz87gQ5wVWibC0Le57fMF2ha1MR8eXDyKt1APA60k8H47Vv0iyo3IJ/nSNBEz9HP/x99/sN0cXbpAxfaSQPupQa+OBE7+p/xM0/LXNvWkG337/aeuZf5KhZa95qzrcreOY8RZD6wIHe7lQ54R3nTyHb3D0hZUxukz/7Fvbuvs7n3Szx7tCfcnoBqnVeCas1Xa7KSBpJ7qUaGOkVq83e0S2Ow7LPkHxDicVjIJ9c0/wBajmms
+sidebar_class_name: "get api-method"
+info_path: docs/api/Reference/loanit-application-financing
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"getHealth (v1)"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/rest/financing/v1/health"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+getHealth (v1)
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"timeout","in":"query","description":"timeout","required":false,"schema":{"type":"integer","format":"int64","default":2000}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"OK","content":{"*/*":{"schema":{"type":"object","properties":{"errors":{"type":"array","items":{"type":"object","properties":{"attribute":{"type":"string"},"code":{"type":"string"},"message":{"type":"string"},"severity":{"type":"string","enum":["ERROR","WARN","INFO"]},"ticketId":{"type":"string"}},"title":"Issue"}}},"title":"IssueList"}}}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}
+>
+  
+</StatusCodes>
+
+
+      
