@@ -107,12 +107,22 @@ const config: Config = {
           //     sidebarCollapsed: false,
           //   },
           // } satisfies OpenApiPlugin.Options,
+          // homeCreditApi: {
+          //   specPath: 'api-docs-source/swaggerspec.yaml',
+          //   outputDir: 'docs/api/Reference',
+          //   sidebarOptions: {
+          //     groupPathsBy: 'tag',
+          //     sidebarCollapsible: true,
+          //     sidebarCollapsed: false,
+          //   },
+          // } satisfies OpenApiPlugin.Options,
           homeCreditApi: {
-            specPath: 'api-docs-source/swaggerspec.yaml',
+            specPath: 'api-docs-source/openapispec.yaml',
             outputDir: 'docs/api/Reference',
             sidebarOptions: {
               groupPathsBy: 'tag',
-              sidebarCollapsible: true,
+              categoryLinkSource: 'tag',
+              sidebarCollapsible: false,
               sidebarCollapsed: false,
             },
           } satisfies OpenApiPlugin.Options,
@@ -183,7 +193,7 @@ const config: Config = {
             },
             {
               label: "API reference",
-              to: "docs/api/Reference/loanit-application-financing",
+              to: "docs/api/Reference/home-credit-partner-api-order-future",
             },
             {
               label: "Widgets",

@@ -47,7 +47,7 @@ const ApiReferenceFeatures: FeatureItem[] = [
       message: 'API Reference Intro',
       description: 'The title for the API Reference feature'
     }),
-    path: 'docs/api/Reference/loanit-application-financing',
+    path: 'docs/api/Reference/home-credit-partner-api-order-future',
     imgPath: require('@site/static/img/image_api_hc.png').default,
   },
   {
@@ -56,7 +56,7 @@ const ApiReferenceFeatures: FeatureItem[] = [
       message: 'Example API Call',
       description: 'The title for the example API call feature'
     }),
-    path: 'docs/api/Reference/create-using-post-4',
+    path: 'docs/api/Reference/application-resources',
     imgPath: require('@site/static/img/image_api_hc.png').default,
   },
 ];
