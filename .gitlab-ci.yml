@@ -28,19 +28,19 @@ build:
     - if: $CI_COMMIT_BRANCH == "main"
 
 # Deploy to Cloudflare Pages (only on main branch after merge)
-deploy:
-  stage: deploy
-  image: node:22
-  dependencies:
-    - build
-  before_script:
-    - npm install -g wrangler
-  script:
-    - wrangler pages deploy build --project-name=hc-docs --branch=main
-  environment:
-    name: production
-    url: https://hc-docs.pages.dev
-  rules:
-    - if: $CI_COMMIT_BRANCH == "main"
-      when: on_success
+# deploy:
+#   stage: deploy
+#   image: node:22
+#   dependencies:
+#     - build
+#   before_script:
+#     - npm install -g wrangler
+#   script:
+#     - wrangler pages deploy build --project-name=hc-docs --branch=main
+#   environment:
+#     name: production
+#     url: https://hc-docs.pages.dev
+#   rules:
+#     - if: $CI_COMMIT_BRANCH == "main"
+#       when: on_success
 
