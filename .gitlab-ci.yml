@@ -27,7 +27,7 @@ build:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
     - if: $CI_COMMIT_BRANCH == "main"
 
-# Deploy to Cloudflare Pages (only on main branch after merge)
+# once ready to deploy, uncomment this section
 # deploy:
 #   stage: deploy
 #   image: node:22
