@@ -21,5 +21,3 @@ These two attributes are encrypted: order number (`orderNumber`) and request sta
 ## Securing information transmitted when redirecting the client back to the partner website
 
 When redirecting the client back to the partner website after completing the process, we also add some data to the link that the e-shop can use. Again, to ensure the authenticity of the transmitted information, a checksum is added to the body of the link. The same mechanism is used to construct it as for constructing the checksum for notifications.
-
-Translated with DeepL.com (free version)

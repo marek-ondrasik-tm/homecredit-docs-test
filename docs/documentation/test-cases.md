@@ -1,4 +1,4 @@
-# Testing
+# Testing scenarios
 
 Test scenarios:
 1. **Calculator in product details**
