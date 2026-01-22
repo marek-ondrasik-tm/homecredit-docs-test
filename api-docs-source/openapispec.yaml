@@ -18,9 +18,9 @@ info:
 
     | 3.4.0 (12/2025) | CS135    | 8.12.2025  | Migration guide
 
-    | 3.2.1 (04/2024) | CS115    | 13.2.2024  | One new resource was published: [API health check](#reference/financing/v1/health{?timeout})
+    | 3.2.1 (04/2024) | CS115    | 13.2.2024  | One new resource was published: [API health check](./api-health-check)
 
-    | 3.2.1 (02/2024) | CS113    | 13.2.2024  | Two new resources were published: [Cancel Application](#reference/application-resources/cancel-application) and [Get Application Detail](/#reference/application-resources/get-application-detail) |
+    | 3.2.1 (02/2024) | CS113    | 13.2.2024  | Two new resources were published: [Cancel Application](./cancel-application) and [Get Application Detail](./get-application) |
 
     | 3.1.1 (01/2024) | CS112    | 17.1.2024  | New version of API |
 
@@ -41,11 +41,11 @@ info:
 
     | ---                                                         | ---                                                                                                                                                          |
 
-    | [Security](#reference/security)                             | Security rules and principles                                                                                                                                |
+    | [Security](./security)                             | Security rules and principles                                                                                                                                |
 
-    | [Application resources](#reference/application-resources)   | Resources that allows processing of *application* during its whole life cycle                                                                                |
+    | [Application resources](./application-resources)   | Resources that allows processing of *application* during its whole life cycle                                                                                |
 
-    | [Merchantsite resources](#reference/merchantsite-resources) | Resources that should be developed and exposed by a partner to allow HC asynchronously inform it about important changes regarding particular *applications* |
+    | [Merchantsite resources](./merchantsite-resources) | Resources that should be developed and exposed by a partner to allow HC asynchronously inform it about important changes regarding particular *applications* |
 
 
     ### Basic implementation
@@ -53,21 +53,21 @@ info:
 
     The basic and minimum way how to implement HCO API is to at least implement:
 
-    1. [Login](#reference/security/login-partner)
+    1. [Login](./login-partner)
         - Partner must be authorized to be able to access the most resources
-    1. [Create application](#reference/application-resources/create-application)
+    1. [Create application](./create-application)
         - Partner calls this resource to start the loan approval process by creating an `application`. `Application` itself and its ID are essential for successful process completion.
     1. Redirect handlers.
-        - Special URLs for customers that shows payment success or rejection (more info [here](#introduction/getting-started/parameters-added-to-your-return-urls)).
-    1. [Application notification](#reference/merchantsite-resources/application-notification)
+        - Special URLs for customers that shows payment success or rejection (more info [here](#parameters-added-to-return-urls)).
+    1. [Application notification](./application-notification)
         - This endpoint has to be exposed on your side to allow HC back-end to asynchronously notify you about the important changes regarding particular applications.
-    1. [Mark order items as shipped/delivered](#reference/application-resources/mark-order-as-shipped)
+    1. [Mark order items as shipped/delivered](./mark-order-as-shipped)
         - Home Credit does not start the process of financial compensation unless the `order` is marked as `SHIPPED` or `DELIVERED` .
 
-    <!-- diagram minimální implementace -->
+    ![Minimal implementation diagram](/img/sequence_diagram.png)
 
 
-    <!-- stavový diagram žádosti / objednávky -->
+    ![Application/Order state diagram](/img/state_diagram.png)
 
 
     It is necessary to fill in all attributes marked as 'required' in the request. Filling optional parameters will result in a better application approval rate. Partner should always consider filling as many attributes as possible.
@@ -229,7 +229,7 @@ info:
     - 422 `Unprocessable Entity` -  business (semantic) errors. Request is well-formed, but cannot be processed (e.g. payment due date is in past). Errors are specified in response body (see below)
 
 
-    - 429 `Too Many Requests` - partner exceeded the rate limit (see section [API calls limit](#introduction/api-calls-limits) above)
+    - 429 `Too Many Requests` - partner exceeded the rate limit (see section [API calls limit](#api-calls-limits) above)
 
 
     - 500 `Internal Server Error` - something went wrong on our side
@@ -351,7 +351,7 @@ info:
     - `applicationStatus` (enum) – Application status
 
 
-    - `orderNumber` (string) - E-shop's internal order number provided within API call of [Create application](#reference/application-resources/create-application) (if available)
+    - `orderNumber` (string) - E-shop's internal order number provided within API call of [Create application](./create-application) (if available)
 
 
     - `orderStatus` (enum) - Order status (if available)
@@ -375,7 +375,7 @@ info:
     ## Migration Guide: API v1 → v3
 
 
-    This migration guide focuses on changes in the [Application resources](#reference/application-resources) section when transitioning from API version 1 to version 3. The goal is to provide an overview of key changes that require implementation adjustments.
+    This migration guide focuses on changes in the [Application resources](./application-resources) section when transitioning from API version 1 to version 3. The goal is to provide an overview of key changes that require implementation adjustments.
 
 
     ### 1. API endpoint changes overview
@@ -390,7 +390,7 @@ info:
     - **v3:** `/financing/v3/applications`
 
 
-    **Authentication:** Both API versions use the same authentication endpoint `/authentication/v1/partner` to obtain a security token (see section [Login partner](#reference/security/login-partner)).
+    **Authentication:** Both API versions use the same authentication endpoint `/authentication/v1/partner` to obtain a security token (see section [Login partner](./login-partner)).
 
 
     #### 1.2 New endpoints in v3
@@ -5930,7 +5930,7 @@ tags:
       valid access token and use it to access protected resources.
 
 
-      - to obtain access token, use `/authentication/v1/partner` resource with appropriate parameters (see the [`/authentication/v1/partner` resource documentation](#reference/security/login-partner))
+      - to obtain access token, use `/authentication/v1/partner` resource with appropriate parameters (see the [`/authentication/v1/partner` resource documentation](./login-partner))
 
 
       - access token should be present in every request using request header `Authorization`, with type `Bearer`. If partner's access token has value `secret_token`, it should be specified as follows:
@@ -5988,9 +5988,9 @@ tags:
   - name: Health check
     description: >-
       To easily find out current API state use the [API state check
-      resource](#reference/api-status-check/api-status-check).
+      resource](./api-status-check).
 
-      To check the availability of back-end services use the [health check resource](#reference/health-check/health-check).
+      To check the availability of back-end services use the [health check resource](./api-health-check).
   - name: Scoring resources
     description: Services that allow partner e-shops to find out a probability of
       *application's* approval.
@@ -6005,13 +6005,13 @@ tags:
       Choose one of the following approaches to integrate installments calculator into your website:
 
 
-      - A) Implementing your own installment calculator, with your FE in your design that uses designated API resources ([described below](#reference/installments-calculator-resources/implementing-own-installments-calculator)).
+      - A) Implementing your own installment calculator, with your FE in your design that uses designated API resources ([described below](#implementing-own-installments-calculator)).
 
 
-      - B) Integrating Home Credit's javascript widget (described in [special chapter](#reference/javascript-widget-integration)) that:
+      - B) Integrating Home Credit's javascript widget (described in [special chapter](./java-script-widget-integration)) that:
         - provides GUI and front-end functionalities
         - process all needed calculations
-        - provides necessary data to e-shop's back-end in order to easily use them within [*application* creation request](#reference/application-resources/create-application)
+        - provides necessary data to e-shop's back-end in order to easily use them within [*application* creation request](./create-application)
 
       > NOTE: Implementation of installment calculator is optional. Customers can always use the installment calculator embedded in Home Credit's front-end.
 
