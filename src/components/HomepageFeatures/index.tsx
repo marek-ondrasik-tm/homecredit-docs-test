@@ -18,7 +18,7 @@ const IntroFeatures: FeatureItem[] = [
       description: 'The title for the Documentation feature'
     }),
     path: '/docs/documentation/button-quarter',
-    imgPath: require('@site/static/img/image_intro_hc.png').default,
+    imgPath: '/img/feature-documentation.svg',
   },
   {
     title: translate({
@@ -27,7 +27,7 @@ const IntroFeatures: FeatureItem[] = [
       description: 'The title for the Sample requests feature'
     }),
     path: '/docs/documentation/example-queries',
-    imgPath: require('@site/static/img/image_intro_hc.png').default,
+    imgPath: '/img/feature-api-examples.svg',
   },
   {
     title: translate({
@@ -36,7 +36,7 @@ const IntroFeatures: FeatureItem[] = [
       description: 'The title for the Environment Setup feature'
     }),
     path: 'docs/documentation/dev-env',
-    imgPath: require('@site/static/img/image_intro_hc.png').default,
+    imgPath: '/img/feature-environment.svg',
   },
 ];
 
@@ -57,14 +57,15 @@ const ApiReferenceFeatures: FeatureItem[] = [
       description: 'The title for the example API call feature'
     }),
     path: 'docs/api/Reference/application-resources',
-    imgPath: require('@site/static/img/image_api_hc.png').default,
+    imgPath: require('@site/static/img/image_integration.png').default,
   },
 ];
 
 function Feature({title, imgPath, path }: FeatureItem) {
+  const isPng = imgPath.includes('.png') || imgPath.includes('image_api_hc') || imgPath.includes('image_integration');
   return (
     <Link to={path} className={styles.featureItem} style={{textDecoration: 'none'}}>
-      <div className={styles.featureImageWrapper}>
+      <div className={`${styles.featureImageWrapper} ${isPng ? styles.pngImageWrapper : ''}`}>
         <img className={styles.featureImage} src={imgPath} alt={title} role="img" />
         <div className={styles.featureOverlay}>
           <svg
