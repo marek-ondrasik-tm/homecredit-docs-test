@@ -18,16 +18,16 @@ const IntroFeatures: FeatureItem[] = [
       description: 'The title for the Documentation feature'
     }),
     path: '/docs/documentation/button-quarter',
-    imgPath: '/img/feature-documentation.svg',
+    imgPath: 'img/feature-documentation.svg',
   },
   {
     title: translate({
-      id: 'homepage.features.intro.title',
+      id: 'homepage.features.sampleRequests.title',
       message: 'Sample requests',
       description: 'The title for the Sample requests feature'
     }),
     path: '/docs/documentation/example-queries',
-    imgPath: '/img/feature-api-examples.svg',
+    imgPath: 'img/feature-api-examples.svg',
   },
   {
     title: translate({
@@ -36,7 +36,7 @@ const IntroFeatures: FeatureItem[] = [
       description: 'The title for the Environment Setup feature'
     }),
     path: 'docs/documentation/dev-env',
-    imgPath: '/img/feature-environment.svg',
+    imgPath: 'img/feature-environment.svg',
   },
 ];
 
@@ -48,16 +48,16 @@ const ApiReferenceFeatures: FeatureItem[] = [
       description: 'The title for the API Reference feature'
     }),
     path: 'docs/api/Reference/home-credit-partner-api-order-future',
-    imgPath: require('@site/static/img/image_api_hc.png').default,
+    imgPath: 'img/image_api_hc.png',
   },
   {
     title: translate({
-      id: 'homepage.features.apiReference.title',
+      id: 'homepage.features.apiReference.resources',
       message: 'Example API Call',
       description: 'The title for the example API call feature'
     }),
     path: 'docs/api/Reference/application-resources',
-    imgPath: require('@site/static/img/image_integration.png').default,
+    imgPath: 'img/image_integration.png',
   },
 ];
 

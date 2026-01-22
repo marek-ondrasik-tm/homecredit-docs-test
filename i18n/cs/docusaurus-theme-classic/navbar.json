@@ -8,7 +8,7 @@
     "description": "The alt text of navbar logo"
   },
   "item.label.Docs": {
-    "message": "Docs",
+    "message": "Dokumentace",
     "description": "Navbar item with label Docs"
   },
   "item.label.API Reference": {
@@ -16,12 +16,12 @@
     "description": "Navbar item with label API Reference"
   },
   "item.label.Widgets": {
-    "message": "Widgets",
+    "message": "Widgety",
     "description": "Navbar item with label Widgets"
   },
   "item.label.Contact": {
-    "message": "Contact",
-    "description": "Navbar item with label Contact"
+    "message": "Kontakt",
+    "description": "Navbar item with label Kontakt"
   },
   "item.label.GitLab": {
     "message": "GitLab",

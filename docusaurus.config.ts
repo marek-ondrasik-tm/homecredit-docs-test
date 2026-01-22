@@ -126,6 +126,16 @@ const config: Config = {
               sidebarCollapsed: false,
             },
           } satisfies OpenApiPlugin.Options,
+          homeCreditApiCs: {
+            specPath: 'api-docs-source/openapispec.cs.yaml',
+            outputDir: 'i18n/cs/docusaurus-plugin-content-docs/current/api/Reference',
+            sidebarOptions: {
+              groupPathsBy: 'tag',
+              categoryLinkSource: 'tag',
+              sidebarCollapsible: false,
+              sidebarCollapsed: false,
+            },
+          } satisfies OpenApiPlugin.Options,
         } as any,
       }
     ]

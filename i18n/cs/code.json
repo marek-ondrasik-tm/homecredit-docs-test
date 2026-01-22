@@ -346,12 +346,20 @@
     "message": "Úvod",
     "description": "The title for the Introduction feature"
   },
+  "homepage.features.sampleRequests.title": {
+    "message": "Vzorové dotazy (requesty)" ,
+    "description": "The title for the Sample Requests feature"
+  },
   "homepage.features.restApi.title": {
-    "message": "REST API Principy",
-    "description": "The title for the REST API Principles feature"
+    "message": "Testovací prostředí",
+    "description": "The title for the dev env feature"
   },
   "homepage.features.apiReference.title": {
     "message": "Úvod do API Reference",
+    "description": "The title for the API Reference feature"
+  },
+  "homepage.features.apiReference.resources": {
+    "message": "Ukázka API dotazu",
     "description": "The title for the API Reference feature"
   },
   "homepage.section.introduction": {
