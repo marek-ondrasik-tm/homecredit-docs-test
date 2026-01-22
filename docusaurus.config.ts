@@ -5,6 +5,12 @@ import type * as OpenApiPlugin from 'docusaurus-plugin-openapi-docs';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
+// Load environment variables (with fallbacks for local development)
+const algoliaAppId = process.env.ALGOLIA_APP_ID || '2LFKCQ1DQW';
+const algoliaApiKey = process.env.ALGOLIA_API_KEY || '0a0f61b5d7d13fbaec8b8456de829168';
+const algoliaIndexName = process.env.ALGOLIA_INDEX_NAME || 'testCrawler';
+const algoliaSiteVerification = process.env.ALGOLIA_SITE_VERIFICATION || '4C6B0500CCB5D6F7';
+
 const config: Config = {
   title: "Home Credit Developer Documentation",
   tagline: "Integrate your ecommerce system with Home Credit easily and provide your customers with a seamless payment experience.",
@@ -16,7 +22,7 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: "https://hc-docs.pages.dev", // TODO: replace with actual URL
+  url: "https://hc-docs.pages.dev",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: "/",
@@ -33,8 +39,8 @@ const config: Config = {
     {
       tagName: 'meta',
       attributes: {
-        name: 'algolia-site-verification', // Or whatever name your tag uses
-        content: '4C6B0500CCB5D6F7',
+        name: 'algolia-site-verification',
+        content: algoliaSiteVerification,
       },
     },
   ],
@@ -144,12 +150,12 @@ const config: Config = {
   themeConfig: {
     algolia: {
       // The application ID provided by Algolia
-      appId: '2LFKCQ1DQW',
+      appId: algoliaAppId,
 
       // Public API key: it is safe to commit it
-      apiKey: '0a0f61b5d7d13fbaec8b8456de829168',
+      apiKey: algoliaApiKey,
 
-      indexName: 'testCrawler',
+      indexName: algoliaIndexName,
 
       // Optional: see doc section below
       contextualSearch: true,
