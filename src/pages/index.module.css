@@ -116,16 +116,16 @@
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 1rem 2rem;
+  padding: 0 32px;
+  height: 50px;
   font-size: 1.1rem;
   font-weight: 600;
-  color: #ffffff;
-  background: var(--ifm-color-primary);
-  border: 2px solid var(--ifm-color-primary);
-  border-radius: 12px;
+  color: #000000;
+  background-color: rgb(255, 223, 67);
+  border: 0;
+  border-radius: 25px;
   text-decoration: none;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 20px rgba(225, 25, 49, 0.3);
   position: relative;
   overflow: hidden;
 }
@@ -143,10 +143,8 @@
 
 .heroButton:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(225, 25, 49, 0.4);
-  background: var(--ifm-color-primary-light);
-  border-color: var(--ifm-color-primary-light);
-  color: #ffffff;
+  background-color: rgb(255, 235, 120);
+  color: #000000;
   text-decoration: none;
 }
 
