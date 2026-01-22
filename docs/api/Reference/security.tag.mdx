@@ -9,7 +9,7 @@ custom_edit_url: null
 
 To access our API, partner has to obtain *access token* first; this token is a string of arbitrary length (30+ chars) and it has to be included in HTTP header to every request to API. This section describes way to obtain valid access token and use it to access protected resources.
 
-- to obtain access token, use `/authentication/v1/partner` resource with appropriate parameters (see the [`/authentication/v1/partner` resource documentation](#reference/security/login-partner))
+- to obtain access token, use `/authentication/v1/partner` resource with appropriate parameters (see the [`/authentication/v1/partner` resource documentation](./login-partner))
 
 - access token should be present in every request using request header `Authorization`, with type `Bearer`. If partner's access token has value `secret_token`, it should be specified as follows:
 

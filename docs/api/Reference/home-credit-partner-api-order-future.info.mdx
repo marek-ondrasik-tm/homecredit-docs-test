@@ -32,8 +32,8 @@ In case of any question, please contact our integration department  (integrace_e
 | Version        | Release | Release date | News |
 | ---            | ---     | ---          | ---  |
 | 3.4.0 (12/2025) | CS135    | 8.12.2025  | Migration guide
-| 3.2.1 (04/2024) | CS115    | 13.2.2024  | One new resource was published: [API health check](#reference/financing/v1/health\{?timeout\})
-| 3.2.1 (02/2024) | CS113    | 13.2.2024  | Two new resources were published: [Cancel Application](#reference/application-resources/cancel-application) and [Get Application Detail](/#reference/application-resources/get-application-detail) |
+| 3.2.1 (04/2024) | CS115    | 13.2.2024  | One new resource was published: [API health check](./api-health-check)
+| 3.2.1 (02/2024) | CS113    | 13.2.2024  | Two new resources were published: [Cancel Application](./cancel-application) and [Get Application Detail](./get-application) |
 | 3.1.1 (01/2024) | CS112    | 17.1.2024  | New version of API |
 
 > **IMPORTANT NOTE:** Resource calls made from **Slovakia** MUST use appropriate dedicated `.sk` endpoints. E.g. `https://api.homecredit.sk/financning/v3/applications`
@@ -46,27 +46,27 @@ Described services aim to allow customers the smooth running through the process
 
 | Group of services                                           | Purpose                                                                                                                                                      |
 | ---                                                         | ---                                                                                                                                                          |
-| [Security](#reference/security)                             | Security rules and principles                                                                                                                                |
-| [Application resources](#reference/application-resources)   | Resources that allows processing of *application* during its whole life cycle                                                                                |
-| [Merchantsite resources](#reference/merchantsite-resources) | Resources that should be developed and exposed by a partner to allow HC asynchronously inform it about important changes regarding particular *applications* |
+| [Security](./security)                             | Security rules and principles                                                                                                                                |
+| [Application resources](./application-resources)   | Resources that allows processing of *application* during its whole life cycle                                                                                |
+| [Merchantsite resources](./merchantsite-resources) | Resources that should be developed and exposed by a partner to allow HC asynchronously inform it about important changes regarding particular *applications* |
 
 ### Basic implementation
 
 The basic and minimum way how to implement HCO API is to at least implement:
-1. [Login](#reference/security/login-partner)
+1. [Login](./login-partner)
     - Partner must be authorized to be able to access the most resources
-1. [Create application](#reference/application-resources/create-application)
+2. [Create application](./create-application)
     - Partner calls this resource to start the loan approval process by creating an `application`. `Application` itself and its ID are essential for successful process completion.
-1. Redirect handlers.
-    - Special URLs for customers that shows payment success or rejection (more info [here](#introduction/getting-started/parameters-added-to-your-return-urls)).
-1. [Application notification](#reference/merchantsite-resources/application-notification)
+3. Redirect handlers.
+    - Special URLs for customers that shows payment success or rejection (more info [here](#parameters-added-to-return-urls)).
+4. [Application notification](./application-notification)
     - This endpoint has to be exposed on your side to allow HC back-end to asynchronously notify you about the important changes regarding particular applications.
-1. [Mark order items as shipped/delivered](#reference/application-resources/mark-order-as-shipped)
+5. [Mark order items as shipped/delivered](./mark-order-as-shipped)
     - Home Credit does not start the process of financial compensation unless the `order` is marked as `SHIPPED` or `DELIVERED` .
 
-&lt;!-- diagram minimální implementace --&gt;
+![Minimal implementation diagram](/img/sequence_diagram.png)
 
-&lt;!-- stavový diagram žádosti / objednávky --&gt;
+![Application/Order state diagram](/img/state_diagram.png)
 
 It is necessary to fill in all attributes marked as 'required' in the request. Filling optional parameters will result in a better application approval rate. Partner should always consider filling as many attributes as possible.
 
@@ -170,7 +170,7 @@ We use following status codes throughout the API, except for OAuth flow when res
 
 - 422 `Unprocessable Entity` -  business (semantic) errors. Request is well-formed, but cannot be processed (e.g. payment due date is in past). Errors are specified in response body (see below)
 
-- 429 `Too Many Requests` - partner exceeded the rate limit (see section [API calls limit](#introduction/api-calls-limits) above)
+- 429 `Too Many Requests` - partner exceeded the rate limit (see section [API calls limit](#api-calls-limits) above)
 
 - 500 `Internal Server Error` - something went wrong on our side
 
@@ -256,7 +256,7 @@ There are 3 levels of error severity:
 
 - `applicationStatus` (enum) – Application status
 
-- `orderNumber` (string) - E-shop's internal order number provided within API call of [Create application](#reference/application-resources/create-application) (if available)
+- `orderNumber` (string) - E-shop's internal order number provided within API call of [Create application](./create-application) (if available)
 
 - `orderStatus` (enum) - Order status (if available)
 
@@ -272,7 +272,7 @@ There are 3 levels of error severity:
 
 ## Migration Guide: API v1 → v3
 
-This migration guide focuses on changes in the [Application resources](#reference/application-resources) section when transitioning from API version 1 to version 3. The goal is to provide an overview of key changes that require implementation adjustments.
+This migration guide focuses on changes in the [Application resources](./application-resources) section when transitioning from API version 1 to version 3. The goal is to provide an overview of key changes that require implementation adjustments.
 
 ### 1. API endpoint changes overview
 
@@ -282,7 +282,7 @@ This migration guide focuses on changes in the [Application resources](#referenc
 
 - **v3:** `/financing/v3/applications`
 
-**Authentication:** Both API versions use the same authentication endpoint `/authentication/v1/partner` to obtain a security token (see section [Login partner](#reference/security/login-partner)).
+**Authentication:** Both API versions use the same authentication endpoint `/authentication/v1/partner` to obtain a security token (see section [Login partner](./login-partner)).
 
 #### 1.2 New endpoints in v3
 
