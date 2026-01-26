@@ -48,7 +48,7 @@ const ApiReferenceFeatures: FeatureItem[] = [
       description: 'The title for the API Reference feature'
     }),
     path: 'docs/api/Reference/home-credit-partner-api-order-future',
-    imgPath: 'img/image_api_hc.png',
+    imgPath: 'img/feature-api-reference.svg',
   },
   {
     title: translate({
@@ -57,7 +57,7 @@ const ApiReferenceFeatures: FeatureItem[] = [
       description: 'The title for the example API call feature'
     }),
     path: 'docs/api/Reference/application-resources',
-    imgPath: 'img/image_integration.png',
+    imgPath: 'img/feature-api-examples.svg',
   },
 ];
 
