@@ -4,7 +4,7 @@ An environment where production-like data is available and where you can test th
 
 ## Prerequisites
 
-- In order to call the test interface (the same applies to production), you must first obtain the *username + password* access data, which will then allow you to obtain an *access token*, without which it is not possible to call individual interface endpoints (more details in [TD](https://csoneclicknew.docs.apiary.io/#reference/security/login-partner)).
+- In order to call the test interface (the same applies to production), you must first obtain the *username + password* access data, which will then allow you to obtain an *access token*, without which it is not possible to call individual interface endpoints (more details in [TD](../api/Reference/login-partner)).
 - You should receive your access credentials from the responsible person at HC at one of the introductory meetings on the integration of our payment method.
 
 ## Environment
@@ -16,7 +16,7 @@ An environment where production-like data is available and where you can test th
   * CZ: https://apicz-test.homecredit.cz/verdun-train/authentication/v1/partner
   * SK: https://apisk-test.homecredit.sk/verdun-train/authentication/v1/partner
 
-- You can check whether the test environment is functional (and not undergoing technical maintenance, for example) using the health check endpoint (see [TD](https://csoneclicknew.docs.apiary.io/#reference/health-check/api-health-check/api-health-chceck)).
+- You can check whether the test environment is functional (and not undergoing technical maintenance, for example) using the health check endpoint (see [TD](../api/Reference/api-health-check)).
   * CZ: https://apicz-test.homecredit.cz/verdun-train/financing/v1/health
   * SK: https://apisk-test.homecredit.sk/verdun-train/financing/v1/health
 
@@ -26,11 +26,11 @@ An environment where production-like data is available and where you can test th
 
   > ***username: 024242tech, password: 024242tech***
 
-  > ***apiKey*** for the installment calculator in the [javascript widget](https://github.com/homecreditcz/widget-calculator "Installment calculator - javascript widget variant") variant
+  > ***apiKey*** for the installment calculator in the [javascript widget](../widgets/install) variant
   > - CZ: `calculator_test_key`
 > - SK: `calculator_test_key`
 
-> secret key for hashing [back communication to the e-shop] (https://github.com/homecreditcz/oneclick-api/wiki/Zabezpe%C4%8Den%C3%AD-zp%C4%9Btn%C3%A9-komunikace-partnersk%C3%A9mu-e%E2%80%90shopu "Securing return communication to the e-shop"):
+> secret key for hashing [back communication to the e-shop](./communication-security):
 > - CZ: `!;8ez62oe{*,_`
   > - SK: `%j:o)t:y/8)`
 
@@ -38,11 +38,11 @@ B) Sale **with down payment** (store ID **024243**)
 
   > ***username: 024243tech, password: 024243tech***
 
-  > ***apiKey*** for the installment calculator in the [javascript widget](https://github.com/homecreditcz/widget-calculator "Installment calculator - javascript widget variant") 
+  > ***apiKey*** for the installment calculator in the [javascript widget](../widgets/install) 
   > - CZ: `calculator_test_key_dp`
   > - SK: `calculator_test_key_dp`
 
-  > secret key for hashing [back communication to the e-shop] (https://github.com/homecreditcz/oneclick-api/wiki/Zabezpe%C4%8Den%C3%AD-zp%C4%9Btn%C3%A9-komunikace-partnersk%C3%A9mu-e%E2%80%90shopu "Securing return communication to the e-shop"):
+  > secret key for hashing [back communication to the e-shop](./communication-security):
 > - CZ: `..dw2{&q!.30`
   > - SK: `wq%?ch.q%55r_`
 
@@ -51,7 +51,7 @@ B) Sale **with down payment** (store ID **024243**)
 The following payment calculator options are available for testing purposes:
 
 ### 1. Partner's own solution 
-The most developmentally demanding variant is the partner's own solution based on calculation endpoints ([see TD](https://csoneclicknewfuture.docs.apiary.io/#reference/installments-calculator-resources/cancel-application)). 
+The most developmentally demanding variant is the partner's own solution based on calculation endpoints ([see TD](../api/Reference/cancel-application)). 
 The advantage of this solution is, for example, the possibility of creating a calculator user interface entirely according to the partner's ideas and UX requirements.
 > Note: It is necessary to use the endpoint variant in the train environment.
 > * CZ: https://apicz-test.homecredit.cz/verdun-train/...
@@ -59,8 +59,8 @@ The advantage of this solution is, for example, the possibility of creating a ca
 
 ### 2. Partial partner solution using a JavaScript widget
 The golden mean is a solution where the e-shop's own backend uses a JavaScript widget from Home Credit, which handles the frontend part, calculates suitable offers, and, based on the result, prepares the e-shop backend data for calling the endpoint to create a loan application.
-   * The JavaScript widget for the repayment calculator solution is available [here](https://github.com/homecreditcz/widget-calculator)
-   * Test values are described in the [widget installation guide](https://github.com/homecreditcz/widget-calculator/blob/master/docs/install.md "Installing the JavaScript widget - repayment calculator")
+   * The JavaScript widget for the repayment calculator solution is available [here](../widgets/install)
+   * Test values are described in the [widget installation guide](../widgets/install)
 
 ### 3. External repayment calculator issued by Home Credit
 > **This is the only option for partners cooperating in the "Tipař" mode**
@@ -87,9 +87,9 @@ A sample URI for redirection may look like this, for example
 
 o   Even before implementation, the behavior of the interface can be tested quite easily using the [Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop) application, which is installed as a plug-in for the Chrome browser
 
-o   Complete sample requests that can be tested using the Postman application can be found at the end of this document (or in [TD](https://csoneclicknewfuture.docs.apiary.io) – however, relevant data must be used for these)
+o   Complete sample requests that can be tested using the Postman application can be found at the end of this document (or in [TD](../api/Reference/home-credit-partner-api-order-future) – however, relevant data must be used for these)
 
-o   The underlying data for sample requests, along with simple instructions, can also be found [here](https://github.com/homecreditcz/oneclick-api/tree/master/create-application-test "Create application - sample requests")
+o   The underlying data for sample requests, along with simple instructions, can also be found [here](../api/Reference/create-application)
 
 > NOTE: For testing purposes, always use a financed purchase amount greater than 1000 (100,000 in minor units) for CZ, and greater than 40 (4000 in minor units) for SK
 
@@ -101,7 +101,7 @@ When testing in the integration phase, if you want to verify the entire process
 - through its approval and dispatch/delivery
 - to its successful completion
 
-it is necessary to artificially simulate the client's behavior in the Home Credit front-end application (MyLoan). For this purpose, use the special *Change application state* resource, which is described in the technical documentation https://csoneclicknew.docs.apiary.io/#reference/testing-&-integration. This resource only works on the testing/integration environments specified in this document (or technical documentation).
+it is necessary to artificially simulate the client's behavior in the Home Credit front-end application (MyLoan). For this purpose, use the special *Change application state* resource, which is described in the technical documentation [here](../api/Reference/home-credit-partner-api-order-future#24-applicationresponse---major-changes). This resource only works on the testing/integration environments specified in this document (or technical documentation).
 
 ### Test run "approved"
 There is a special account for approval in the test environment (see above). The account function is activated by filling in the item ***last name = "Trener"*** when creating a request using the *Create Application* resource (in the request call `POST https://apicz-test.homecredit.cz/verdun-train/financing/v1/applications`, `customer.lastName = Trener` must be specified). Subsequently, whether you change the order status using the special *Change state* resource or fill out the application "manually," this application will always be approved. To sign the contract, you will ultimately need an OTP, which is ***123456*** for testing purposes.

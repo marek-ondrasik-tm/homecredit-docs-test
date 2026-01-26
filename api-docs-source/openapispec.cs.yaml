@@ -4808,7 +4808,7 @@ paths:
                         potentialCreditAmount:
                           amount: 133000
                           currency: CZK
-      summary: Získejte výsledky více předběžných kontrol
+      summary: GET výsledky více předběžných kontrol
       operationId: Get multi precheck result
       description: ""
       tags:
@@ -4844,7 +4844,7 @@ paths:
           description: Bad Request
           headers: {}
       summary: Oznámení výsledku
-      operationId: Oznámení výsledku
+      operationId: Result notification
       description: Oznámit partnera o dokončeném multiprecheck.
       tags:
         - Scoring resources

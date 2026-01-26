@@ -1,3 +1,4 @@
+# Průběh procesu
 Níže najdete popis procesního flow nákupu v bodech:
 
 1. **Kalkulačka v detailu produktu ve vašem e-shopu** (skrz API, javascriptový widget, standalone pro Tipaře). Když si klient „Vybere splátky“, tak jej přesměrujete do košíku s vybraným zbožím a přednastavíte mu platební metodu *na splátky*. Klientem preferovanou variantu **si uložíte** (*neplatí pro standalone variantu kalkulačky*) a po dokončení objednávky v košíku vložíte do *createApplication* v atributu *settingsInstallments*. Tím se klientem preferovaná varianta propíše k nám, díky čemuž již klienta nebudeme nutit, aby si znovu vybíral splátkový produkt v našem prostředí 
@@ -7,7 +8,7 @@ Níže najdete popis procesního flow nákupu v bodech:
 
 2. **V košíku ve výběru platební metody** klientovi zobrazte vybranou variantu splátek a dejte mu možnost si vybranou variantu změnit v kalkulačce. V případě, že si do košíku přidal po výběru splátek ještě další zboží/příslušenství/pojištění/... (ověřte si cenu), zobrazte mu kalkulačku znovu (je potřeba, aby byla zvolena odpovídající varianta splátek pro platnou financovanou cenu nákupu).
  
-3. **_Volitelné: Precheck v košíku u výběru platební metody._** Na základě alespoň 2 údajů vám vrátíme informaci, zda má smysl, aby klient žádal o splátky, nebo mu máte rovnou nabídnout jinou platební metodu (je potřeba umístit souhlas pro klienta! - viz [podmínky GDPR](https://github.com/homecreditcz/oneclick-api/wiki/Produk%C4%8Dn%C3%AD-prost%C5%99ed%C3%AD))
+3. **_Volitelné: Precheck v košíku u výběru platební metody._** Na základě alespoň 2 údajů vám vrátíme informaci, zda má smysl, aby klient žádal o splátky, nebo mu máte rovnou nabídnout jinou platební metodu (je potřeba umístit souhlas pro klienta! - viz [podmínky GDPR](./production-env))
 
 4. **Dokončení objednávky u vás na eshopu**
 

@@ -1,3 +1,5 @@
+# Minimální požadavky
+
 Zde je výčet kroků nezbytných pro naplnění mimimální funkční varianty implementace:
 
 1. Kalkulačka splátek umístěná v detailu produktu - varianta kalkulačky označovaná jako **_Standalone pro Tipaře_**. 

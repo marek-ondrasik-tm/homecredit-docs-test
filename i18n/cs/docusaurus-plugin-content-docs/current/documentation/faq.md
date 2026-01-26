@@ -1,3 +1,5 @@
+# Často kladené otázky
+
 1. Při testování v prohlížeči vždy používejte anonymní okno a nové požadavky spouštějte přes CTRL+F5
 2. Widget kalkulačka – **existují samostatné verze pro CZ a SK, nelze je míchat**, dostupné jsou na https://github.com/homecreditcz/widget-calculator
 3. Nefunguje kalkulačka, zobrazuje se hláška "Něco se pokazilo":

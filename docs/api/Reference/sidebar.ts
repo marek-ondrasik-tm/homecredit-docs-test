@@ -109,7 +109,7 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "api/Reference/get-multi-precheck-result",
-          label: "Get multi precheck result",
+          label: "GET multi precheck result",
           className: "api-method get",
         },
         {
