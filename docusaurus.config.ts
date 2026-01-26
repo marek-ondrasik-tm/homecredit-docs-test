@@ -159,6 +159,12 @@ const config: Config = {
 
       // Optional: see doc section below
       contextualSearch: true,
+
+      // Remove /cs/ prefix from URLs since Czech is the default locale at root
+      replaceSearchResultPathname: {
+        from: '/cs/',
+        to: '/',
+      },
     },
     // Replace with your project's social card
     image: "img/docusaurus-social-card.jpg",
