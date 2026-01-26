@@ -109,12 +109,12 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "current/api/Reference/get-multi-precheck-result",
-          label: "Získejte výsledky více předběžných kontrol",
+          label: "GET výsledky více předběžných kontrol",
           className: "api-method get",
         },
         {
           type: "doc",
-          id: "current/api/Reference/oznameni-vysledku",
+          id: "current/api/Reference/result-notification",
           label: "Oznámení výsledku",
           className: "api-method post",
         },

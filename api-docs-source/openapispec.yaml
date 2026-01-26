@@ -5112,7 +5112,7 @@ paths:
                         potentialCreditAmount:
                           amount: 133000
                           currency: CZK
-      summary: Get multi precheck result
+      summary: GET multi precheck result
       operationId: Get multi precheck result
       description: ""
       tags:
