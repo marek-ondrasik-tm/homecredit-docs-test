@@ -331,41 +331,85 @@
     "description": "The homepage title"
   },
   "homepage.tagline": {
-    "message": "Integrujte svůj e-commerce systém s Home Credit snadno a poskytněte svým zákazníkům bezproblémový platební zážitek.",
+    "message": "Jednoduchá integrace ve čtyřech krocích — váš e-shop, vaše volby. REST API, widget nebo odkaz; provedeme vás.",
     "description": "The homepage tagline"
   },
   "homepage.button": {
-    "message": "Pokračovat",
-    "description": "The button to proceed to docs"
+    "message": "Začít",
+    "description": "The button to proceed to docs (Get Started)"
   },
   "homepage.metaTitle": {
-    "message": "Vítejte z Home Credit Developer Dokumentace",
+    "message": "Vítejte v dokumentaci Home Credit pro vývojáře",
     "description": "The homepage meta title"
   },
   "homepage.features.intro.title": {
-    "message": "Úvod",
-    "description": "The title for the Introduction feature"
+    "message": "Práce s dokumentací",
+    "description": "The title for the Documentation Usage feature"
   },
   "homepage.features.sampleRequests.title": {
-    "message": "Vzorové dotazy (requesty)" ,
+    "message": "Vzorové požadavky",
     "description": "The title for the Sample Requests feature"
   },
   "homepage.features.restApi.title": {
-    "message": "Testovací prostředí",
-    "description": "The title for the dev env feature"
+    "message": "Nastavení prostředí",
+    "description": "The title for the Environment Setup feature"
   },
   "homepage.features.apiReference.title": {
-    "message": "Úvod do API Reference",
-    "description": "The title for the API Reference feature"
+    "message": "API Reference pro e-shop",
+    "description": "The title for the API Reference for e-shop feature"
   },
   "homepage.features.apiReference.resources": {
-    "message": "Ukázka API dotazu",
-    "description": "The title for the API Reference feature"
+    "message": "API Reference pro platební bránu",
+    "description": "The title for the Example API call feature"
   },
   "homepage.section.introduction": {
     "message": "Úvod"
   },
   "homepage.section.apiReference": {
-    "message": "API Reference"
+    "message": "API dokumentace"
+  },
+  "homepage.integration.heading": {
+    "message": "Integrace je jednoduchá",
+    "description": "Integration is simple section heading"
+  },
+  "homepage.integration.subheading": {
+    "message": "Čtyři kroky, vaše volby — od API po minimální integraci.",
+    "description": "Integration steps subheading"
+  },
+  "integration.steps.calculator.title": {
+    "message": "Kalkulačka",
+    "description": "Step 1 title"
+  },
+  "integration.steps.calculator.desc": {
+    "message": "Splátky na stránce produktu — API, widget nebo odkaz",
+    "description": "Step 1 description"
+  },
+  "integration.steps.create.title": {
+    "message": "Vytvoření žádosti",
+    "description": "Step 2 title"
+  },
+  "integration.steps.create.desc": {
+    "message": "Vytvoření přes API, přesměrování zákazníka k doplnění",
+    "description": "Step 2 description"
+  },
+  "integration.steps.notifications.title": {
+    "message": "Notifikace",
+    "description": "Step 3 title"
+  },
+  "integration.steps.notifications.desc": {
+    "message": "Stav žádosti — endpoint, API nebo webclient",
+    "description": "Step 3 description"
+  },
+  "integration.steps.fulfillment.title": {
+    "message": "Vyskladnění a doručení",
+    "description": "Step 4 title"
+  },
+  "integration.steps.fulfillment.desc": {
+    "message": "Potvrzení odeslání/doručení přes API nebo webclient",
+    "description": "Step 4 description"
+  },
+  "integration.cta": {
+    "message": "Přejít na návod k integraci",
+    "description": "CTA to integration docs"
   }
 }

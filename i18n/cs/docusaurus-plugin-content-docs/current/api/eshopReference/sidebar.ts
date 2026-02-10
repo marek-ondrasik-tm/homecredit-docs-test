@@ -29,7 +29,7 @@ const sidebar: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "Zdroje aplikace",
+      label: "Zdroje žádosti",
       link: {
         type: "doc",
         id: "current/api/eshopReference/application-resources",
@@ -49,7 +49,7 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "current/api/eshopReference/get-using-get-7",
-          label: "Podrobnosti o aplikaci",
+          label: "Podrobnosti o žádosti",
           customProps: {
             tagDisplayName: "x-displayName",
           },

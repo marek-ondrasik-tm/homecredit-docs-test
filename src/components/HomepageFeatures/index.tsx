@@ -15,28 +15,25 @@ const IntroFeatures: FeatureItem[] = [
     title: translate({
       id: 'homepage.features.intro.title',
       message: 'Documentation Usage',
-      description: 'The title for the Documentation feature'
     }),
-    path: '/docs/documentation/button-quarter',
+    path: '/docs/documentation',
     imgPath: 'img/feature-documentation.svg',
-  },
-  {
-    title: translate({
-      id: 'homepage.features.sampleRequests.title',
-      message: 'Sample requests',
-      description: 'The title for the Sample requests feature'
-    }),
-    path: '/docs/documentation/example-queries',
-    imgPath: 'img/feature-api-examples.svg',
   },
   {
     title: translate({
       id: 'homepage.features.restApi.title',
       message: 'Environment Setup',
-      description: 'The title for the Environment Setup feature'
     }),
     path: 'docs/documentation/dev-env',
     imgPath: 'img/feature-environment.svg',
+  },
+  {
+    title: translate({
+      id: 'homepage.features.sampleRequests.title',
+      message: 'Sample requests',
+    }),
+    path: '/docs/documentation/example-queries',
+    imgPath: 'img/feature-api-examples.svg',
   },
 ];
 
@@ -44,19 +41,17 @@ const ApiReferenceFeatures: FeatureItem[] = [
   {
     title: translate({
       id: 'homepage.features.apiReference.title',
-      message: 'API Reference Intro',
-      description: 'The title for the API Reference feature'
+      message: 'API Reference for e-shop',
     }),
-    path: 'docs/api/Reference/home-credit-partner-api-order-future',
+    path: '/docs/api/eshopReference/hc-oneclick-api-installments',
     imgPath: 'img/feature-api-reference.svg',
   },
   {
     title: translate({
       id: 'homepage.features.apiReference.resources',
-      message: 'Example API Call',
-      description: 'The title for the example API call feature'
+      message: 'API Reference for payment gateway',
     }),
-    path: 'docs/api/Reference/application-resources',
+    path: 'docs/api/Reference/home-credit-partner-api-order-future',
     imgPath: 'img/feature-api-examples.svg',
   },
 ];

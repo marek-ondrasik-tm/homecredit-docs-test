@@ -44,7 +44,7 @@ info:
     | Skupina služeb | Účel |
     | --- | --- |
     | [Bezpečnost](./security) | Bezpečnostní pravidla a zásady |
-    | [Zdroje aplikace](./application-resources) | Zdroje umožňující zpracování *aplikace* během celého jejího životního cyklu |
+    | [Zdroje žádosti](./application-resources) | Zdroje umožňující zpracování *aplikace* během celého jejího životního cyklu |
     | [Zdroje splátkové kalkulačky](./installments-calculator-resources) | Zdroje, které umožňují partnerským e-shopům implementovat na svých webových stránkách splátkovou kalkulačku |
     | [Merchantsite zdroje](./merchantsite-resources) | Zdroje, které by měl partner vyvinout a vystavit, aby jej HC mohl asynchronně informovat o důležitých změnách týkajících se jednotlivých *aplikací a objednávek* |
     | [Kontrola stavu](./health-check) | Popis použití kontroly stavu |
@@ -432,7 +432,7 @@ paths:
     get:
       tags:
         - Application resources
-      summary: Podrobnosti o aplikaci
+      summary: Podrobnosti o žádosti
       description: Vyžaduje oprávnění <b>applications.overview</b> pro autentizovaného uživatele
       operationId: getUsingGET_7
       parameters:
@@ -1137,7 +1137,7 @@ tags:
       > NIKDY nepřenášejte přístupový token ani přihlašovací údaje
       prostřednictvím prostého protokolu HTTP. Takové požadavky budou odmítnuty.
   - name: Application resources
-    x-displayName: Zdroje aplikace
+    x-displayName: Zdroje žádosti
     description: >
       Služby, které umožňují zpracování *aplikace* během a
 

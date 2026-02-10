@@ -7,6 +7,7 @@ import Heading from '@theme/Heading';
 
 import styles from './index.module.css';
 import HomepageFeatures from '../components/HomepageFeatures';
+import IntegrationSteps from '../components/IntegrationSteps';
 
 function HomepageHeader() {
   return (
@@ -24,7 +25,7 @@ function HomepageHeader() {
           </Heading>
           <p className={styles.heroSubtitle}>
             <Translate id="homepage.tagline" description="The homepage tagline">
-              Integrate your ecommerce system with Home Credit easily and provide your customers with a seamless payment experience.
+              Simple integration in four steps—your e-shop, your choices. REST API, widget, or link; we guide you through.
             </Translate>
           </p>
           <div className={styles.heroButtons}>
@@ -68,6 +69,21 @@ export default function Home(): ReactNode {
       description="Integrate your ecommerce system with Home Credit easily and provide your customers with a seamless payment experience.">
       <HomepageHeader />
       <main>
+        <section className={styles.integrationSection}>
+          <div className="container">
+            <Heading as="h2" className={styles.integrationHeading}>
+              <Translate id="homepage.integration.heading" description="Integration is simple heading">
+                Integration is simple
+              </Translate>
+            </Heading>
+            <p className={styles.integrationSubheading}>
+              <Translate id="homepage.integration.subheading" description="Integration steps subheading">
+                Four steps, your choices—from full API control to minimal integration.
+              </Translate>
+            </p>
+            <IntegrationSteps showCta docPath="/docs/documentation" />
+          </div>
+        </section>
         <HomepageFeatures />
       </main>
     </Layout>

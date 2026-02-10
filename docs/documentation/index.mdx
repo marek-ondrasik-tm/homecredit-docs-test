@@ -1,3 +1,5 @@
+import IntegrationSteps from '@site/src/components/IntegrationSteps';
+
 # Basic information for partner e-shops
 
 The interface for the HC On-line payment method is a **REST API**, where JSON notation is used for all communication (queries - requests and responses) and data description.
@@ -5,6 +7,12 @@ The interface for the HC On-line payment method is a **REST API**, where JSON no
 ## Integration overview
 
 Integration is built around **four simple steps**. For each step you can choose the option that best fits your stack—from full API control to minimal integration.
+
+<div className="integration-steps-doc">
+
+<IntegrationSteps compact />
+
+</div>
 
 ---
 
@@ -16,7 +24,7 @@ Let customers see installment options on your product page. Choose one of three 
 |--------|-------------|-----------|
 | **API** | Your own design; we return the values. *Only for certified intermediaries under Act 257/2016 Sb.* | [Installments calculator resources](../api/Reference/installments-calculator-resources) |
 | **Widget** | JavaScript widget embedded in your e-shop (download at [github.com/homecreditcz](https://github.com/homecreditcz)). *Only for certified intermediaries under Act 257/2016 Sb.* | [JavaScript widget integration](../api/Reference/java-script-widget-integration), [Widget install guide](../widgets/install) |
-| **Standalone** | “Link only” to us—opens our calculator in a new window or tab. | — |
+| **Standalone** | "Link only" to us—opens our calculator in a new window or tab. | — |
 
 ---
 
@@ -37,7 +45,7 @@ Stay in sync with application status. Choose one of three options:
 | Option | Description | Reference |
 |--------|-------------|-----------|
 | **Notification endpoint** | We call your API whenever the application status changes. | [Application notification](../api/Reference/application-notification) |
-| **Webservice** | You query us via API for the current application status (“GET application detail”). | [Get application](../api/Reference/get-application) |
+| **Webservice** | You query us via API for the current application status ("GET application detail"). | [Get application](../api/Reference/get-application) |
 | **Webclient + email** | Manual check in the web application, with email notifications. | — |
 
 ---

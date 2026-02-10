@@ -56,11 +56,11 @@
     "description": "The label for doc api/Reference/login-partner in sidebar apiReference"
   },
   "sidebar.apiReference.category.Application resources": {
-    "message": "Zdroje aplikace",
+    "message": "Zdroje žádosti",
     "description": "The label for category Application resources in sidebar apiReference"
   },
   "sidebar.apiReference.doc.api/Reference/application-resources": {
-    "message": "Zdroje aplikace",
+    "message": "Zdroje žádosti",
     "description": "The label for doc api/Reference/application-resources in sidebar apiReference"
   },
   "sidebar.apiReference.doc.api/Reference/create-application": {
@@ -168,7 +168,7 @@
     "description": "The label for category Security in sidebar eshopApiReference"
   },
   "sidebar.eshopApiReference.category.Application resources": {
-    "message": "Zdroje aplikace",
+    "message": "Zdroje žádosti",
     "description": "The label for category Application resources in sidebar eshopApiReference"
   },
   "sidebar.eshopApiReference.category.Health check": {
