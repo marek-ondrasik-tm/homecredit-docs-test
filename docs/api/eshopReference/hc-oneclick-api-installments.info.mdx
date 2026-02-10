@@ -81,13 +81,13 @@ The basic and minimum way how to implement HCO API is to at least implement:
 
 1. [Login](./login-partner)
     - Partner must be authorized to be able to access the most resources
-2. [Create application](./create-application)
+2. [Create application](./create-using-post-3)
     - Partner calls this resource to start the loan approval process by creating an `application`. `Application` itself and its ID are essential for successful process completion.
 3. Redirect handlers.
     - Special URLs for customers that shows payment success or rejection (more info [here](#parameters-added-to-return-urls)).
 4. [Application notification](./application-notification)
     - This endpoint has to be exposed on your side to allow HC back-end to asynchronously notify you about the important changes regarding particular applications.
-5. [Mark order items as shipped/delivered](./mark-order-as-shipped)
+5. [Mark order items as shipped/delivered](./deliver-using-put)
     - Home Credit does not start the process of financial compensation unless the `order` is marked as `SHIPPED` or `DELIVERED` .
 
 ![Minimal implementation diagram](/img/sequence_diagram.png)

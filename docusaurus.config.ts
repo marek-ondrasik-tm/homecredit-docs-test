@@ -132,6 +132,19 @@ const config: Config = {
               sidebarCollapsed: false,
             },
           } satisfies OpenApiPlugin.Options,
+          eshopHomeCreditApiCs: {
+            specPath: 'api-docs-source/eshopopenapispec.cs.yaml',
+            outputDir: 'i18n/cs/docusaurus-plugin-content-docs/current/api/eshopReference',
+            sidebarOptions: {
+              groupPathsBy: 'tag',
+              categoryLinkSource: 'tag',
+              sidebarCollapsible: false,
+              sidebarCollapsed: false,
+              customProps: {
+                tagDisplayName: 'x-displayName',
+              },
+            },
+          } satisfies OpenApiPlugin.Options,
           homeCreditApi: {
             specPath: 'api-docs-source/openapispec.yaml',
             outputDir: 'docs/api/Reference',
@@ -198,7 +211,7 @@ const config: Config = {
           type: "docSidebar",
           sidebarId: "apiReference",
           position: "left",
-          label: "API Reference",
+          label: "API Reference - gateway",
         },
         {
           type: "docSidebar",
