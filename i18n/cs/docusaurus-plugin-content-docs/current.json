@@ -56,11 +56,11 @@
     "description": "The label for doc api/Reference/login-partner in sidebar apiReference"
   },
   "sidebar.apiReference.category.Application resources": {
-    "message": "Zdroje aplikací",
+    "message": "Zdroje aplikace",
     "description": "The label for category Application resources in sidebar apiReference"
   },
   "sidebar.apiReference.doc.api/Reference/application-resources": {
-    "message": "Zdroje aplikací",
+    "message": "Zdroje aplikace",
     "description": "The label for doc api/Reference/application-resources in sidebar apiReference"
   },
   "sidebar.apiReference.doc.api/Reference/create-application": {
@@ -162,5 +162,29 @@
   "sidebar.apiReference.doc.api/Reference/application-notification": {
     "message": "Oznámení aplikace",
     "description": "The label for doc api/Reference/application-notification in sidebar apiReference"
+  },
+  "sidebar.eshopApiReference.category.Security": {
+    "message": "Zabezpečení",
+    "description": "The label for category Security in sidebar eshopApiReference"
+  },
+  "sidebar.eshopApiReference.category.Application resources": {
+    "message": "Zdroje aplikace",
+    "description": "The label for category Application resources in sidebar eshopApiReference"
+  },
+  "sidebar.eshopApiReference.category.Health check": {
+    "message": "Kontrola stavu",
+    "description": "The label for category Health check in sidebar eshopApiReference"
+  },
+  "sidebar.eshopApiReference.category.Scoring resources": {
+    "message": "Zdroje bodování",
+    "description": "The label for category Scoring resources in sidebar eshopApiReference"
+  },
+  "sidebar.eshopApiReference.category.Installments calculator resources": {
+    "message": "Zdroje splátkové kalkulačky",
+    "description": "The label for category Installments calculator resources in sidebar eshopApiReference"
+  },
+  "sidebar.eshopApiReference.category.Merchantsite resources": {
+    "message": "Zdroje pro partnery",
+    "description": "The label for category Merchantsite resources in sidebar eshopApiReference"
   }
 }

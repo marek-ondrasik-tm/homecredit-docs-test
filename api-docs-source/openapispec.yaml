@@ -4746,7 +4746,6 @@ paths:
                 required:
                   - id
                   - recommendation
-                  - id
                   - customer
                   - potentialCreditAmount
               examples:
@@ -5028,7 +5027,7 @@ paths:
                             passed to the HCO.
 
 
-                                true = Application is likely going to be approved.
+                            true = Application is likely going to be approved.
 
                             false = Application is likely going to be rejected.
                         message:
@@ -5087,7 +5086,6 @@ paths:
                       required:
                         - id
                         - recommendation
-                        - id
                         - customer
                         - potentialCreditAmount
                     description: REQUIRED if precheck ended with `SUCCESS` or `PARTIAL_SUCCESS`
@@ -6860,7 +6858,6 @@ components:
       required:
         - id
         - recommendation
-        - id
         - customer
         - potentialCreditAmount
       properties:

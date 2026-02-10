@@ -1,0 +1,77 @@
+---
+id: scoring-resources
+title: "Zdroje bodování"
+description: "Zdroje bodování"
+custom_edit_url: null
+---
+
+
+
+Služby, které umožňují partnerským e-shopům zjistit pravděpodobnost
+*schválení žádosti*.
+
+### Precheck
+
+Jednoduchá operace pro předběžné hodnocení zákazníků. Vrátí možnou výši úvěru zákazníka
+může získat. Nejlépe se hodí pro identifikaci klientů, kteří budou pravděpodobně odmítnuti.
+Vezměte v úvahu, že kladné doporučení nemůže zákazníkovi zaručit schválení jako výsledek
+je založen pouze na několika základních informacích o zákazníkovi.
+
+Zdroj musí být volán s platným přístupovým tokenem (viz část [Zabezpečení](./security))
+z vašeho serveru. Pokud jej plánujete integrovat do klientského toku, měli byste implementovat koncový bod REST
+navázaný na relaci nákupního košíku, který bude použit jako proxy pro volání HC API -
+**NIKDY nevkládejte přístupový token přímo na stranu klienta**
+
+Vysvětlení možných chybových kódů:
+
+| Stavový kód | Kód | Vysvětlení|
+| ----------- | --------------- | -------------------- |
+| 400 | INVALID_REQUEST | Požadavek nebyl správně naformátován (chybná syntaxe požadavku, příliš velká velikost atd.) |
+| 500 | FAILURE | Interní selhání |
+
+### MultiPrecheck
+
+Multi Precheck je základní Precheck spuštěný na mnoha klientech. Obvykle se používá mimo businness
+hodin. Operace je asynchronní, partner získá pouze jedinečný identifikátor dávky
+výsledek je k dispozici ve zdroji Multi precheck result (viz [Výsledek MultiPrecheck](#výsledek-multiprecheck))
+
+Prostředek musí být volán s platným přístupovým tokenem (viz část [Zabezpečení](./security))
+z vašeho serveru. Pokud jej plánujete začlenit do klientského toku, měli byste implementovat koncový bod REST
+navázaný na relaci nákupního košíku, který bude použit jako proxy pro volání rozhraní HC API -
+**NIKDY nevkládejte přístupový token přímo na stranu klienta**
+
+Vysvětlení možných chybových kódů:
+
+| Stavový kód | Kód | Vysvětlení|
+| ----------- | --------------- | -------------------- |
+| 400 | INVALID_REQUEST | Požadavek nebyl správně naformátován (chybná syntaxe požadavku, příliš velká velikost atd.) |
+| 500 | FAILURE | Interní selhání |
+
+### Výsledek MultiPrecheck
+
+Získání výsledku dokončené multipreskripční kontroly.
+
+V ostatních případech se zobrazí jedna z následujících chyb:
+
+| Stavový kód | Kód | Vysvětlení |
+| ----------- | --------------- | -------------------- |
+| 400 | INVALID_REQUEST | Požadavek nebyl správně naformátován (chybná syntaxe požadavku, příliš velká velikost atd.) |
+| 404 | APPLICATION_NOT_FOUND | Požadovaný prostředek nebyl nalezen |
+| 422 | NOT_SUPPORTED | Zdroj není pro daný typ financování podporován |
+| 422 | UNPROCESSABLE | Požadavek byl správně formulován, ale nebylo možné jej splnit kvůli sémantickým chybám |
+| 500 | INTERNAL_SERVER_ERROR | Nastal neočekávaný stav a není vhodná žádná konkrétnější zpráva |
+### Notifikace o výsledku MultiPrecheck
+Zdroj oznámení, který musí být poskytnut partnerem, a je uvedeno uri
+během inicializace multi precheck. Oznámení neobsahuje výsledek
+zákazníků, pouze informaci, že výsledky jsou nyní k dispozici.
+
+
+
+
+```mdx-code-block
+import DocCardList from '@theme/DocCardList';
+import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
+
+<DocCardList items={useCurrentSidebarCategory().items}/>
+```
+      

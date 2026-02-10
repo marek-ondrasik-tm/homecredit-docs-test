@@ -1,0 +1,142 @@
+---
+id: installments-calculator-resources
+title: "Installments calculator resources"
+description: "Installments calculator resources"
+custom_edit_url: null
+---
+
+
+
+When you want to provide your customer (that wants to pay for a purchase by a loan) 
+an option to choose from available installment programs while he is still on your 
+website, it is necessary to implement "installments calculator".
+
+Choose one of the following approaches to integrate installments calculator into your website:
+
+- A) Implementing your own installment calculator, with your FE in your design that uses designated API resources ([described below](#implementing-own-installments-calculator)).
+
+
+- B) Integrating Home Credit's javascript widget (described in [special chapter](../Reference/java-script-widget-integration)) that:
+  - provides GUI and front-end functionalities
+  - process all needed calculations
+  - provides necessary data to e-shop's back-end in order to easily use them within [*application* creation request](./create-using-post-3)
+
+> NOTE: Implementation of installment calculator is optional. Customers can always use the installment calculator embedded in Home Credit's front-end.
+
+
+## Implementing own installments calculator
+
+In order to implement your own installment calculator (with your GUI design) you will need following resources:
+
+- `/financing/v1/installmentProgramsOffers` - to find out available installment programs offers and their details
+
+- `/financing/v1/installmentPrograms` - to find out details of a chosen installment program
+
+- `/financing/v1/installmentProgramsDownPayments` - to find out down payment options within available installment programs offers
+
+### Installment programs offers
+
+When a customer wants to pay for a purchase by a loan and you want 
+to show him an offer of available installment programs, 
+use `/financing/v1/installmentProgramsOffers` resource with properly 
+filled request that contains at least following data:
+
+- Product set code (you should know the proper product set code from 
+Home Credit's sales representative or other similar source; 
+if you don't provide product set code, your default product set will be used)
+- Price of customer's purchase
+
+If the request was successfully processed, you receive HTTP status code 200 
+and array of objects of available installment programs with at least 
+following information in the response:
+
+- Installment program (array)
+  - Installment program product code
+  - Installment program type (in case of only one installment program offer 
+  in response it is of type `FAVOURITE`)
+  - Installment amount
+  - Number of installments
+
+In other cases, you receive one of the following errors:
+
+| Status code | Code            | Explanation          |
+| ----------- | --------------- | -------------------- |
+| 400         | INVALID_REQUEST  | Request was not well formatted (malformed request syntax, size too large, etc.) |
+| 422         | UNPROCESSABLE | The request was well-formed but was unable to be followed due to semantic errors |
+| 500         | INTERNAL_SERVER_ERROR | Unexpected condition was encountered and no more specific message is suitable |
+
+Calculate installment programs offer according to specified input
+
+| feature | supported by resource |
+| ------- | --------------------- |
+| paging | no |
+| sorting | no |
+| filtering | no |
+
+### Installment programs
+
+When a customer wants to know details of one of previously offered 
+installment programs use `/financing/v1/installmentPrograms` resource 
+with properly filled request that contains at least following data:
+
+- Product code of given installment program
+- Price of customer's purchase
+
+If the request was successfully processed, you receive HTTP status 
+code 200 and object of information about specified installment 
+program with at least following information in the response:
+
+- Installment program type
+- Installment amount
+- Number of installments
+- Installment program details
+
+In other cases, you receive one of the following errors:
+
+| Status code | Code            | Explanation          |
+| ----------- | --------------- | -------------------- |
+| 400         | INVALID_REQUEST  | Request was not well formatted (malformed request syntax, size too large, etc.) |
+| 422         | UNPROCESSABLE | The request was well-formed but was unable to be followed due to semantic errors |
+| 500         | INTERNAL_SERVER_ERROR | Unexpected condition was encountered and no more specific message is suitable |
+
+Calculate installment program detailed information. It returns the installment program that most closely matches specified input.
+
+### Installment programs down payments
+
+When a customer wants to pay for a purchase by a loan and also 
+wants to choose own down payments settings within offered installment 
+programs, use `/financing/v1/installmentProgramsDownPayments` resource 
+with properly filled request that contains at least following data:
+
+- Product set code (you should know the proper product set code from 
+Home Credit's sales representative or other similar source)
+- Price of customer's purchase
+
+If the request was successfully processed, you receive HTTP status code 
+200 and object of information about available down payments settings 
+with at least following information in the response:
+
+- Minimum down payment amount
+- Maximum down payment amount
+- Step between given minimum and maximum down payment amounts
+
+In other cases, you receive one of the following errors:
+
+| Status code | Code            | Explanation          |
+| ----------- | --------------- | -------------------- |
+| 400         | INVALID_REQUEST  | Request was not well formatted (malformed request syntax, size too large, etc.) |
+| 422         | UNPROCESSABLE | The request was well-formed but was unable to be followed due to semantic errors |
+| 500         | INTERNAL_SERVER_ERROR | Unexpected condition was encountered and no more specific message is suitable |
+
+Calculate installment programs down payments according to specified input
+
+
+
+
+```mdx-code-block
+import DocCardList from '@theme/DocCardList';
+import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
+
+<DocCardList items={useCurrentSidebarCategory().items}/>
+```
+      
