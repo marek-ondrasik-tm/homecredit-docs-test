@@ -195,7 +195,7 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: "Home Credit Documentation",
+      title: "Developer Documentation",
       logo: {
         alt: "HC Docs Logo",
         src: "img/logo.svg",
