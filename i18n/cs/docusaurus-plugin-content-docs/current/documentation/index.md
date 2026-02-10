@@ -1,6 +1,59 @@
-# Home Credit on-line: Základní informace pro partnerské e-shopy
+# Základní informace pro partnerské e-shopy
 
-- Rozhraní pro platební metodu HC On-line je **REST API**, kde se pro veškerou komunikaci (dotazy - requesty a odpovědi - response) a popis dat využívá notace JSON.
+Rozhraní pro platební metodu HC On-line je **REST API**, kde se pro veškerou komunikaci (dotazy - requesty a odpovědi - response) a popis dat využívá notace JSON.
+
+## Přehled integrace
+
+Implementace je o **čtyřech krocích**. U každého kroku si můžete zvolit variantu, která vám nejlépe vyhovuje—od plné kontroly přes API po minimální integraci.
+
+---
+
+### 1. 📊 Kalkulačka v detailu produktu
+
+Umožněte zákazníkům zobrazit možnosti splátek na stránce produktu. Vyberte jednu ze tří variant:
+
+| Varianta | Popis | Odkaz |
+|----------|--------|--------|
+| **API** | Vlastní design, my vracíme hodnoty. *Pouze pro certifikované zprostředkovatele dle zákona 257/2016 Sb.* | [Installments calculator resources](../api/Reference/installments-calculator-resources) |
+| **Widget** | JavaScriptový widget do stránek vašeho e-shopu (stáhněte na [github.com/homecreditcz](https://github.com/homecreditcz)). *Pouze pro certifikované zprostředkovatele dle zákona 257/2016 Sb.* | [JavaScript widget integration](../api/Reference/java-script-widget-integration), [Návod k instalaci widgetu](../widgets/install) |
+| **Standalone** | „Pouze odkaz“ k nám—otevře naši kalkulačku v novém okně nebo záložce. | — |
+
+---
+
+### 2. 🛒 Vytvoření žádosti (Create application)
+
+Vytvoření žádosti přes API a přesměrování klienta k nám k doplnění žádosti.
+
+- **Autentizace:** [Login partner](../api/Reference/login-partner) (`authentication/v1/partner`)
+- **Vytvoření žádosti:** [Create application](../api/Reference/create-application) (`financing/v1/applications`)
+- **Přesměrujte** zákazníka na `gatewayRedirectUrl` vrácené v odpovědi, aby mohl žádost dokončit u nás.
+
+---
+
+### 3. 🔔 Notifikace
+
+Mějte přehled o stavu žádosti. Vyberte jednu ze tří variant:
+
+| Varianta | Popis | Odkaz |
+|----------|--------|--------|
+| **Notifikační endpoint** | Zasíláme na vaše API při každé změně žádosti. | [Application notification](../api/Reference/application-notification) |
+| **Webservice** | Přes API odpovíme na váš dotaz aktuálním stavem žádosti („GET applicationDetail“). | [Get application](../api/Reference/get-application) |
+| **Webclient + email** | Ruční potvrzení po přihlášení do webové aplikace doplněné emailem. | — |
+
+---
+
+### 4. 📦 Potvrzení vyskladnění nebo doručení
+
+Potvrďte odeslání a případně doručení zboží. Vyberte způsob hlášení:
+
+| Varianta | Popis | Odkaz |
+|----------|--------|--------|
+| **Mark as shipped** | Potvrzení odeslání zboží přes API. | [Mark order as shipped](../api/Reference/mark-order-as-shipped) (PUT send) |
+| **Mark as delivered** | Potvrzení o doručení zboží klientovi přes API. | [Mark order as delivered](../api/Reference/mark-order-as-delivered) (PUT deliver) |
+| **Webclient** | Ruční potvrzení po přihlášení do webové aplikace. | — |
+
+## Odkazy a další informace
+
 - **Technická dokumentace** k API (dále TD) a základní popis fungování platební metody je k nalezení na [zde](../api/Reference/home-credit-partner-api-order-future)
 - Veřejně přístupná **repository s podkladovými daty** je k dispozici na https://github.com/homecreditcz, najdete zde:
   - **Tuto příručku k veřejnému API** včetně návodů a vzorových dat

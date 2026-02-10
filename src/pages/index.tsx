@@ -30,7 +30,7 @@ function HomepageHeader() {
           <div className={styles.heroButtons}>
             <Link
               className={styles.heroButton}
-              to="/docs/documentation/button-quarter">
+              to="/docs/documentation">
               <Translate id="homepage.button" description="The button to proceed to docs">
                 Get Started
               </Translate>

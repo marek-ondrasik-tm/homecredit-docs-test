@@ -1,12 +1,62 @@
-# Home Credit on-line for Partner E-Shops
+# Basic information for partner e-shops
 
-## Basic Information
+The interface for the HC On-line payment method is a **REST API**, where JSON notation is used for all communication (queries - requests and responses) and data description.
 
-- The interface for the HC On-line payment method is a **REST API**, where JSON notation is used for all communication (queries - requests and responses) and data description.
-- The **Technical Documentation** for the API (hereinafter TD) and basic description of the payment method functionality can be found at [here](../api/Reference/home-credit-partner-api-order-future)
+## Integration overview
+
+Integration is built around **four simple steps**. For each step you can choose the option that best fits your stack—from full API control to minimal integration.
+
+---
+
+### 1. 📊 Calculator in product detail
+
+Let customers see installment options on your product page. Choose one of three approaches:
+
+| Option | Description | Reference |
+|--------|-------------|-----------|
+| **API** | Your own design; we return the values. *Only for certified intermediaries under Act 257/2016 Sb.* | [Installments calculator resources](../api/Reference/installments-calculator-resources) |
+| **Widget** | JavaScript widget embedded in your e-shop (download at [github.com/homecreditcz](https://github.com/homecreditcz)). *Only for certified intermediaries under Act 257/2016 Sb.* | [JavaScript widget integration](../api/Reference/java-script-widget-integration), [Widget install guide](../widgets/install) |
+| **Standalone** | “Link only” to us—opens our calculator in a new window or tab. | — |
+
+---
+
+### 2. 🛒 Create application
+
+Create the application via API and send the customer to us to complete it.
+
+- **Authentication:** [Login partner](../api/Reference/login-partner) (`authentication/v1/partner`)
+- **Create application:** [Create application](../api/Reference/create-application) (`financing/v1/applications`)
+- **Redirect** the customer to the `gatewayRedirectUrl` returned in the response so they can complete the application on our side.
+
+---
+
+### 3. 🔔 Notifications
+
+Stay in sync with application status. Choose one of three options:
+
+| Option | Description | Reference |
+|--------|-------------|-----------|
+| **Notification endpoint** | We call your API whenever the application status changes. | [Application notification](../api/Reference/application-notification) |
+| **Webservice** | You query us via API for the current application status (“GET application detail”). | [Get application](../api/Reference/get-application) |
+| **Webclient + email** | Manual check in the web application, with email notifications. | — |
+
+---
+
+### 4. 📦 Fulfillment: shipped and delivered
+
+Confirm that the order was sent and/or delivered. Choose how to report:
+
+| Option | Description | Reference |
+|--------|-------------|-----------|
+| **Mark as shipped** | Confirm dispatch via API. | [Mark order as shipped](../api/Reference/mark-order-as-shipped) (PUT send) |
+| **Mark as delivered** | Confirm delivery to the customer via API. | [Mark order as delivered](../api/Reference/mark-order-as-delivered) (PUT deliver) |
+| **Webclient** | Confirm manually after signing in to the web application. | — |
+
+## Links and further information
+
+- The **Technical Documentation** for the API (hereinafter TD) and basic description of the payment method functionality can be found [here](../api/Reference/home-credit-partner-api-order-future)
 - A publicly accessible **repository with supporting data** is available at https://github.com/homecreditcz, where you will find:
   - **This guide to the public API** including tutorials and sample data
   - **Installment calculator** in the form of a JavaScript widget ([*widget-calculator*](../widgets/install))
   - **PHP script** providing basic functionality necessary for integrating HC payment into your e-shop ([*php-script*](https://github.com/homecreditcz/php-script))
   - **PHP library** providing basic functionality necessary for integrating HC payment into your e-shop ([*oneclick-api-client*](https://github.com/homecreditcz/oneclick-api-client)) - **WARNING - DEPRECATED - only for PHP 5.6!!!**
-  
