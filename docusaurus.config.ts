@@ -113,15 +113,25 @@ const config: Config = {
           //     sidebarCollapsed: false,
           //   },
           // } satisfies OpenApiPlugin.Options,
-          // homeCreditApi: {
+          // oldHomeCreditApi: {
           //   specPath: 'api-docs-source/swaggerspec.yaml',
-          //   outputDir: 'docs/api/Reference',
+          //   outputDir: 'docs/api/ReferenceV1V2V3',
           //   sidebarOptions: {
           //     groupPathsBy: 'tag',
-          //     sidebarCollapsible: true,
+          //     sidebarCollapsible: false,
           //     sidebarCollapsed: false,
           //   },
           // } satisfies OpenApiPlugin.Options,
+          eshopHomeCreditApi: {
+            specPath: 'api-docs-source/eshopopenapispec.yaml',
+            outputDir: 'docs/api/eshopReference',
+            sidebarOptions: {
+              groupPathsBy: 'tag',
+              categoryLinkSource: 'tag',
+              sidebarCollapsible: false,
+              sidebarCollapsed: false,
+            },
+          } satisfies OpenApiPlugin.Options,
           homeCreditApi: {
             specPath: 'api-docs-source/openapispec.yaml',
             outputDir: 'docs/api/Reference',
@@ -189,6 +199,12 @@ const config: Config = {
           sidebarId: "apiReference",
           position: "left",
           label: "API Reference",
+        },
+        {
+          type: "docSidebar",
+          sidebarId: "eshopApiReference",
+          position: "left",
+          label: "API Reference - eshop",
         },
         {
           type: "docSidebar",

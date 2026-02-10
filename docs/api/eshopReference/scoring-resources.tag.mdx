@@ -1,0 +1,79 @@
+---
+id: scoring-resources
+title: "Scoring resources"
+description: "Scoring resources"
+custom_edit_url: null
+---
+
+
+
+Services that allow partner e-shops to find out a probability of
+*application's* approval.
+
+### Precheck
+
+Simple operation for customer preliminary scoring. Returns a possible credit amount the customer 
+can obtain. It is best suitable for identifying clients who will probably be rejected. 
+Take into account that positive recommendation can not guarantee customer's approval as the result 
+is based only on a few elementary pieces of information about the customer.
+
+Resource has to be called with valid access token (see the [Security section](./security)) 
+from your server. If you plan to integrate it in a client flow, you should implement REST endpoint 
+bound to your shopping basket session that will be used as a proxy to call HC API - 
+**NEVER put access token directly to client side.**
+
+Possible error codes explanation:
+
+| Status code | Code            | Explanation          |
+| ----------- | --------------- | -------------------- |
+| 400         | INVALID_REQUEST  | Request was not well formatted (malformed request syntax, size too large, etc.) |
+| 500         | FAILURE | Internal failure |
+
+### MultiPrecheck
+
+Multi precheck is basic Precheck run on many clients. Typically used outside businness 
+hours. Operation is asynchronous, partner gets only unique identifier of batch and the 
+result is available in Multi precheck result resource (see [Multi precheck result](#multi-precheck-result))
+
+Resource has to be called with valid access token (see the [Security section](./security)) 
+from your server. If you plan to integrate it in a client flow, you should implement REST endpoint 
+bound to your shopping basket session that will be used as a proxy to call HC API - 
+**NEVER put access token directly to client side.**
+
+Possible error codes explanation:
+
+| Status code | Code            | Explanation          |
+| ----------- | --------------- | -------------------- |
+| 400         | INVALID_REQUEST  | Request was not well formatted (malformed request syntax, size too large, etc.) |
+| 500         | FAILURE | Internal failure |
+
+### Multi precheck result
+
+Getting result of finished multi precheck.
+
+In other cases, you receive one of the following errors:
+
+| Status code | Code            | Explanation          |
+| ----------- | --------------- | -------------------- |
+| 400         | INVALID_REQUEST  | Request was not well formatted (malformed request syntax, size too large, etc.) |
+| 404         | APPLICATION_NOT_FOUND  | The requested resource could not be found |
+| 422         | NOT_SUPPORTED | Resource is not supported for given financing type |
+| 422         | UNPROCESSABLE | The request was well-formed but was unable to be followed due to semantic errors |
+| 500         | INTERNAL_SERVER_ERROR | Unexpected condition was encountered and no more specific message is suitable |
+
+### Multi precheck result notification
+
+Notification resource which needs to be provided by partner and the uri is specified 
+during initialization of multi precheck. Notification does not contain result of 
+customers precheck, only information, that results are now available.
+
+
+
+
+```mdx-code-block
+import DocCardList from '@theme/DocCardList';
+import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
+
+<DocCardList items={useCurrentSidebarCategory().items}/>
+```
+      

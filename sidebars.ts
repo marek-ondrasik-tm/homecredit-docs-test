@@ -1,5 +1,6 @@
 import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
 import apiReferenceSidebar from './docs/api/Reference/sidebar';
+import eshopApiReferenceSidebar from './docs/api/eshopReference/sidebar';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
@@ -30,6 +31,7 @@ const sidebars: SidebarsConfig = {
     'documentation/faq',
   ],
   apiReference: [...apiReferenceSidebar],
+  eshopApiReference: [...eshopApiReferenceSidebar],
   widgetsSidebar: [
     'widgets/install',
     'widgets/MigrationTov10',
