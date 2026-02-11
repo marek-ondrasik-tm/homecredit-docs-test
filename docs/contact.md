@@ -10,3 +10,5 @@ displayed_sidebar: null
 * Send us an email at integrace_eshop@homecredit.cz and we will get back to you as soon as possible with a solution to your problem.
 
 * Please report any errors from the production environment via helpdesk@homecredit.cz
+
+* In case of any further questions please contact via email Tomas.Barta@homecredit.cz or phone (+420) 602 546 502
