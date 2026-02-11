@@ -11,4 +11,4 @@ displayed_sidebar: null
 
 * Please report any errors from the production environment via helpdesk@homecredit.cz
 
-* In case of any further questions please contact via email Tomas.Barta@homecredit.cz or phone (+420) 602 546 502
+* In case of any further questions please contact via email tomas.barta@homecredit.cz or phone (+420) 602 546 502

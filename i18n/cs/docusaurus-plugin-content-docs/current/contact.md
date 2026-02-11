@@ -11,4 +11,4 @@ displayed_sidebar: null
 
 * Jakékoli chyby z produkčního prostředí nahlaste prosím na adrese helpdesk@homecredit.cz.
 
-* V případě dalších dotazů prosím kontaktujte e-mailem na adrese Tomas.Barta@homecredit.cz nebo telefonicky na čísle (+420) 602 546 502.
+* V případě dalších dotazů prosím kontaktujte e-mailem na adrese tomas.barta@homecredit.cz nebo telefonicky na čísle (+420) 602 546 502.
