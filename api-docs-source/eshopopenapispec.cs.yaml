@@ -4,7 +4,7 @@ info:
   version: 1.28.2
   x-sidebar-label: API Versioning
   description: |
-    Dokumentace API pro rozhraní Home Credit One-Click API.
+    Dokumentace API pro implementaci rozhraní Home Credit na eshopy.
 
     Verze dokumentace: 1.28.2
 

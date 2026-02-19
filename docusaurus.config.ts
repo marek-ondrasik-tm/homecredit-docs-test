@@ -209,22 +209,22 @@ const config: Config = {
         },
         {
           type: "docSidebar",
-          sidebarId: "apiReference",
-          position: "left",
-          label: "API Reference - gateway",
-        },
-        {
-          type: "docSidebar",
           sidebarId: "eshopApiReference",
           position: "left",
           label: "API Reference - eshop",
         },
         {
           type: "docSidebar",
-          sidebarId: "widgetsSidebar",
+          sidebarId: "apiReference",
           position: "left",
-          label: "Widgets",
+          label: "API Reference PSP",
         },
+        // {
+        //   type: "docSidebar",
+        //   sidebarId: "widgetsSidebar",
+        //   position: "left",
+        //   label: "Widgets",
+        // },
         { to: "docs/contact", label: "Contact", position: "left" },
         {
           type: "localeDropdown",
@@ -243,13 +243,17 @@ const config: Config = {
               to: "/docs/documentation/button-quarter",
             },
             {
-              label: "API reference",
+              label: "API reference - PSP",
               to: "docs/api/Reference/home-credit-partner-api-order-future",
             },
             {
-              label: "Widgets",
-              to: "/docs/widgets/install",
+              label: "API reference - eshop",
+              to: "docs/api/eshopReference/hc-oneclick-api-installments",
             },
+            // {
+            //   label: "Widgets",
+            //   to: "/docs/widgets/install",
+            // },
           ],
         },
         {
