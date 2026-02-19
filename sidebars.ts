@@ -30,8 +30,8 @@ const sidebars: SidebarsConfig = {
     'documentation/marketing-logo',
     'documentation/faq',
   ],
-  apiReference: [...apiReferenceSidebar],
   eshopApiReference: [...eshopApiReferenceSidebar],
+  apiReference: [...apiReferenceSidebar],
   widgetsSidebar: [
     'widgets/install',
     'widgets/MigrationTov10',
