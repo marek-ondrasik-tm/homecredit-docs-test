@@ -26,7 +26,7 @@ Prostředí, na kterém jsou k dispozici data podobná produkčním a na kterém
 
   > ***username: 024242tech, password: 024242tech***
 
-  > ***apiKey*** pro kalkulačku splátek ve variantě [javascriptový widget]((../widgets/install)
+  > ***apiKey*** pro kalkulačku splátek ve variantě [javascriptový widget]((./widgets/install)
   > - CZ: `calculator_test_key`
   > - SK: `calculator_test_key`
 
@@ -38,7 +38,7 @@ Prostředí, na kterém jsou k dispozici data podobná produkčním a na kterém
 
   > ***username: 024243tech, password: 024243tech***
 
-  > ***apiKey*** pro kalkulačku splátek ve variantě [javascriptový widget](../widgets/install) 
+  > ***apiKey*** pro kalkulačku splátek ve variantě [javascriptový widget](./widgets/install) 
   > - CZ: `calculator_test_key_dp`
   > - SK: `calculator_test_key_dp`
 
@@ -59,8 +59,8 @@ Výhodou tohoto řešení je např. možnost tvorby uživatelského rozhraní ka
 
 ### 2. Částečné řešení partnera s využitím javascriptovéhéo widgetu
 Zlatou střední cestou je řešení, kdy vlastní backend e-shopu využívá javascriptový widget od Home Creditu, který obstarává frontendovou část, výpočet vhodných nabídek a na základě výsledku připravuje podklady backendu e-shopu pro provolání endpointu na vytvoření žádosti o úvěr.
-   * Javascriptový widget pro řešení kalkulačky splátek je k dispozici [zde](../widgets/install)
-   * Testovací hodnoty jsou popsány v [návodu na instalaci widgetu](../widgets/install)
+   * Javascriptový widget pro řešení kalkulačky splátek je k dispozici [zde](./widgets/install)
+   * Testovací hodnoty jsou popsány v [návodu na instalaci widgetu](./widgets/install)
 
 ### 3. Home Creditem vystavená externí kalkulačka splátek
 > **Jde o jedinou variantu pro partnery spolupracující v režimu "Tipař"**

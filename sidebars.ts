@@ -27,15 +27,19 @@ const sidebars: SidebarsConfig = {
     'documentation/example-queries',
     'documentation/production-env',
     'documentation/test-cases',
+    {
+      type: 'category',
+      label: 'Widgets',
+      items: [
+        'documentation/widgets/install',
+        'documentation/widgets/MigrationTov10',
+      ],
+    },
     'documentation/marketing-logo',
     'documentation/faq',
   ],
   eshopApiReference: [...eshopApiReferenceSidebar],
   apiReference: [...apiReferenceSidebar],
-  widgetsSidebar: [
-    'widgets/install',
-    'widgets/MigrationTov10',
-  ],
 
   // But you can create a sidebar manually
   /*

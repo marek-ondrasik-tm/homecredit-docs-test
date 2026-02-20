@@ -4,7 +4,7 @@ Scenarios:
 1. **Calculator in product details**
   * **API**
     * Tipař cannot be used in the Czech Republic.
-  * **Calculator widget** opens on the e-shop page; the client does not leave the page. When the "Select installments" button is clicked, the e-shop saves the values of the client's preferred installments, see description at [widgets](../widgets/install).
+  * **Calculator widget** opens on the e-shop page; the client does not leave the page. When the "Select installments" button is clicked, the e-shop saves the values of the client's preferred installments, see description at [widgets](./widgets/install).
     * Cannot be used by Tipař in CZ
   * **Standalone calculator** - this only involves inserting a link into the product details, the calculator opens, and after setting the preferred installment option and pressing the "Select installments" button, it simply closes - the selected values are not returned.
     * Only for partners in CZ - primarily created for Tipař

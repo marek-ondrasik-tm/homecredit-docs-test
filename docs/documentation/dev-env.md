@@ -26,7 +26,7 @@ An environment where production-like data is available and where you can test th
 
   > ***username: 024242tech, password: 024242tech***
 
-  > ***apiKey*** for the installment calculator in the [javascript widget](../widgets/install) variant
+  > ***apiKey*** for the installment calculator in the [javascript widget](./widgets/install) variant
   > - CZ: `calculator_test_key`
 > - SK: `calculator_test_key`
 
@@ -38,7 +38,7 @@ B) Sale **with down payment** (store ID **024243**)
 
   > ***username: 024243tech, password: 024243tech***
 
-  > ***apiKey*** for the installment calculator in the [javascript widget](../widgets/install) 
+  > ***apiKey*** for the installment calculator in the [javascript widget](./widgets/install) 
   > - CZ: `calculator_test_key_dp`
   > - SK: `calculator_test_key_dp`
 
@@ -59,8 +59,8 @@ The advantage of this solution is, for example, the possibility of creating a ca
 
 ### 2. Partial partner solution using a JavaScript widget
 The golden mean is a solution where the e-shop's own backend uses a JavaScript widget from Home Credit, which handles the frontend part, calculates suitable offers, and, based on the result, prepares the e-shop backend data for calling the endpoint to create a loan application.
-   * The JavaScript widget for the repayment calculator solution is available [here](../widgets/install)
-   * Test values are described in the [widget installation guide](../widgets/install)
+   * The JavaScript widget for the repayment calculator solution is available [here](./widgets/install)
+   * Test values are described in the [widget installation guide](./widgets/install)
 
 ### 3. External repayment calculator issued by Home Credit
 > **This is the only option for partners cooperating in the "Tipař" mode**

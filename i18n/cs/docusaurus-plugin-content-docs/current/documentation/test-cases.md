@@ -4,7 +4,7 @@ Scénáře:
 1. **Kalkulačka v detailu zboží**
   * **API**
     * nesmí použít Tipař v CZ
-  * **Widget kalkulačka** se otevře ve stránce e-shopu, klient nikam neodchází. Při kliknutí na tlačítko "Vybrat splátky" si e-shop uloží hodnoty klientem preferovaných splátek, viz. popis na [widgety](../widgets/install)
+  * **Widget kalkulačka** se otevře ve stránce e-shopu, klient nikam neodchází. Při kliknutí na tlačítko "Vybrat splátky" si e-shop uloží hodnoty klientem preferovaných splátek, viz. popis na [widgety](./widgets/install)
     * nesmí použít Tipař v CZ
   * **Standalone kalkulačka** - jde pouze o vložení odkazu do detailu produktu, kalkulačka se otevře, a po nastavení preferované varianty splátek a stisknutí tlačítka "Vybrat splátky" se pouze zavře - vybrané hodnoty se nevrací.
     * pouze pro partnery v CZ - primárně vytvořeno pro Tipaře
