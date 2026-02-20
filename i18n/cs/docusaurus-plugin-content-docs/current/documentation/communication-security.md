@@ -8,7 +8,7 @@ Obsah notifikací zasílaných partnerskému e-shopu je chráněn proti změně 
 
 Šifrují se tyto dva atrbuty: číslo objednávky (`orderNumber`) a stav žádosti (`stateReason`). Oba atributy se sestaví do řetězce `#orderNumber:#stateReason` (parametry jsou odděleny dvojtečkou). Řetězec je následně zašifrován hašovací funkcí HMAC za použití algoritmu SHA512 a `tajného klíče` a v této podobě přiřazen do těla zprávy jako atribut `checkSum`
 
-> Aktuálně platný ***tajný klíč*** na testovacím prostředí pro danou testovací prodejnu naleznete [zde](https://github.com/homecreditcz/oneclick-api/wiki/Testovac%C3%AD-prost%C5%99ed%C3%AD "Testovací prostředí")
+> Aktuálně platný ***tajný klíč*** na testovacím prostředí pro danou testovací prodejnu naleznete [zde](/docs/documentation/dev-env "Testovací prostředí")
 
 > ***Tajný klíč*** pro produkční prostředí byste měli obdržet od zodpovědné osoby z HC na jedné z úvodních schůzek na téma integrace naší platební metody.
 

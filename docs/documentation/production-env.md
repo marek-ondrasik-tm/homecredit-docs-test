@@ -9,7 +9,7 @@ In order to comply with GDPR requirements when using our interface, it is necess
 
 ## Prerequisites
 
-To access the interface in the production environment, you need access data (*username + password*) that differs from that used to access the test environment. You can obtain them in the same way as those for accessing the test interface (see [Test Environment](https://github.com/homecreditcz/oneclick-api/wiki/Testovac%C3%AD-prost%C5%99ed%C3%AD)).
+To access the interface in the production environment, you need access data (*username + password*) that differs from that used to access the test environment. You can obtain them in the same way as those for accessing the test interface (see [Test Environment](/docs/documentation/dev-env)).
 
 > Enter the parameter specifying the Home Credit product set to be used for the calculation into the repayment calculator - if the goods are included in a special promotion (e.g., "0%"), to which the calculation under the promotional product set applies, it is necessary to use this set in this step - **It is desirable that the e-shop product management allows this property to be easily set (an alternative is to have this option, e.g., for a selected product category)**
 

@@ -8,7 +8,7 @@ The content of notifications sent to partner e-shops is protected against inform
 
 These two attributes are encrypted: order number (`orderNumber`) and request status (`stateReason`). Both attributes are assembled into the string `#orderNumber:#stateReason` (the parameters are separated by a colon). The string is then encrypted using the HMAC hash function with the SHA512 algorithm and the `secret key` and assigned to the body of the message as the `checkSum` attribute in this form.
 
-> The currently valid ***secret key*** for the test environment for a given test store can be found [here](https://github.com/homecreditcz/oneclick-api/wiki/Testovac%C3%AD-prost%C5%99ed%C3%AD "Test environment")
+> The currently valid ***secret key*** for the test environment for a given test store can be found [here](/docs/documentation/dev-env "Test environment")
 
 > You should receive the ***secret key*** for the production environment from the responsible person at HC at one of the introductory meetings on the integration of our payment method.
 

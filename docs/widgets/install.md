@@ -1,6 +1,6 @@
 # Home Credit Online Calculator
 
-> This calculator variant can only be used by bound partners. For unbound partners ("referrers"), a standalone calculator variant is available - more info [here](https://github.com/homecreditcz/oneclick-api/wiki/Produk%C4%8Dn%C3%AD-prost%C5%99ed%C3%AD))
+> This calculator variant can only be used by bound partners. For unbound partners ("referrers"), a standalone calculator variant is available - more info [here](/docs/documentation/dev-env))
 
 The calculator (whose code runs in the customer's browser) needs to obtain data about possible installments. It calls the corresponding Home Credit API endpoints via HTTP GET. These requests must contain the appropriate API key HTTP header.
 

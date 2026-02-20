@@ -211,7 +211,7 @@ const config: Config = {
           type: "docSidebar",
           sidebarId: "eshopApiReference",
           position: "left",
-          label: "API Reference - eshop",
+          label: "API Reference eshop",
         },
         {
           type: "docSidebar",
@@ -243,11 +243,11 @@ const config: Config = {
               to: "/docs/documentation/button-quarter",
             },
             {
-              label: "API reference - PSP",
+              label: "API reference PSP",
               to: "docs/api/Reference/home-credit-partner-api-order-future",
             },
             {
-              label: "API reference - eshop",
+              label: "API reference eshop",
               to: "docs/api/eshopReference/hc-oneclick-api-installments",
             },
             // {
