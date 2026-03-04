@@ -403,7 +403,77 @@ paths:
       tags:
         - Application resources
       summary: Create application
-      description: Requires <b>applications.create</b> authority for authenticated user
+      description: |
+        Requires <b>applications.create</b> authority for authenticated user
+        Elementary flow starts when customer wants to use one of Home Credit's payment method for financing his purchase made in partner e-shop.
+
+        | Financing type | Supported            |
+        | ----------- | --------------- |
+        | `INSTALLMENT`         | YES  |
+
+        Use `/financing/v1/applications` resource with properly 
+        filled request that contains at least following data
+
+        - Customer information are not necessary to send, however, sending them is highly recommended - it will simplify the application process for the client
+          - Name (first name and last name or full name)
+          - E-mail
+          - Mobile phone number
+          - Addresess (array)
+            - City
+            - Street
+            - Street number
+            - ZIP
+            - Address type
+        
+        - Order details
+          - Number
+          - Total Price (including VAT)
+          - Order items (array, at least one item is required)
+            - Code
+            - Order item name
+            - Total price (all pieces, including VAT)
+        
+        - Financing type (always `INSTALLMENT`)
+        - Financing type details
+          - *Installment settings - preferred installment amount
+          - *Installment settings - preferred down payment amount
+          - *Installment settings - preferred program product code
+
+        - Additional information necessary for the continuation and completion of the process
+          - Your URL where the customer should be redirected after application approval
+          - Your URL where the customer should be redirected after application rejection
+          - URL of your notification endpoint you want us to send notifications about particular application updates to (in case the partner is using notifier)
+        
+        > * = Must be filled properly in case customer has already used installment calculator embedded on your website and selected preferred installment program. See the Installments calculator resources section for more details about possibility to embed installment calculator on your website. Leave empty otherwise.
+
+        If the request was successfully processed, you receive HTTP status code 201 and Application object with at least following information in the response:
+
+        - Application unique ID
+        - Application state
+        - Application substate
+        - Gateway redirect URL where you should redirect a customer after processing of the response
+
+        > You may also receive information about initially requested **down payment** - this 
+        can be later changed by customer during the process of finalization of financing 
+        application. In such cases we recommend you to check the final **down payment** of 
+        approved loan (after the application is approved) via `/financing/v1/applications/{applicationId}`.
+
+        If the request was **recognized as duplication**
+
+        - and previously created `Application` is canceled (`Application.state = CANCELLED` and 
+        `Application.stateReason = CANCELLED_NOT_PAID`), new `Application` is created, you 
+        receive HTTP status code 201 and `Application` object with information specified above (at least) in the response
+        - and previously created `Application` is still new (i.e. without any recorded action by a client), no `Application` is created, you receive HTTP status code 200 and the `Application` object created during the first related successful resource call.
+        - and previously created `Application` is neither canceled nor new anymore, you receive HTTP status code 422 with error code `DUPLICATE_ORDER_NUMBER`.
+
+        In case of an error, you receive one of the following results:
+
+        | Status code | Code            | Explanation          |
+        | ----------- | --------------- | -------------------- |
+        | 400         | INVALID_REQUEST  | Request was not well formatted (malformed request syntax, size too large, etc.) |
+        | 422         | UNPROCESSABLE | Request was well-formed but was unable to be followed due to semantic errors |
+        | 422         | DUPLICATE_ORDER_NUMBER | Creating of Application with duplicated Order number is not allowed |
+        | 500         | INTERNAL_SERVER_ERROR | Unexpected condition was encountered and no more specific message is suitable |
       operationId: createUsingPOST_3
       requestBody:
         content:
@@ -435,7 +505,38 @@ paths:
       tags:
         - Application resources
       summary: Application detail
-      description: Requires <b>applications.overview</b> authority for authenticated user
+      description: |
+        Requires <b>applications.overview</b> authority for authenticated user
+
+        If you need to find out current information about particular *application* - primarily its state 
+        and other details - use `/financing/v1/applications/{applicationId}` resource where `{applicationId}` 
+        is the application ID you received in the response of `/financing/v1/applications` after its creation
+
+        | Financing type | Supported            |
+        | ----------- | --------------- |
+        | `INSTALLMENT`         | YES  |
+
+        If the request was successfully processed, you receive HTTP status code 200 and application object with at least following information in the response:
+
+        - Application unique ID
+        - Application type
+        - Application state
+        - Application substate
+        - Gateway redirect URL
+
+        > You may also receive information about current **down payment** which is useful when 
+        you need to find out whether customer's loan was approved with different down payment 
+        than had been initially set in your embedded installment calculator.
+
+        In other cases, you receive one of the following errors:
+
+        | Status code | Code            | Explanation          |
+        | ----------- | --------------- | -------------------- |
+        | 400         | INVALID_REQUEST  | Request was not well formatted (malformed request syntax, size too large, etc.) |
+        | 404         | APPLICATION_NOT_FOUND  | The requested resource could not be found |
+        | 422         | NOT_SUPPORTED | Resource is not supported for given financing type |
+        | 422         | UNPROCESSABLE | The request was well-formed but was unable to be followed due to semantic errors |
+        | 500         | INTERNAL_SERVER_ERROR | Unexpected condition was encountered and no more specific message is suitable |
       operationId: getUsingGET_7
       parameters:
         - name: uuid
@@ -465,7 +566,50 @@ paths:
       tags:
         - Application resources
       summary: Cancel application
-      description: Requires <b>applications.cancel</b> authority for authenticated user
+      description: |
+        Requires <b>applications.cancel</b> authority for authenticated user
+
+        If there is need to completely cancel customer's order, it is necessary to cancel respective 
+        *application*. For this purpose use `/financing/v1/applications/{applicationId}/cancel` 
+        resource where `{applicationId}` is the *application* ID you received in the response of 
+        `/financing/v1/applications` after its creation.
+
+        | Financing type | Supported            |
+        | ----------- | --------------- |
+        | `INSTALLMENT`         | YES  |
+
+
+        | Application state | Availability            |
+        | ----------- | --------------- |
+        | `REJECTED`         | YES  |
+        | `CANCELED`         | YES  |
+        | `PROCESSING`         | YES  |
+        | `READY`         | YES  |
+
+        If the request was successfully processed but the application had been already paid 
+        (`Application.stateReason = READY_PAID`) you receive HTTP status code **202 ACCEPTED** 
+        that means the process of a cancelation of the *application* began. It SHOULD be 
+        completed after fulfilment of several back office manual actions.
+
+        In other cases, when the request is successfully processed, you receive HTTP status code **200 OK**.
+
+        You also receive at least following information about (soon to be) cancelled application in the response:
+
+        - Application unique ID
+        - Application type
+        - Application state
+        - Application substate
+
+        In other cases, you receive one of the following errors:
+
+        | Status code | Code            | Explanation          |
+        | ----------- | --------------- | -------------------- |
+        | 400         | INVALID_REQUEST  | Request was not well formatted (malformed request syntax, size too large, etc.) |
+        | 404         | OBJECT_NOT_FOUND  | The requested resource could not be found |
+        | 422         | NOT_SUPPORTED | Resource is not supported for given financing type |
+        | 422         | UNPROCESSABLE | The request was well-formed but was unable to be followed due to semantic errors |
+        | 422         | APPLICATION_REJECTED | When you try to cancel already `REJECTED` `Application`, which is not allowed |
+        | 500         | INTERNAL_SERVER_ERROR | Unexpected condition was encountered and no more specific message is suitable |
       operationId: cancelUsingPUT
       parameters:
         - name: uuid
@@ -504,7 +648,58 @@ paths:
       tags:
         - Application resources
       summary: Change application order
-      description: Requires <b>applications.order.edit</b> authority for authenticated user
+      description: |
+        Requires <b>applications.order.edit</b> authority for authenticated user
+
+        When there's some changes within order that may have an important impact on the 
+        repayment process after its submission, use `/financing/v1/applications/{applicationId}/order` 
+        resource in order we can adjust everything properly. `{applicationId}` is the application ID 
+        you received in the response of `/financing/v1/applications` after its creation.
+
+        | Financing type | Supported            |
+        | ----------- | --------------- |
+        | `INSTALLMENT`         | YES  |
+
+        | Application state | Availability            |
+        | ----------- | --------------- |
+        | `REJECTED`         | NO  |
+        | `CANCELED`         | NO  |
+        | `PROCESSING`         | YES  |
+        | `READY`         | YES* (see the availability note below)  |
+
+        Use `/financing/v1/applications/{applicationId}/order` resource with properly filled 
+        request that contains (only) changed data (resource allows partial put).
+
+        > **AVAILABILITY NOTE**: Valid request object contains only order number (`order.number`) 
+        and/or one item in the array `order.variableSymbols[]`. Supported `stateReason` of `state READY` 
+        are `READY_TO_SHIP`, `READY_SHIPPED`, `READY_DELIVERING` (`state PROCESSING` is supported without any limitations).
+
+        If the request was successfully processed, you receive HTTP status code 200 and 
+        object of information about changed order plus basic information about respective 
+        application (ID, state, substate) with at least following information in the response:
+
+        - Order number
+        - Order total price (including VAT)
+        - Order items (array)
+          - Order item name
+          - Total price (all pieces, including VAT)
+          - Order item state
+        - Order state
+        - Application basic information
+          - ID
+          - Application state
+          - Application substate
+        
+        In other cases, you receive one of the following errors:
+
+        | Status code | Code            | Explanation          |
+        | ----------- | --------------- | -------------------- |
+        | 400         | INVALID_REQUEST  | Request was not well formatted (malformed request syntax, size too large, etc.) |
+        | 404         | OBJECT_NOT_FOUND  | The requested resource could not be found |
+        | 422         | NOT_SUPPORTED | Resource is not supported for given financing type |
+        | 422         | UNPROCESSABLE | The request was well-formed but was unable to be followed due to semantic errors |
+        | 422         | APPLICATION_REJECTED | When you try to cancel already `REJECTED` `Application`, which is not allowed |
+        | 500         | INTERNAL_SERVER_ERROR | Unexpected condition was encountered and no more specific message is suitable |
       operationId: changeApplicationOrderUsingPUT
       parameters:
         - name: uuid
@@ -543,8 +738,53 @@ paths:
       tags:
         - Application resources
       summary: Mark order as delivered
-      description: Requires <b>applications.order.ship_deliver</b> authority for
-        authenticated user
+      description: |
+        Requires <b>applications.order.ship_deliver</b> authority for authenticated user
+
+        When the whole order was delivered to the customer, use `/financing/v1/applications/{applicationId}/order/deliver` 
+        resource where `{applicationId}` is the application ID you received in the response of `/financing/v1/applications` after its creation. 
+
+        | Financing type | Supported            |
+        | ----------- | --------------- |
+        | `INSTALLMENT`         | YES  |
+
+        | Application state | Availability            |
+        | ----------- | --------------- |
+        | `PROCESSING`         | NO  |
+        | `REJECTED`         | NO  |
+        | `CANCELED`         | NO  |
+        | `READY`         | YES* (see the availability note below)  |
+
+        > AVAILABILITY NOTE: Request is valid when `Application.stateReason = READY_TO_SHIP`. 
+        Request is also valid after the transition of `Application` to the `stateReason = READY_DELIVERED` 
+        or `stateReason = READY_PAID` (i.e. repeated valid requests return HTTP status code 200 OK unless the 
+        `Application.stateReason = CANCELLED_RETURNED`)
+
+        If the request was successfully processed, you receive HTTP status code 200 and object 
+        of information about changed order plus basic information about respective application 
+        (ID, state, substate) with at least following information in the response:
+
+        - Order number
+        - Order total price (including VAT)
+        - Order items (array)
+          - Order item name
+          - Total price (all pieces, including VAT)
+          - Order item state
+        - Order state
+        - Application basic information
+          - ID
+          - Application state
+          - Application substate
+        
+        In other cases, you receive one of the following errors:
+
+        | Status code | Code            | Explanation          |
+        | ----------- | --------------- | -------------------- |
+        | 400         | INVALID_REQUEST  | Request was not well formatted (malformed request syntax, size too large, etc.) |
+        | 404         | OBJECT_NOT_FOUND  | The requested resource could not be found |
+        | 422         | NOT_SUPPORTED | Resource is not supported for given financing type |
+        | 422         | UNPROCESSABLE | The request was well-formed but was unable to be followed due to semantic errors |
+        | 500         | INTERNAL_SERVER_ERROR | Unexpected condition was encountered and no more specific message is suitable |
       operationId: deliverUsingPUT
       parameters:
         - name: uuid
@@ -576,8 +816,48 @@ paths:
       tags:
         - Application resources
       summary: Mark order as sent
-      description: Requires <b>applications.order.ship_deliver</b> authority for
-        authenticated user
+      description: |
+        Requires <b>applications.order.ship_deliver</b> authority for authenticated user
+
+        When the whole order was shipped to the customer, use `/financing/v1/applications/{applicationId}/order/send` 
+        resource where `{applicationId}` is the application ID you received in the response of `/financing/v1/applications` after its creation.
+
+        | Financing type | Supported            |
+        | ----------- | --------------- |
+        | `INSTALLMENT`         | YES  |
+
+        | Application state | Availability            |
+        | ----------- | --------------- |
+        | `PROCESSING`         | NO  |
+        | `REJECTED`         | NO  |
+        | `CANCELLED`         | NO  |
+        | `READY`         | YES (* available only when `Application.stateReason = READY_TO_SHIP`)  |
+
+        If the request was successfully processed, you receive HTTP status code 200 and object 
+        of information about changed order plus basic information about respective application 
+        (ID, state, substate) with at least following information in the response:
+
+        - Order number
+        - Order total price (including VAT)
+        - Order items (array)
+          - Order item name
+          - Total price (all pieces, including VAT)
+          - Order item state
+        - Order state
+        - Application basic information
+          - ID
+          - Application state
+          - Application substate
+        
+        In other cases, you receive one of the following errors:
+
+        | Status code | Code            | Explanation          |
+        | ----------- | --------------- | -------------------- |
+        | 400         | INVALID_REQUEST  | Request was not well formatted (malformed request syntax, size too large, etc.) |
+        | 404         | OBJECT_NOT_FOUND  | The requested resource could not be found |
+        | 422         | NOT_SUPPORTED | Resource is not supported for given financing type |
+        | 422         | UNPROCESSABLE | The request was well-formed but was unable to be followed due to semantic errors |
+        | 500         | INTERNAL_SERVER_ERROR | Unexpected condition was encountered and no more specific message is suitable |
       operationId: sendOrderItemsUsingPUT
       parameters:
         - name: uuid
@@ -609,6 +889,15 @@ paths:
       tags:
         - Health check
       summary: API health check
+      description: |
+        If the API back-end services is up and running, you receive HTTP status code 204. In other cases, you receive one of the following errors:
+
+        | Status code | Code            |
+        | ----------- | --------------- |
+        | 500         | SERVICE_FAILED  |
+        | 504         | SERVICE_TIMEOUT |
+
+        > Note: resource requires valid access_token in the HTTP header of the request
       operationId: getHealthUsingGET
       parameters:
         - name: timeout
@@ -639,6 +928,32 @@ paths:
         - Installments calculator resources
       summary: Installment programs
       operationId: calculateInstallmentProgramUsingPOST
+      description: |
+        When a customer wants to know details of one of previously offered 
+        installment programs use `/financing/v1/installmentPrograms` resource 
+        with properly filled request that contains at least following data:
+
+        - Product code of given installment program
+        - Price of customer's purchase
+
+        If the request was successfully processed, you receive HTTP status 
+        code 200 and object of information about specified installment 
+        program with at least following information in the response:
+
+        - Installment program type
+        - Installment amount
+        - Number of installments
+        - Installment program details
+
+        In other cases, you receive one of the following errors:
+
+        | Status code | Code            | Explanation          |
+        | ----------- | --------------- | -------------------- |
+        | 400         | INVALID_REQUEST  | Request was not well formatted (malformed request syntax, size too large, etc.) |
+        | 422         | UNPROCESSABLE | The request was well-formed but was unable to be followed due to semantic errors |
+        | 500         | INTERNAL_SERVER_ERROR | Unexpected condition was encountered and no more specific message is suitable |
+
+        Calculate installment program detailed information. It returns the installment program that most closely matches specified input.
       requestBody:
         content:
           application/json:
@@ -667,6 +982,33 @@ paths:
       tags:
         - Installments calculator resources
       summary: Installment programs down payments
+      description: |
+        When a customer wants to pay for a purchase by a loan and also 
+        wants to choose own down payments settings within offered installment 
+        programs, use `/financing/v1/installmentProgramsDownPayments` resource 
+        with properly filled request that contains at least following data:
+
+        - Product set code (you should know the proper product set code from 
+        Home Credit's sales representative or other similar source)
+        - Price of customer's purchase
+
+        If the request was successfully processed, you receive HTTP status code 
+        200 and object of information about available down payments settings 
+        with at least following information in the response:
+
+        - Minimum down payment amount
+        - Maximum down payment amount
+        - Step between given minimum and maximum down payment amounts
+
+        In other cases, you receive one of the following errors:
+
+        | Status code | Code            | Explanation          |
+        | ----------- | --------------- | -------------------- |
+        | 400         | INVALID_REQUEST  | Request was not well formatted (malformed request syntax, size too large, etc.) |
+        | 422         | UNPROCESSABLE | The request was well-formed but was unable to be followed due to semantic errors |
+        | 500         | INTERNAL_SERVER_ERROR | Unexpected condition was encountered and no more specific message is suitable |
+
+        Calculate installment programs down payments according to specified input
       operationId: calculateInstallmentProgramDownPaymentsUsingPOST
       requestBody:
         content:
@@ -696,6 +1038,35 @@ paths:
       tags:
         - Installments calculator resources
       summary: Installment programs offers
+      description: |
+        When a customer wants to pay for a purchase by a loan and you want 
+        to show him an offer of available installment programs, 
+        use `/financing/v1/installmentProgramsOffers` resource with properly 
+        filled request that contains at least following data:
+
+        - Product set code (you should know the proper product set code from 
+        Home Credit's sales representative or other similar source; 
+        if you don't provide product set code, your default product set will be used)
+        - Price of customer's purchase
+
+        If the request was successfully processed, you receive HTTP status code 200 
+        and array of objects of available installment programs with at least 
+        following information in the response:
+
+        - Installment program (array)
+          - Installment program product code
+          - Installment program type (in case of only one installment program offer 
+          in response it is of type `FAVOURITE`)
+          - Installment amount
+          - Number of installments
+        
+        In other cases, you receive one of the following errors:
+
+        | Status code | Code            | Explanation          |
+        | ----------- | --------------- | -------------------- |
+        | 400         | INVALID_REQUEST  | Request was not well formatted (malformed request syntax, size too large, etc.) |
+        | 422         | UNPROCESSABLE | The request was well-formed but was unable to be followed due to semantic errors |
+        | 500         | INTERNAL_SERVER_ERROR | Unexpected condition was encountered and no more specific message is suitable |
       operationId: calculateInstallmentProgramsUsingPOST
       requestBody:
         content:
@@ -725,7 +1096,47 @@ paths:
       tags:
         - Application resources
       summary: Orders
-      description: Requires <b>applications.overview</b> authority for authenticated user
+      description: |
+        Requires <b>applications.overview</b> authority for authenticated user
+
+        If you need to find out current information about particular order - primarily its state 
+        and other details - use `/financing/v1/orders{?applicationId}` resource where `{applicationId}` 
+        is the application ID you received in the response of `/financing/v1/applications` after its creation.
+
+        | Financing type | Supported            |
+        | ----------- | --------------- |
+        | `INSTALLMENT`         | YES  |
+
+        | Application state | Availability            |
+        | ----------- | --------------- |
+        | `PROCESSING`         | YES  |
+        | `REJECTED`         | YES  |
+        | `CANCELED`         | YES  |
+        | `READY`         | YES  |
+
+        If the request was successfully processed, you receive HTTP status code 200 and object 
+        of information about specified order plus basic information about respective application 
+        (ID, state, substate) with at least following information in the response:
+
+        - Order number
+        - Order total price (including VAT)
+        - Order items (array)
+          - Order item name
+          - Total price (all pieces, including VAT)
+          - Order item state
+        - Order state
+        - Application basic information
+          - ID
+          - Application state
+          - Application substate
+
+        In other cases, you receive one of the following errors:
+
+        | Status code | Code            | Explanation          |
+        | ----------- | --------------- | -------------------- |
+        | 404         | OBJECT_NOT_FOUND  | The requested resource could not be found |
+        | 422         | UNPROCESSABLE | The request was well-formed but was unable to be followed due to semantic errors |
+        | 500         | INTERNAL_SERVER_ERROR | Unexpected condition was encountered and no more specific message is suitable |
       operationId: getUsingGET_9
       parameters:
         - name: applicationId
@@ -771,7 +1182,28 @@ paths:
           headers: {}
       summary: Application notification
       operationId: Application notification
-      description: Notify partner about changes in application.
+      description: |
+        Notify partner about changes in application.
+        We use this resource when there is need to let you know about important changes within particular application. Namely in following situations:
+
+        | Trigger | Corresponding Application.stateReason | Expected reaction |
+        | ------- | ------------------------------------- | ----------------- |
+        | Application was approved (approval process is proceeding correctly) | PROCESSING_APPROVED | Do not cancel customer's order prematurely |
+        | Application was rejected | REJECTED | You should probably cancel respective order and release reserved goods |
+        | Application was cancelled (before delivery) | CANCELLED_NOT_PAID | You should probably cancel respective order and release reserved goods |
+        | Order to dispatch (we commit to finance customer's order) | READY_TO_SHIP | Dispatch the order to the customer |
+        | Application is going to be paid out | READY_PAID | Wait for us processing financial compensation with you |
+
+        We fill the request with at least following information:
+
+        - Application unique ID
+        - Application state
+        - Application substate
+        - Down payment
+        - Timestamp of the notification
+        - Hashed message (check sum)
+
+        > USEFUL NOTE: If you think it takes us unusually long time to send you particular notification, do not hesitate to use `/financing/v1/applications/{applicationId}` resource (where `{applicationId}` is the application ID you received in the response of `/financing/v1/applications` after its creation) to directly find out information you seek.
       tags:
         - Merchantsite resources
       requestBody:
@@ -921,7 +1353,23 @@ paths:
                         ticketId: UAT1:AMS:20160516-091658.450:45e4
       summary: Precheck
       operationId: Run precheck
-      description: ""
+      description: |
+        Simple operation for customer preliminary scoring. Returns a possible credit amount the customer 
+        can obtain. It is best suitable for identifying clients who will probably be rejected. 
+        Take into account that positive recommendation can not guarantee customer's approval as the result 
+        is based only on a few elementary pieces of information about the customer.
+        
+        Resource has to be called with valid access token (see the [Security section](./security)) 
+        from your server. If you plan to integrate it in a client flow, you should implement REST endpoint 
+        bound to your shopping basket session that will be used as a proxy to call HC API - 
+        **NEVER put access token directly to client side.**
+
+        Possible error codes explanation:
+
+        | Status code | Code            | Explanation          |
+        | ----------- | --------------- | -------------------- |
+        | 400         | INVALID_REQUEST  | Request was not well formatted (malformed request syntax, size too large, etc.) |
+        | 500         | FAILURE | Internal failure |
       tags:
         - Scoring resources
       requestBody:
@@ -968,7 +1416,22 @@ paths:
                         ticketId: UAT1:AMS:20160516-091658.450:45e4
       summary: MultiPrecheck
       operationId: Run multiPrecheck
-      description: ""
+      description: |
+        Multi precheck is basic Precheck run on many clients. Typically used outside businness 
+        hours. Operation is asynchronous, partner gets only unique identifier of batch and the 
+        result is available in Multi precheck result resource (see [Multi precheck result](#multi-precheck-result))
+
+        Resource has to be called with valid access token (see the [Security section](./security)) 
+        from your server. If you plan to integrate it in a client flow, you should implement REST endpoint 
+        bound to your shopping basket session that will be used as a proxy to call HC API - 
+        **NEVER put access token directly to client side.**
+
+        Possible error codes explanation:
+
+        | Status code | Code            | Explanation          |
+        | ----------- | --------------- | -------------------- |
+        | 400         | INVALID_REQUEST  | Request was not well formatted (malformed request syntax, size too large, etc.) |
+        | 500         | FAILURE | Internal failure |
       tags:
         - Scoring resources
       requestBody:
@@ -1015,7 +1478,18 @@ paths:
                           currency: CZK
       summary: Multi precheck result
       operationId: Get multi precheck result
-      description: ""
+      description: |
+        Getting result of finished multi precheck.
+
+        In other cases, you receive one of the following errors:
+
+        | Status code | Code            | Explanation          |
+        | ----------- | --------------- | -------------------- |
+        | 400         | INVALID_REQUEST  | Request was not well formatted (malformed request syntax, size too large, etc.) |
+        | 404         | APPLICATION_NOT_FOUND  | The requested resource could not be found |
+        | 422         | NOT_SUPPORTED | Resource is not supported for given financing type |
+        | 422         | UNPROCESSABLE | The request was well-formed but was unable to be followed due to semantic errors |
+        | 500         | INTERNAL_SERVER_ERROR | Unexpected condition was encountered and no more specific message is suitable |
       tags:
         - Scoring resources
       parameters:
@@ -1050,7 +1524,11 @@ paths:
           headers: {}
       summary: Multi precheck result notification
       operationId: Result notification
-      description: Notify partner about finished multiprecheck.
+      description: |
+        Notify partner about finished multiprecheck.
+        Notification resource which needs to be provided by partner and the uri is specified 
+        during initialization of multi precheck. Notification does not contain result of 
+        customers precheck, only information, that results are now available.
       tags:
         - Scoring resources
       requestBody:
@@ -1128,413 +1606,13 @@ tags:
     description: |
       Services that allow the processing of *application* during and
       **order** during their whole lifecycle.
-
-      ### Create application
-
-      Elementary flow starts when customer wants to use one of Home Credit's payment method for financing his purchase made in partner e-shop.
-
-      | Financing type | Supported            |
-      | ----------- | --------------- |
-      | `INSTALLMENT`         | YES  |
-
-      Use `/financing/v1/applications` resource with properly 
-      filled request that contains at least following data
-
-      - Customer information are not necessary to send, however, sending them is highly recommended - it will simplify the application process for the client
-        - Name (first name and last name or full name)
-        - E-mail
-        - Mobile phone number
-        - Addresess (array)
-          - City
-          - Street
-          - Street number
-          - ZIP
-          - Address type
-      
-      - Order details
-        - Number
-        - Total Price (including VAT)
-        - Order items (array, at least one item is required)
-          - Code
-          - Order item name
-          - Total price (all pieces, including VAT)
-      
-      - Financing type (always `INSTALLMENT`)
-      - Financing type details
-        - *Installment settings - preferred installment amount
-        - *Installment settings - preferred down payment amount
-        - *Installment settings - preferred program product code
-
-      - Additional information necessary for the continuation and completion of the process
-        - Your URL where the customer should be redirected after application approval
-        - Your URL where the customer should be redirected after application rejection
-        - URL of your notification endpoint you want us to send notifications about particular application updates to (in case the partner is using notifier)
-      
-      > * = Must be filled properly in case customer has already used installment calculator embedded on your website and selected preferred installment program. See the Installments calculator resources section for more details about possibility to embed installment calculator on your website. Leave empty otherwise.
-
-      If the request was successfully processed, you receive HTTP status code 201 and Application object with at least following information in the response:
-
-      - Application unique ID
-      - Application state
-      - Application substate
-      - Gateway redirect URL where you should redirect a customer after processing of the response
-
-      > You may also receive information about initially requested **down payment** - this 
-      can be later changed by customer during the process of finalization of financing 
-      application. In such cases we recommend you to check the final **down payment** of 
-      approved loan (after the application is approved) via `/financing/v1/applications/{applicationId}`.
-
-      If the request was **recognized as duplication**
-
-      - and previously created `Application` is canceled (`Application.state = CANCELLED` and 
-      `Application.stateReason = CANCELLED_NOT_PAID`), new `Application` is created, you 
-      receive HTTP status code 201 and `Application` object with information specified above (at least) in the response
-      - and previously created `Application` is still new (i.e. without any recorded action by a client), no `Application` is created, you receive HTTP status code 200 and the `Application` object created during the first related successful resource call.
-      - and previously created `Application` is neither canceled nor new anymore, you receive HTTP status code 422 with error code `DUPLICATE_ORDER_NUMBER`.
-
-      In case of an error, you receive one of the following results:
-
-      | Status code | Code            | Explanation          |
-      | ----------- | --------------- | -------------------- |
-      | 400         | INVALID_REQUEST  | Request was not well formatted (malformed request syntax, size too large, etc.) |
-      | 422         | UNPROCESSABLE | Request was well-formed but was unable to be followed due to semantic errors |
-      | 422         | DUPLICATE_ORDER_NUMBER | Creating of Application with duplicated Order number is not allowed |
-      | 500         | INTERNAL_SERVER_ERROR | Unexpected condition was encountered and no more specific message is suitable |
-
-      ### Application detail
-
-      If you need to find out current information about particular *application* - primarily its state 
-      and other details - use `/financing/v1/applications/{applicationId}` resource where `{applicationId}` 
-      is the application ID you received in the response of `/financing/v1/applications` after its creation
-
-      | Financing type | Supported            |
-      | ----------- | --------------- |
-      | `INSTALLMENT`         | YES  |
-
-      If the request was successfully processed, you receive HTTP status code 200 and application object with at least following information in the response:
-
-      - Application unique ID
-      - Application type
-      - Application state
-      - Application substate
-      - Gateway redirect URL
-
-      > You may also receive information about current **down payment** which is useful when 
-      you need to find out whether customer's loan was approved with different down payment 
-      than had been initially set in your embedded installment calculator.
-
-      In other cases, you receive one of the following errors:
-
-      | Status code | Code            | Explanation          |
-      | ----------- | --------------- | -------------------- |
-      | 400         | INVALID_REQUEST  | Request was not well formatted (malformed request syntax, size too large, etc.) |
-      | 404         | APPLICATION_NOT_FOUND  | The requested resource could not be found |
-      | 422         | NOT_SUPPORTED | Resource is not supported for given financing type |
-      | 422         | UNPROCESSABLE | The request was well-formed but was unable to be followed due to semantic errors |
-      | 500         | INTERNAL_SERVER_ERROR | Unexpected condition was encountered and no more specific message is suitable |
-
-      ### Cancel application
-
-      If there is need to completely cancel customer's order, it is necessary to cancel respective 
-      *application*. For this purpose use `/financing/v1/applications/{applicationId}/cancel` 
-      resource where `{applicationId}` is the *application* ID you received in the response of 
-      `/financing/v1/applications` after its creation.
-
-      | Financing type | Supported            |
-      | ----------- | --------------- |
-      | `INSTALLMENT`         | YES  |
-
-
-      | Application state | Availability            |
-      | ----------- | --------------- |
-      | `REJECTED`         | YES  |
-      | `CANCELED`         | YES  |
-      | `PROCESSING`         | YES  |
-      | `READY`         | YES  |
-
-      If the request was successfully processed but the application had been already paid 
-      (`Application.stateReason = READY_PAID`) you receive HTTP status code **202 ACCEPTED** 
-      that means the process of a cancelation of the *application* began. It SHOULD be 
-      completed after fulfilment of several back office manual actions.
-
-      In other cases, when the request is successfully processed, you receive HTTP status code **200 OK**.
-
-      You also receive at least following information about (soon to be) cancelled application in the response:
-
-      - Application unique ID
-      - Application type
-      - Application state
-      - Application substate
-
-      In other cases, you receive one of the following errors:
-
-      | Status code | Code            | Explanation          |
-      | ----------- | --------------- | -------------------- |
-      | 400         | INVALID_REQUEST  | Request was not well formatted (malformed request syntax, size too large, etc.) |
-      | 404         | OBJECT_NOT_FOUND  | The requested resource could not be found |
-      | 422         | NOT_SUPPORTED | Resource is not supported for given financing type |
-      | 422         | UNPROCESSABLE | The request was well-formed but was unable to be followed due to semantic errors |
-      | 422         | APPLICATION_REJECTED | When you try to cancel already `REJECTED` `Application`, which is not allowed |
-      | 500         | INTERNAL_SERVER_ERROR | Unexpected condition was encountered and no more specific message is suitable |
-
-      ### Change application order
-
-      When there's some changes within order that may have an important impact on the 
-      repayment process after its submission, use `/financing/v1/applications/{applicationId}/order` 
-      resource in order we can adjust everything properly. `{applicationId}` is the application ID 
-      you received in the response of `/financing/v1/applications` after its creation.
-
-      | Financing type | Supported            |
-      | ----------- | --------------- |
-      | `INSTALLMENT`         | YES  |
-
-      | Application state | Availability            |
-      | ----------- | --------------- |
-      | `REJECTED`         | NO  |
-      | `CANCELED`         | NO  |
-      | `PROCESSING`         | YES  |
-      | `READY`         | YES* (see the availability note below)  |
-
-      Use `/financing/v1/applications/{applicationId}/order` resource with properly filled 
-      request that contains (only) changed data (resource allows partial put).
-
-      > **AVAILABILITY NOTE**: Valid request object contains only order number (`order.number`) 
-      and/or one item in the array `order.variableSymbols[]`. Supported `stateReason` of `state READY` 
-      are `READY_TO_SHIP`, `READY_SHIPPED`, `READY_DELIVERING` (`state PROCESSING` is supported without any limitations).
-
-      If the request was successfully processed, you receive HTTP status code 200 and 
-      object of information about changed order plus basic information about respective 
-      application (ID, state, substate) with at least following information in the response:
-
-      - Order number
-      - Order total price (including VAT)
-      - Order items (array)
-        - Order item name
-        - Total price (all pieces, including VAT)
-        - Order item state
-      - Order state
-      - Application basic information
-        - ID
-        - Application state
-        - Application substate
-      
-      In other cases, you receive one of the following errors:
-
-      | Status code | Code            | Explanation          |
-      | ----------- | --------------- | -------------------- |
-      | 400         | INVALID_REQUEST  | Request was not well formatted (malformed request syntax, size too large, etc.) |
-      | 404         | OBJECT_NOT_FOUND  | The requested resource could not be found |
-      | 422         | NOT_SUPPORTED | Resource is not supported for given financing type |
-      | 422         | UNPROCESSABLE | The request was well-formed but was unable to be followed due to semantic errors |
-      | 422         | APPLICATION_REJECTED | When you try to cancel already `REJECTED` `Application`, which is not allowed |
-      | 500         | INTERNAL_SERVER_ERROR | Unexpected condition was encountered and no more specific message is suitable |
-
-      ### Mark order as sent
-
-      When the whole order was shipped to the customer, use `/financing/v1/applications/{applicationId}/order/send` 
-      resource where `{applicationId}` is the application ID you received in the response of `/financing/v1/applications` after its creation.
-
-      | Financing type | Supported            |
-      | ----------- | --------------- |
-      | `INSTALLMENT`         | YES  |
-
-      | Application state | Availability            |
-      | ----------- | --------------- |
-      | `PROCESSING`         | NO  |
-      | `REJECTED`         | NO  |
-      | `CANCELLED`         | NO  |
-      | `READY`         | YES (* available only when `Application.stateReason = READY_TO_SHIP`)  |
-
-      If the request was successfully processed, you receive HTTP status code 200 and object 
-      of information about changed order plus basic information about respective application 
-      (ID, state, substate) with at least following information in the response:
-
-      - Order number
-      - Order total price (including VAT)
-      - Order items (array)
-        - Order item name
-        - Total price (all pieces, including VAT)
-        - Order item state
-      - Order state
-      - Application basic information
-        - ID
-        - Application state
-        - Application substate
-      
-      In other cases, you receive one of the following errors:
-
-      | Status code | Code            | Explanation          |
-      | ----------- | --------------- | -------------------- |
-      | 400         | INVALID_REQUEST  | Request was not well formatted (malformed request syntax, size too large, etc.) |
-      | 404         | OBJECT_NOT_FOUND  | The requested resource could not be found |
-      | 422         | NOT_SUPPORTED | Resource is not supported for given financing type |
-      | 422         | UNPROCESSABLE | The request was well-formed but was unable to be followed due to semantic errors |
-      | 500         | INTERNAL_SERVER_ERROR | Unexpected condition was encountered and no more specific message is suitable |
-
-      ### Mark order as delivered
-
-      When the whole order was delivered to the customer, use `/financing/v1/applications/{applicationId}/order/deliver` 
-      resource where `{applicationId}` is the application ID you received in the response of `/financing/v1/applications` after its creation. 
-
-      | Financing type | Supported            |
-      | ----------- | --------------- |
-      | `INSTALLMENT`         | YES  |
-
-      | Application state | Availability            |
-      | ----------- | --------------- |
-      | `PROCESSING`         | NO  |
-      | `REJECTED`         | NO  |
-      | `CANCELED`         | NO  |
-      | `READY`         | YES* (see the availability note below)  |
-
-      > AVAILABILITY NOTE: Request is valid when `Application.stateReason = READY_TO_SHIP`. 
-      Request is also valid after the transition of `Application` to the `stateReason = READY_DELIVERED` 
-      or `stateReason = READY_PAID` (i.e. repeated valid requests return HTTP status code 200 OK unless the 
-      `Application.stateReason = CANCELLED_RETURNED`)
-
-      If the request was successfully processed, you receive HTTP status code 200 and object 
-      of information about changed order plus basic information about respective application 
-      (ID, state, substate) with at least following information in the response:
-
-      - Order number
-      - Order total price (including VAT)
-      - Order items (array)
-        - Order item name
-        - Total price (all pieces, including VAT)
-        - Order item state
-      - Order state
-      - Application basic information
-        - ID
-        - Application state
-        - Application substate
-      
-      In other cases, you receive one of the following errors:
-
-      | Status code | Code            | Explanation          |
-      | ----------- | --------------- | -------------------- |
-      | 400         | INVALID_REQUEST  | Request was not well formatted (malformed request syntax, size too large, etc.) |
-      | 404         | OBJECT_NOT_FOUND  | The requested resource could not be found |
-      | 422         | NOT_SUPPORTED | Resource is not supported for given financing type |
-      | 422         | UNPROCESSABLE | The request was well-formed but was unable to be followed due to semantic errors |
-      | 500         | INTERNAL_SERVER_ERROR | Unexpected condition was encountered and no more specific message is suitable |
-
-      ### Orders
-
-      If you need to find out current information about particular order - primarily its state 
-      and other details - use `/financing/v1/orders{?applicationId}` resource where `{applicationId}` 
-      is the application ID you received in the response of `/financing/v1/applications` after its creation.
-
-      | Financing type | Supported            |
-      | ----------- | --------------- |
-      | `INSTALLMENT`         | YES  |
-
-      | Application state | Availability            |
-      | ----------- | --------------- |
-      | `PROCESSING`         | YES  |
-      | `REJECTED`         | YES  |
-      | `CANCELED`         | YES  |
-      | `READY`         | YES  |
-
-      If the request was successfully processed, you receive HTTP status code 200 and object 
-      of information about specified order plus basic information about respective application 
-      (ID, state, substate) with at least following information in the response:
-
-      - Order number
-      - Order total price (including VAT)
-      - Order items (array)
-        - Order item name
-        - Total price (all pieces, including VAT)
-        - Order item state
-      - Order state
-      - Application basic information
-        - ID
-        - Application state
-        - Application substate
-
-      In other cases, you receive one of the following errors:
-
-      | Status code | Code            | Explanation          |
-      | ----------- | --------------- | -------------------- |
-      | 404         | OBJECT_NOT_FOUND  | The requested resource could not be found |
-      | 422         | UNPROCESSABLE | The request was well-formed but was unable to be followed due to semantic errors |
-      | 500         | INTERNAL_SERVER_ERROR | Unexpected condition was encountered and no more specific message is suitable |
   - name: Health check
     description: |
       To easily find out current API state use the [API state check resource](./get-health-using-get).
-
-      ## API health check
-
-      If the API back-end services is up and running, you receive HTTP status code 204. In other cases, you receive one of the following errors:
-
-      | Status code | Code            |
-      | ----------- | --------------- |
-      | 500         | SERVICE_FAILED  |
-      | 504         | SERVICE_TIMEOUT |
-
-      > Note: resource DOES require valid access_token in the HTTP header of the request
-
   - name: Scoring resources
     description: |
       Services that allow partner e-shops to find out a probability of
       *application's* approval.
-
-      ### Precheck
-
-      Simple operation for customer preliminary scoring. Returns a possible credit amount the customer 
-      can obtain. It is best suitable for identifying clients who will probably be rejected. 
-      Take into account that positive recommendation can not guarantee customer's approval as the result 
-      is based only on a few elementary pieces of information about the customer.
-      
-      Resource has to be called with valid access token (see the [Security section](./security)) 
-      from your server. If you plan to integrate it in a client flow, you should implement REST endpoint 
-      bound to your shopping basket session that will be used as a proxy to call HC API - 
-      **NEVER put access token directly to client side.**
-
-      Possible error codes explanation:
-
-      | Status code | Code            | Explanation          |
-      | ----------- | --------------- | -------------------- |
-      | 400         | INVALID_REQUEST  | Request was not well formatted (malformed request syntax, size too large, etc.) |
-      | 500         | FAILURE | Internal failure |
-
-      ### MultiPrecheck
-
-      Multi precheck is basic Precheck run on many clients. Typically used outside businness 
-      hours. Operation is asynchronous, partner gets only unique identifier of batch and the 
-      result is available in Multi precheck result resource (see [Multi precheck result](#multi-precheck-result))
-
-      Resource has to be called with valid access token (see the [Security section](./security)) 
-      from your server. If you plan to integrate it in a client flow, you should implement REST endpoint 
-      bound to your shopping basket session that will be used as a proxy to call HC API - 
-      **NEVER put access token directly to client side.**
-
-      Possible error codes explanation:
-
-      | Status code | Code            | Explanation          |
-      | ----------- | --------------- | -------------------- |
-      | 400         | INVALID_REQUEST  | Request was not well formatted (malformed request syntax, size too large, etc.) |
-      | 500         | FAILURE | Internal failure |
-
-      ### Multi precheck result
-
-      Getting result of finished multi precheck.
-
-      In other cases, you receive one of the following errors:
-
-      | Status code | Code            | Explanation          |
-      | ----------- | --------------- | -------------------- |
-      | 400         | INVALID_REQUEST  | Request was not well formatted (malformed request syntax, size too large, etc.) |
-      | 404         | APPLICATION_NOT_FOUND  | The requested resource could not be found |
-      | 422         | NOT_SUPPORTED | Resource is not supported for given financing type |
-      | 422         | UNPROCESSABLE | The request was well-formed but was unable to be followed due to semantic errors |
-      | 500         | INTERNAL_SERVER_ERROR | Unexpected condition was encountered and no more specific message is suitable |
-
-      ### Multi precheck result notification
-
-      Notification resource which needs to be provided by partner and the uri is specified 
-      during initialization of multi precheck. Notification does not contain result of 
-      customers precheck, only information, that results are now available.
-
   - name: Installments calculator resources
     description: |
       When you want to provide your customer (that wants to pay for a purchase by a loan) 
@@ -1563,102 +1641,6 @@ tags:
       - `/financing/v1/installmentPrograms` - to find out details of a chosen installment program
 
       - `/financing/v1/installmentProgramsDownPayments` - to find out down payment options within available installment programs offers
-
-      ### Installment programs offers
-
-      When a customer wants to pay for a purchase by a loan and you want 
-      to show him an offer of available installment programs, 
-      use `/financing/v1/installmentProgramsOffers` resource with properly 
-      filled request that contains at least following data:
-
-      - Product set code (you should know the proper product set code from 
-      Home Credit's sales representative or other similar source; 
-      if you don't provide product set code, your default product set will be used)
-      - Price of customer's purchase
-
-      If the request was successfully processed, you receive HTTP status code 200 
-      and array of objects of available installment programs with at least 
-      following information in the response:
-
-      - Installment program (array)
-        - Installment program product code
-        - Installment program type (in case of only one installment program offer 
-        in response it is of type `FAVOURITE`)
-        - Installment amount
-        - Number of installments
-      
-      In other cases, you receive one of the following errors:
-
-      | Status code | Code            | Explanation          |
-      | ----------- | --------------- | -------------------- |
-      | 400         | INVALID_REQUEST  | Request was not well formatted (malformed request syntax, size too large, etc.) |
-      | 422         | UNPROCESSABLE | The request was well-formed but was unable to be followed due to semantic errors |
-      | 500         | INTERNAL_SERVER_ERROR | Unexpected condition was encountered and no more specific message is suitable |
-
-      Calculate installment programs offer according to specified input
-
-      | feature | supported by resource |
-      | ------- | --------------------- |
-      | paging | no |
-      | sorting | no |
-      | filtering | no |
-
-      ### Installment programs
-
-      When a customer wants to know details of one of previously offered 
-      installment programs use `/financing/v1/installmentPrograms` resource 
-      with properly filled request that contains at least following data:
-
-      - Product code of given installment program
-      - Price of customer's purchase
-
-      If the request was successfully processed, you receive HTTP status 
-      code 200 and object of information about specified installment 
-      program with at least following information in the response:
-
-      - Installment program type
-      - Installment amount
-      - Number of installments
-      - Installment program details
-
-      In other cases, you receive one of the following errors:
-
-      | Status code | Code            | Explanation          |
-      | ----------- | --------------- | -------------------- |
-      | 400         | INVALID_REQUEST  | Request was not well formatted (malformed request syntax, size too large, etc.) |
-      | 422         | UNPROCESSABLE | The request was well-formed but was unable to be followed due to semantic errors |
-      | 500         | INTERNAL_SERVER_ERROR | Unexpected condition was encountered and no more specific message is suitable |
-
-      Calculate installment program detailed information. It returns the installment program that most closely matches specified input.
-
-      ### Installment programs down payments
-
-      When a customer wants to pay for a purchase by a loan and also 
-      wants to choose own down payments settings within offered installment 
-      programs, use `/financing/v1/installmentProgramsDownPayments` resource 
-      with properly filled request that contains at least following data:
-
-      - Product set code (you should know the proper product set code from 
-      Home Credit's sales representative or other similar source)
-      - Price of customer's purchase
-
-      If the request was successfully processed, you receive HTTP status code 
-      200 and object of information about available down payments settings 
-      with at least following information in the response:
-
-      - Minimum down payment amount
-      - Maximum down payment amount
-      - Step between given minimum and maximum down payment amounts
-
-      In other cases, you receive one of the following errors:
-
-      | Status code | Code            | Explanation          |
-      | ----------- | --------------- | -------------------- |
-      | 400         | INVALID_REQUEST  | Request was not well formatted (malformed request syntax, size too large, etc.) |
-      | 422         | UNPROCESSABLE | The request was well-formed but was unable to be followed due to semantic errors |
-      | 500         | INTERNAL_SERVER_ERROR | Unexpected condition was encountered and no more specific message is suitable |
-
-      Calculate installment programs down payments according to specified input
   - name: Merchantsite resources
     description: | 
       Services that should be developed and exposed by partner e-shops to allow
@@ -1666,28 +1648,6 @@ tags:
       regarding particular *applications* and *orders*
 
       > **ATTENTION:** This set of APIs is NOT exposed from HC. Instead, it should be developed by partner and accept calls specified below.
-
-      ## Application notification
-      We use this resource when there is need to let you know about important changes within particular application. Namely in following situations:
-
-      | Trigger | Corresponding Application.stateReason | Expected reaction |
-      | ------- | ------------------------------------- | ----------------- |
-      | Application was approved (approval process is proceeding correctly) | PROCESSING_APPROVED | Do not cancel customer's order prematurely |
-      | Application was rejected | REJECTED | You should probably cancel respective order and release reserved goods |
-      | Application was cancelled (before delivery) | CANCELLED_NOT_PAID | You should probably cancel respective order and release reserved goods |
-      | Order to dispatch (we commit to finance customer's order) | READY_TO_SHIP | Dispatch the order to the customer |
-      | Application is going to be paid out | READY_PAID | Wait for us processing financial compensation with you |
-
-      We fill the request with at least following information:
-
-      - Application unique ID
-      - Application state
-      - Application substate
-      - Down payment
-      - Timestamp of the notification
-      - Hashed message (check sum)
-
-      > USEFUL NOTE: If you think it takes us unusually long time to send you particular notification, do not hesitate to use `/financing/v1/applications/{applicationId}` resource (where `{applicationId}` is the application ID you received in the response of `/financing/v1/applications` after its creation) to directly find out information you seek.
 components:
   schemas:
     AcademicIdentificationDocumentFull:

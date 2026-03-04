@@ -13,28 +13,6 @@ regarding particular *applications* and *orders*
 
 > **ATTENTION:** This set of APIs is NOT exposed from HC. Instead, it should be developed by partner and accept calls specified below.
 
-## Application notification
-We use this resource when there is need to let you know about important changes within particular application. Namely in following situations:
-
-| Trigger | Corresponding Application.stateReason | Expected reaction |
-| ------- | ------------------------------------- | ----------------- |
-| Application was approved (approval process is proceeding correctly) | PROCESSING_APPROVED | Do not cancel customer's order prematurely |
-| Application was rejected | REJECTED | You should probably cancel respective order and release reserved goods |
-| Application was cancelled (before delivery) | CANCELLED_NOT_PAID | You should probably cancel respective order and release reserved goods |
-| Order to dispatch (we commit to finance customer's order) | READY_TO_SHIP | Dispatch the order to the customer |
-| Application is going to be paid out | READY_PAID | Wait for us processing financial compensation with you |
-
-We fill the request with at least following information:
-
-- Application unique ID
-- Application state
-- Application substate
-- Down payment
-- Timestamp of the notification
-- Hashed message (check sum)
-
-> USEFUL NOTE: If you think it takes us unusually long time to send you particular notification, do not hesitate to use `/financing/v1/applications/{applicationId}` resource (where `{applicationId}` is the application ID you received in the response of `/financing/v1/applications` after its creation) to directly find out information you seek.
-
 
 
 
