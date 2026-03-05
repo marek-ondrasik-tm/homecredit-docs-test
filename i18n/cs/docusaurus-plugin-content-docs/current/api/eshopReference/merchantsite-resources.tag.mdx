@@ -13,28 +13,6 @@ týkající se konkrétních *aplikací* a *objednávek*
 
 > **UPOZORNĚNÍ:** Tato sada API NENÍ vystavena ze strany HC. Místo toho by ji měl vyvinout partner a přijímat níže specifikovaná volání.
 
-## Oznámení o aplikaci
-Tento prostředek používáme v případě potřeby informovat o důležitých změnách v rámci konkrétní aplikace. Konkrétně v následujících situacích:
-
-| Spouštěč | Odpovídající Application.stateReason | Očekávaná reakce |
-| ------- | ------------------------------------- | ----------------- |
-| Žádost byla schválena (schvalovací proces probíhá správně) | PROCESSING_APPROVED | Nezrušit předčasně objednávku zákazníka |
-| Žádost byla zamítnuta | REJECTED | Pravděpodobně byste měli zrušit příslušnou objednávku a uvolnit rezervované zboží |
-| Žádost byla zrušena (před dodáním) | CANCELLED_NOT_PAID | Pravděpodobně byste měli zrušit příslušnou objednávku a uvolnit rezervované zboží |
-| Objednávka k odeslání (zavazujeme se financovat objednávku zákazníka) | READY_TO_SHIP | Odeslání objednávky zákazníkovi |
-| Žádost bude vyplacena | READY_PAID | Počkejte, až s vámi zpracujeme finanční vyrovnání |
-
-Do žádosti vyplníme minimálně následující informace:
-
-- Unikátní ID žádosti
-- Stav žádosti
-- Podstav žádosti
-- Zálohová platba
-- Časové razítko oznámení
-- Hashovaná zpráva (kontrolní součet)
-
-> UŽITEČNÁ POZNÁMKA: Pokud se vám zdá, že nám trvá neobvykle dlouho, než vám pošleme konkrétní oznámení, neváhejte použít zdroj `/financing/v1/applications/{applicationId}` (kde `{applicationId}` je ID aplikace, které jste obdrželi v odpovědi na `/financing/v1/applications` po jejím vytvoření) a přímo zjistit informace, které hledáte.
-
 
 
 
