@@ -4,7 +4,7 @@ An environment where production-like data is available and where you can test th
 
 ## Prerequisites
 
-- In order to call the test interface (the same applies to production), you must first obtain the *username + password* access data, which will then allow you to obtain an *access token*, without which it is not possible to call individual interface endpoints (more details in [TD](../api/Reference/login-partner)).
+- In order to call the test interface (the same applies to production), you must first obtain the *username + password* access data, which will then allow you to obtain an *access token*, without which it is not possible to call individual interface endpoints (more details in [PSP TD](/docs/api/Reference/login-partner) or [eshop TD](/docs/api/eshopReference/login-partner)).
 - You should receive your access credentials from the responsible person at HC at one of the introductory meetings on the integration of our payment method.
 
 ## Environment

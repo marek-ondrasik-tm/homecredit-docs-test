@@ -11,16 +11,9 @@ The following is an example of an endpoint call to obtain an *access token*, whi
 * SK
   * https://apisk-test.homecredit.sk/verdun-train/authentication/v1/partner
 
-```http
-Header: Content-Type:application/json; charset=UTF-8
-
-```
-
 ```javascript
-Body: { "username": "testovaciusername",  "password": "test" }
+Body: { "username": "024242tech",  "password": "024242tech" }
 ```
-
-*use the login details for the test environment that you received after registration*
 
 ### Response POST
 

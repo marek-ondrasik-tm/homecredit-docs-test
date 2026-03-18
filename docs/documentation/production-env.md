@@ -32,12 +32,12 @@ You can check whether the production environment is functional (and not undergoi
 There are three main ways to implement a payment calculator in production:
 
 ### 1. Partner's own solution 
-The most developmentally demanding option is a partner's own solution built on calculation endpoints ([see TD](https://csoneclicknewfuture.docs.apiary.io/#reference/installments-calculator-resources/cancel-application)). 
+The most developmentally demanding option is a partner's own solution built on calculation endpoints ([see PSP TD](/docs/api/Reference/installments-calculator-resources) nebo [eshop TD](/docs/api/eshopReference/installments-calculator-resources)).
 The advantage of this solution is, for example, the possibility of creating a calculator user interface entirely according to the partner's ideas and UX requirements.
 
 ### 2. Partner's partial solution using a JavaScript widget
 The golden mean is a solution where the e-shop's own backend uses a JavaScript widget from Home Credit, which handles the frontend part, calculates suitable offers, and, based on the result, prepares the e-shop backend data for calling the endpoint to create a loan application.
-   * The JavaScript widget for the repayment calculator solution is available [here](https://github.com/homecreditcz/widget-calculator)
+   * The JavaScript widget for the repayment calculator solution is available [here](/docs/documentation/widgets/install)
 
 ### 3. External repayment calculator issued by Home Credit
 > **This is the only option for partners cooperating in the "Tipař" mode**
