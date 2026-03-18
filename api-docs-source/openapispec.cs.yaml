@@ -5619,6 +5619,7 @@ paths:
                 checksum: f61c69a259b702d564b2032e554984dec3b713ff7bdde17fcb727d403ea0d730816f46ad2bbc06a1914225d5dfba0396927dbf1b0698081814877b5486950a15
 tags:
   - name: Security
+    x-displayName: Zabezpečení
     description: >-
       Pro přístup k našemu API musí partner nejprve získat *přístupový token*;
       tento token je řetězec libovolné délky (30+ znaků) a musí být zahrnut v
@@ -5694,9 +5695,11 @@ tags:
       &gt; NIKDY nepřenášejte přístupový token ani přihlašovací údaje přes
       prosté HTTP. Takové požadavky budou odmítnuty.
   - name: Application resources
+    x-displayName: Zdroje pro aplikace
     description: Služby, které umožňují zpracování *aplikace* během celého jejího
       životního cyklu.
   - name: Health check
+    x-displayName: Kontrola stavu
     description: >-
       Chcete-li snadno zjistit aktuální stav API, použijte [zdroj pro kontrolu
       stavu API](./api-status-check).
@@ -5704,9 +5707,11 @@ tags:
       Chcete-li zkontrolovat dostupnost backendových služeb, použijte [zdroj pro
       kontrolu stavu](./api-health-check).
   - name: Scoring resources
+    x-displayName: Zdroje pro scoring
     description: Služby, které umožňují partnerským e-shopům zjistit pravděpodobnost
       schválení *žádosti*.
   - name: Installments calculator resources
+    x-displayName: Zdroje pro kalkulátory splátek
     description: >-
       Pokud chcete svému zákazníkovi (který chce zaplatit za nákup pomocí úvěru)
       nabídnout možnost vybrat si z dostupných splátkových programů, zatímco je
@@ -5751,12 +5756,14 @@ tags:
       - `/financing/v3/installmentProgramsDownPayments` - pro zjištění možností
       zálohy v rámci dostupných nabídek splátkových programů
   - name: JavaScript widget integration
+    x-displayName: Integrace JavaScriptového widgetu
     description: Aby bylo možné používat javascriptový widget Home Credit jako
       kalkulačku splátek, musí být správně nakonfigurován back-end vašeho
       e-shopu. Jak na to, je v současné době popsáno v [našem online
       repozitáři](https://github.com/homecreditcz/widget-calculator) (v současné
       době napsáno v češtině).
   - name: Merchantsite resources
+    x-displayName: Zdroje obchodního webu
     description: >-
       Služby, které by měly být vyvinuty a zpřístupněny partnerskými e-shopy,
       aby HC mohlo asynchronně informovat tyto partnerské e-shopy o důležitých

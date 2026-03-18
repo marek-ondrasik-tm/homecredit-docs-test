@@ -4,7 +4,7 @@ Prostředí, na kterém jsou k dispozici data podobná produkčním a na kterém
 
 ## Prerekvizity
 
-- Abyste mohli provolávat testovací rozhraní (totéž pak platí i pro produkci), je potřeba nejprve získat přístupové údaje *username + password*, díky kterým pak budete moci získat přístupový token (*access token*), bez nějž není možné jednotlivé endpointy rozhraní provolávat (více detailů v [TD](../api/Reference/login-partner)).
+- Abyste mohli provolávat testovací rozhraní (totéž pak platí i pro produkci), je potřeba nejprve získat přístupové údaje *username + password*, díky kterým pak budete moci získat přístupový token (*access token*), bez nějž není možné jednotlivé endpointy rozhraní provolávat (více detailů v [PSP TD](/docs/api/Reference/login-partner) nebo [eshop TD](/docs/api/eshopReference/login-partner)).
 - Přístupové údaje byste měli obdržet od zodpovědné osoby z HC na jedné z úvodních schůzek na téma integrace naší platební metody
 
 ## Prostředí

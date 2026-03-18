@@ -11,16 +11,9 @@ Následuje příklad provolání endpointu pro získání *access tokenu*, díky
 * SK
   * https://apisk-test.homecredit.sk/verdun-train/authentication/v1/partner
 
-```http
-Header: Content-Type:application/json; charset=UTF-8
-
-```
-
 ```javascript
-Body: { "username": "testovaciusername",  "password": "test" }
+Body: { "username": "024242tech",  "password": "024242tech" }
 ```
-
-*použijte přihlašovací údaje k testovacímu prostředí, které jste získali po registraci*
 
 ### Response POST
 
