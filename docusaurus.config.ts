@@ -163,6 +163,9 @@ const config: Config = {
               categoryLinkSource: 'tag',
               sidebarCollapsible: false,
               sidebarCollapsed: false,
+              customProps: {
+                tagDisplayName: 'x-displayName',
+              },
             },
           } satisfies OpenApiPlugin.Options,
         } as any,

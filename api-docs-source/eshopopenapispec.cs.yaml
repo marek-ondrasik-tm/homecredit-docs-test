@@ -34,7 +34,7 @@ info:
 
     V případě jakýchkoli dotazů se obraťte na naše integrační oddělení (integrace_eshop@homecredit.cz).
 
-    > ⚠️ **DŮLEŽITÉ UPOZORNĚNÍ**: Volání prostředků ze Slovenska MUSÍ používat příslušné vyhrazené koncové body .sk. Např. https://api.homecredit.sk/financning/v1/applications
+    > ⚠️ **DŮLEŽITÉ UPOZORNĚNÍ**: Volání prostředků ze Slovenska MUSÍ používat příslušné vyhrazené koncové body .sk. Např. `https://api.homecredit.sk/financning/v1/applications`
     ## Začínáme
 
     Tento online dokument popisuje rozhraní API One-Click společnosti Home Credit (HC) - prostředek pro partnerské e-shopy, jehož prostřednictvím mohou svým zákazníkům nabídnout výhody jedné z platebních metod společnosti Home Credit.
@@ -84,7 +84,7 @@ info:
 
     ### Integrace widgetu Javascript
 
-    Abyste mohli používat javascriptový widget Home Credit jako splátkovou kalkulačku, musí být back-end vašeho e-shopu správně nakonfigurován. Jak to udělat, je aktuálně popsáno v [našem on-line úložišti](https://github.com/homecreditcz/widget-calculator) (aktuálně v češtině).
+    Abyste mohli používat javascriptový widget Home Credit jako splátkovou kalkulačku, musí být back-end vašeho e-shopu správně nakonfigurován. Jak to udělat, je aktuálně popsáno v [našem on-line úložišti](/docs/documentation/widgets/install) (aktuálně v češtině).
 
     ## Zásady dokumentace
 

@@ -9,7 +9,7 @@ Below you will find a description of the purchase process flow in points:
 
 2. **In the shopping cart, in the payment method selection**, show the customer the selected installment option and give them the option to change the selected option in the calculator. If the customer has added other goods/accessories/insurance/... to the shopping cart after selecting the installment plan (check the price), display the calculator again (it is necessary to select the appropriate installment plan for the valid financed purchase price).
  
-3. **_Optional: Precheck in the shopping cart when selecting a payment method._** Based on at least 2 pieces of information, we will let you know whether it makes sense for the customer to request installments or whether you should offer them a different payment method right away (you need to get the client's consent! - see [GDPR terms and conditions](./production-env))
+3. **_Deprecated/Obsolete: Precheck in the shopping cart when selecting a payment method._** Based on at least 2 pieces of information, we will let you know whether it makes sense for the customer to request installments or whether you should offer them a different payment method right away (you need to get the client's consent! - see [GDPR terms and conditions](./production-env))
 
 4. **Complete the order on your e-shop**
 

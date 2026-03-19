@@ -22,9 +22,9 @@ Let customers see installment options on your product page. Choose one of three 
 
 | Option | Description | Reference |
 |--------|-------------|-----------|
-| **API** | Your own design; we return the values. *Only for certified intermediaries under Act 257/2016 Sb.* | [Installments calculator resources](/docs/api/Reference/installments-calculator-resources) |
-| **Widget** | JavaScript widget embedded in your e-shop (download at [github.com/homecreditcz](https://github.com/homecreditcz)). *Only for certified intermediaries under Act 257/2016 Sb.* | [JavaScript widget integration](/docs/documentation/widgets/install) |
-| **Standalone** | "Link only" to us—opens our calculator in a new window or tab. | — |
+| **API** | Your own design; we return the values. *Only for certified intermediaries under Act 257/2016 Sb.* | [PSP: Installments calculator resources](/docs/api/Reference/installments-calculator-resources) [eshop: Installments calculator resources](/docs/api/eshopReference/installments-calculator-resources) |
+| **Widget** | JavaScript widget embedded in your e-shop (download [here](/docs/documentation/widgets/install)). *Only for certified intermediaries under Act 257/2016 Sb.* | [JavaScript widget integration](/docs/documentation/widgets/install) |
+| **Standalone** | "Link only" to us—opens our calculator in a new window or tab. | [Standalone](/docs/documentation/dev-env#3-external-repayment-calculator-issued-by-home-credit) |
 
 ---
 
@@ -32,8 +32,8 @@ Let customers see installment options on your product page. Choose one of three 
 
 Create the application via API and send the customer to us to complete it.
 
-- **Authentication:** [Login partner](/docs/api/Reference/login-partner) (`authentication/v1/partner`)
-- **Create application:** [Create application](/docs/api/Reference/create-application) (`financing/v1/applications`)
+- **Authentication:** [PSP: Login partner](/docs/api/Reference/login-partner) - [eshop: Login partner](/docs/api/eshopReference/login-partner) (`authentication/v1/partner`)
+- **Create application:** [PSP: Create application](/docs/api/Reference/create-application) (`financing/v3/applications`) - [eshop: Create application](/docs/api/eshopReference/create-using-post-3) (`financing/v1/applications`)
 - **Redirect** the customer to the `gatewayRedirectUrl` returned in the response so they can complete the application on our side.
 
 ---
@@ -44,8 +44,8 @@ Stay in sync with application status. Choose one of three options:
 
 | Option | Description | Reference |
 |--------|-------------|-----------|
-| **Notification endpoint** | We call your API whenever the application status changes. | [Application notification](/docs/api/Reference/application-notification) |
-| **Webservice** | You query us via API for the current application status ("GET application detail"). | [Get application](/docs/api/Reference/get-application) |
+| **Notification endpoint** | We call your API whenever the application status changes. | [PSP: Application notification](/docs/api/Reference/application-notification) - [eshop: Application notification](/docs/api/eshopReference/application-notification) |
+| **Webservice** | You query us via API for the current application status ("GET application detail"). | [PSP: Get application](/docs/api/Reference/get-application) - [eshop: Get application](/docs/api/eshopReference/get-using-get-7) |
 | **Webclient + email** | Manual check in the web application, with email notifications. | — |
 
 ---
@@ -56,8 +56,8 @@ Confirm that the order was sent and/or delivered. Choose how to report:
 
 | Option | Description | Reference |
 |--------|-------------|-----------|
-| **Mark as shipped** | Confirm dispatch via API. | [Mark order as shipped](/docs/api/Reference/mark-order-as-shipped) (PUT send) |
-| **Mark as delivered** | Confirm delivery to the customer via API. | [Mark order as delivered](/docs/api/Reference/mark-order-as-delivered) (PUT deliver) |
+| **Mark as shipped** | Confirm dispatch via API. | [PSP: Mark order as shipped](/docs/api/Reference/mark-order-as-shipped) - [eshop: Mark order as shipped](/docs/api/eshopReference/send-order-items-using-put) |
+| **Mark as delivered** | Confirm delivery to the customer via API. | [PSP: Mark order as delivered](/docs/api/Reference/mark-order-as-delivered) - [eshop: Mark order as delivered](/docs/api/eshopReference/deliver-using-put) |
 | **Webclient** | Confirm manually after signing in to the web application. | — |
 
 ## Links and further information

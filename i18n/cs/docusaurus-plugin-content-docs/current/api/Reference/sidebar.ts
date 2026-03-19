@@ -8,7 +8,7 @@ const sidebar: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "Security",
+      label: "Zabezpečení",
       link: {
         type: "doc",
         id: "current/api/Reference/security",
@@ -20,13 +20,16 @@ const sidebar: SidebarsConfig = {
           type: "doc",
           id: "current/api/Reference/login-partner",
           label: "Přihlášení partnera",
+          customProps: {
+            tagDisplayName: "x-displayName",
+          },
           className: "api-method post",
         },
       ],
     },
     {
       type: "category",
-      label: "Application resources",
+      label: "Zdroje pro aplikace",
       link: {
         type: "doc",
         id: "current/api/Reference/application-resources",
@@ -38,37 +41,52 @@ const sidebar: SidebarsConfig = {
           type: "doc",
           id: "current/api/Reference/create-application",
           label: "Vytvořit aplikaci",
+          customProps: {
+            tagDisplayName: "x-displayName",
+          },
           className: "api-method post",
         },
         {
           type: "doc",
           id: "current/api/Reference/mark-order-as-shipped",
           label: "Označit objednávku jako odeslanou",
+          customProps: {
+            tagDisplayName: "x-displayName",
+          },
           className: "api-method put",
         },
         {
           type: "doc",
           id: "current/api/Reference/mark-order-as-delivered",
           label: "Označit objednávku jako doručenou",
+          customProps: {
+            tagDisplayName: "x-displayName",
+          },
           className: "api-method put",
         },
         {
           type: "doc",
           id: "current/api/Reference/cancel-application",
           label: "Zrušit žádost",
+          customProps: {
+            tagDisplayName: "x-displayName",
+          },
           className: "api-method put",
         },
         {
           type: "doc",
           id: "current/api/Reference/get-application",
           label: "Získat aplikaci",
+          customProps: {
+            tagDisplayName: "x-displayName",
+          },
           className: "api-method get",
         },
       ],
     },
     {
       type: "category",
-      label: "Health check",
+      label: "Kontrola stavu",
       link: {
         type: "doc",
         id: "current/api/Reference/health-check",
@@ -80,13 +98,16 @@ const sidebar: SidebarsConfig = {
           type: "doc",
           id: "current/api/Reference/api-status-check",
           label: "Kontrola stavu API",
+          customProps: {
+            tagDisplayName: "x-displayName",
+          },
           className: "api-method get",
         },
       ],
     },
     {
       type: "category",
-      label: "Scoring resources",
+      label: "Zdroje pro scoring",
       link: {
         type: "doc",
         id: "current/api/Reference/scoring-resources",
@@ -98,31 +119,43 @@ const sidebar: SidebarsConfig = {
           type: "doc",
           id: "current/api/Reference/run-precheck",
           label: "Spustit předběžnou kontrolu",
+          customProps: {
+            tagDisplayName: "x-displayName",
+          },
           className: "api-method post",
         },
         {
           type: "doc",
           id: "current/api/Reference/run-multi-precheck",
           label: "Spustit multiPrecheck",
+          customProps: {
+            tagDisplayName: "x-displayName",
+          },
           className: "api-method post",
         },
         {
           type: "doc",
           id: "current/api/Reference/get-multi-precheck-result",
           label: "GET výsledky více předběžných kontrol",
+          customProps: {
+            tagDisplayName: "x-displayName",
+          },
           className: "api-method get",
         },
         {
           type: "doc",
           id: "current/api/Reference/result-notification",
           label: "Oznámení výsledku",
+          customProps: {
+            tagDisplayName: "x-displayName",
+          },
           className: "api-method post",
         },
       ],
     },
     {
       type: "category",
-      label: "Installments calculator resources",
+      label: "Zdroje pro kalkulátory splátek",
       link: {
         type: "doc",
         id: "current/api/Reference/installments-calculator-resources",
@@ -134,25 +167,34 @@ const sidebar: SidebarsConfig = {
           type: "doc",
           id: "current/api/Reference/calculate-installment-programs-offer",
           label: "Vypočítat nabídku splátkového programu",
+          customProps: {
+            tagDisplayName: "x-displayName",
+          },
           className: "api-method post",
         },
         {
           type: "doc",
           id: "current/api/Reference/calculate-installment-program-detail",
           label: "Vypočítat podrobnosti splátkového programu",
+          customProps: {
+            tagDisplayName: "x-displayName",
+          },
           className: "api-method post",
         },
         {
           type: "doc",
           id: "current/api/Reference/calculate-installment-programs-down-payments",
           label: "Vypočítat splátkové programy a zálohy",
+          customProps: {
+            tagDisplayName: "x-displayName",
+          },
           className: "api-method post",
         },
       ],
     },
     {
       type: "category",
-      label: "JavaScript widget integration",
+      label: "Integrace JavaScriptového widgetu",
       link: {
         type: "doc",
         id: "current/api/Reference/java-script-widget-integration",
@@ -164,13 +206,16 @@ const sidebar: SidebarsConfig = {
           type: "doc",
           id: "current/api/Reference/api-health-check",
           label: "Kontrola stavu API",
+          customProps: {
+            tagDisplayName: "x-displayName",
+          },
           className: "api-method get",
         },
       ],
     },
     {
       type: "category",
-      label: "Merchantsite resources",
+      label: "Zdroje obchodního webu",
       link: {
         type: "doc",
         id: "current/api/Reference/merchantsite-resources",
@@ -182,6 +227,9 @@ const sidebar: SidebarsConfig = {
           type: "doc",
           id: "current/api/Reference/application-notification",
           label: "Oznámení o podání žádosti",
+          customProps: {
+            tagDisplayName: "x-displayName",
+          },
           className: "api-method post",
         },
       ],

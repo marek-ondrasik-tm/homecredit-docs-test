@@ -1,6 +1,6 @@
 # Home Credit Online Calculator
 
-> This calculator variant can only be used by bound partners. For unbound partners ("referrers"), a standalone calculator variant is available - more info [here](/docs/documentation/dev-env))
+> This calculator variant can only be used by bound partners. For unbound partners ("referrers"), a standalone calculator variant is available - more info [here](/docs/documentation/dev-env#3-external-repayment-calculator-issued-by-home-credit)
 
 The calculator (whose code runs in the customer's browser) needs to obtain data about possible installments. It calls the corresponding Home Credit API endpoints via HTTP GET. These requests must contain the appropriate API key HTTP header.
 
@@ -8,7 +8,7 @@ The calculator (whose code runs in the customer's browser) needs to obtain data 
 
 The calculator's own code must be uploaded to a web server. It is a JS file, specifically app.js.
 
-Example: https://eshop.example.com/js/app.js
+Example: `https://eshop.example.com/js/app.js`
 
 ## Modifying the E-shop Website
 

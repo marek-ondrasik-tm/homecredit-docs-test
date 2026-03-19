@@ -8,7 +8,7 @@ Níže najdete popis procesního flow nákupu v bodech:
 
 2. **V košíku ve výběru platební metody** klientovi zobrazte vybranou variantu splátek a dejte mu možnost si vybranou variantu změnit v kalkulačce. V případě, že si do košíku přidal po výběru splátek ještě další zboží/příslušenství/pojištění/... (ověřte si cenu), zobrazte mu kalkulačku znovu (je potřeba, aby byla zvolena odpovídající varianta splátek pro platnou financovanou cenu nákupu).
  
-3. **_Volitelné: Precheck v košíku u výběru platební metody._** Na základě alespoň 2 údajů vám vrátíme informaci, zda má smysl, aby klient žádal o splátky, nebo mu máte rovnou nabídnout jinou platební metodu (je potřeba umístit souhlas pro klienta! - viz [podmínky GDPR](./production-env))
+3. **_Zastaralé/obsolete: Precheck v košíku u výběru platební metody._** Na základě alespoň 2 údajů vám vrátíme informaci, zda má smysl, aby klient žádal o splátky, nebo mu máte rovnou nabídnout jinou platební metodu (je potřeba umístit souhlas pro klienta! - viz [podmínky GDPR](./production-env))
 
 4. **Dokončení objednávky u vás na eshopu**
 

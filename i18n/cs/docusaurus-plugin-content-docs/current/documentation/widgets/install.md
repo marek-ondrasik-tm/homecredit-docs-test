@@ -1,6 +1,6 @@
 # Home Credit online kalkulačka
 
-> Tuto variantu kalkulačky mohou využít pouze vázaní partneři. Pro nevázané partnery ("tipaře") slouží standalone varianta kalkulačky - více info např. [zde](/docs/documentation/dev-env))
+> Tuto variantu kalkulačky mohou využít pouze vázaní partneři. Pro nevázané partnery ("tipaře") slouží standalone varianta kalkulačky - více info např. [zde](/docs/documentation/dev-env#3-home-creditem-vystavená-externí-kalkulačka-splátek)
 
 Kalkulačka (jejíž kód běží v prohlížeči zákazníka) potřebuje získat data o možných splátkách. Pomocí HTTP GET provolá odpovídající API endpointy Home Creditu. Tyto požadavky musí obsahovat odpovídající API key HTTP hlavičku.
 
@@ -8,7 +8,7 @@ Kalkulačka (jejíž kód běží v prohlížeči zákazníka) potřebuje získa
 
 Vlastní kód kalkulačky je třeba nahrát na webový server. Jedná se o soubor JS konrétně app.js.
 
-Příklad: https://eshop.example.com/js/app.js
+Příklad: `https://eshop.example.com/js/app.js`
 
 ## Úprava webových stránek e-shopu
 

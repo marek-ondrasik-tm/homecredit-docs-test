@@ -9,7 +9,7 @@ Pro splnění podmínek GDPR při využívání našeho rozhraní je nezbytné, 
 
 ## Prerekvizity
 
-Pro provolávání rozhraní na produkčním prostředí jsou potřeba přístupové údaje (*username + password*), které se liší od těch pro přístup na testovací prostředí. Získat je můžete stejnou cestou jako ty pro přístup na testovací rozhraní (viz [Testovací prostředí](https://github.com/homecreditcz/oneclick-api/wiki/Testovac%C3%AD-prost%C5%99ed%C3%AD)).
+Pro provolávání rozhraní na produkčním prostředí jsou potřeba přístupové údaje (*username + password*), které se liší od těch pro přístup na testovací prostředí. Získat je můžete stejnou cestou jako ty pro přístup na testovací rozhraní (viz [Testovací prostředí](/docs/documentation/dev-env)).
 
 > Do kalkulačky splátek se na vstupu vyplňuje parametr udávající produktovou sadu Home Creditu, jenž se má pro výpočet použít - pokud je zboží zařazeno do speciální akce (např. "Za 0%"), na které se vztahuje kalkulace pod akční produktovou sadou, je potřeba tuto sadu v tomto kroku použít - **Je žádoucí, aby ve správě produktů e-shopu byla možnost tuto vlastnost jednoduše nastavovat (alternativou je mít tuto možnost např. pro vybranou kategorii produktů)**
 
@@ -32,12 +32,12 @@ Zda je produkční prostředí funkční (a není na něm např. technická odst
 Na produkci existují 3 hlavní způsoby, jak implementovat kalkulačku splátek:
 
 ### 1. Vlastní řešení partnera 
-Vývojově nejnáročnější variantou je zcela vlastní řešení partnera postavené na kalkulačních endpointech ([viz TD](https://csoneclicknewfuture.docs.apiary.io/#reference/installments-calculator-resources/cancel-application)). 
+Vývojově nejnáročnější variantou je zcela vlastní řešení partnera postavené na kalkulačních endpointech ([viz PSP TD](/docs/api/Reference/installments-calculator-resources) nebo [eshop TD](/docs/api/eshopReference/installments-calculator-resources)).
 Výhodou tohoto řešení je např. možnost tvorby uživatelského rozhraní kalkulačky zcela dle představ a UX požadavků partnera.
 
 ### 2. Částečné řešení partnera s využitím javascriptovéhéo widgetu
 Zlatou střední cestou je řešení, kdy vlastní backend e-shopu využívá javascriptový widget od Home Creditu, který obstarává frontendovou část, výpočet vhodných nabídek a na základě výsledku připravuje podklady backendu e-shopu pro provolání endpointu na vytvoření žádosti o úvěr.
-   * Javascriptový widget pro řešení kalkulačky splátek je k dispozici [zde](https://github.com/homecreditcz/widget-calculator)
+   * Javascriptový widget pro řešení kalkulačky splátek je k dispozici [zde](/docs/documentation/widgets/install)
 
 ### 3. Home Creditem vystavená externí kalkulačka splátek
 > **Jde o jedinou variantu pro partnery spolupracující v režimu "Tipař"**

@@ -1,4 +1,4 @@
-# Přidání tlačítka pro na detail produktu
+# Přidání tlačítka na detail produktu
 
 1.	na stránky eshopu do detailu produktu se přidá nové tlačítko, které otevře kalkulačku (widget nebo API) a klient potvrdí výběr splátek. 
 2.	definici klientem zvolené produktové sady si eshop uloží a vloží jej jako preferovanou variantu do createApplication
