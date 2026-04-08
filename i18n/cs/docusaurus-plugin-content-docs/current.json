@@ -120,11 +120,11 @@
     "description": "The label for doc api/Reference/result-notification in sidebar apiReference"
   },
   "sidebar.apiReference.category.Installments calculator resources": {
-    "message": "Zdroje kalkulačky splátek",
+    "message": "Zdroje splátkové kalkulačky",
     "description": "The label for category Installments calculator resources in sidebar apiReference"
   },
   "sidebar.apiReference.doc.api/Reference/installments-calculator-resources": {
-    "message": "Zdroje kalkulačky splátek",
+    "message": "Zdroje splátkové kalkulačky",
     "description": "The label for doc api/Reference/installments-calculator-resources in sidebar apiReference"
   },
   "sidebar.apiReference.doc.api/Reference/calculate-installment-programs-offer": {

@@ -155,7 +155,7 @@ const sidebar: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "Zdroje pro kalkulátory splátek",
+      label: "Zdroje splátkové kalkulačky",
       link: {
         type: "doc",
         id: "current/api/Reference/installments-calculator-resources",

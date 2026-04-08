@@ -5711,7 +5711,7 @@ tags:
     description: Služby, které umožňují partnerským e-shopům zjistit pravděpodobnost
       schválení *žádosti*.
   - name: Installments calculator resources
-    x-displayName: Zdroje pro kalkulátory splátek
+    x-displayName: Zdroje splátkové kalkulačky
     description: >-
       Pokud chcete svému zákazníkovi (který chce zaplatit za nákup pomocí úvěru)
       nabídnout možnost vybrat si z dostupných splátkových programů, zatímco je
