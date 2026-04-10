@@ -14,7 +14,7 @@ Scenarios:
 2. **CreateApplication**
 > No emails or SMS messages are sent in the Train environment
 
-* To simulate different contract statuses, check [major changes](../api/Reference/home-credit-partner-api-order-future#24-applicationresponse---major-changes).
+* To simulate different contract statuses, check [major changes](../api/Reference/home-credit-partner-api-order#24-applicationresponse---major-changes).
 * A) Customer flow **when rejected** in MyLoan (HC front-end): 
   * Just select *Exposed person - Yes* => the contract will always be rejected
 * B) Customer flow **when approved** in MyLoan (HC front-end) with return to the e-shop:

@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: Home Credit - Partner API - ORDER - Future
+  title: Home Credit - Partner API - ORDER
   version: ""
   x-sidebar-label: Úvod
   description: |-
@@ -5722,21 +5722,18 @@ tags:
       do vaší webové stránky:
 
 
-      - A) Implementace vlastní kalkulačky splátek s vaším FE ve vašem designu,
+      - A) API - Implementace vlastní kalkulačky splátek s vaším FE ve vašem designu,
       který využívá určené API zdroje ([popis
       níže](#implementing-own-installments-calculator)).
 
 
-      - B) Integrace javascriptového widgetu Home Credit (popsaného v [speciální
+      - B) Widget - Integrace javascriptového widgetu Home Credit (popsaného v [speciální
       kapitole](./java-script-widget-integration)), který:
         - poskytuje GUI a front-endové funkce
         - zpracovává všechny potřebné výpočty
         - poskytuje potřebná data back-endu e-shopu, aby je bylo možné snadno použít v rámci [*žádosti o vytvoření aplikace](./create-application)
-
-      &gt; POZNÁMKA: Implementace kalkulačky splátek je volitelná. Zákazníci
-      mohou vždy použít kalkulačku splátek zabudovanou do front-endu Home
-      Credit.
-
+      
+      - C) Standalone - Home Creditem vystavená externí kalkulačka splátek, kde implementace kalkulačky splátek není povinností partnera viz [tady](/docs/documentation/dev-env#3-home-creditem-vystavená-externí-kalkulačka-splátek---standalone) 
 
       ## Implementace vlastní kalkulačky splátek
 

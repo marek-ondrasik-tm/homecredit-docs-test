@@ -4,7 +4,7 @@ const sidebar: SidebarsConfig = {
   apisidebar: [
     {
       type: "doc",
-      id: "current/api/Reference/home-credit-partner-api-order-future",
+      id: "current/api/Reference/home-credit-partner-api-order",
     },
     {
       type: "category",

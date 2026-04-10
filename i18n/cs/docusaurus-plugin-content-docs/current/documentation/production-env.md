@@ -31,15 +31,15 @@ Zda je produkční prostředí funkční (a není na něm např. technická odst
 
 Na produkci existují 3 hlavní způsoby, jak implementovat kalkulačku splátek:
 
-### 1. Vlastní řešení partnera 
+### 1. Vlastní řešení partnera - API
 Vývojově nejnáročnější variantou je zcela vlastní řešení partnera postavené na kalkulačních endpointech ([viz PSP TD](/docs/api/Reference/installments-calculator-resources) nebo [eshop TD](/docs/api/eshopReference/installments-calculator-resources)).
 Výhodou tohoto řešení je např. možnost tvorby uživatelského rozhraní kalkulačky zcela dle představ a UX požadavků partnera.
 
-### 2. Částečné řešení partnera s využitím javascriptovéhéo widgetu
+### 2. Částečné řešení partnera s využitím javascriptovéhéo widgetu - Widget
 Zlatou střední cestou je řešení, kdy vlastní backend e-shopu využívá javascriptový widget od Home Creditu, který obstarává frontendovou část, výpočet vhodných nabídek a na základě výsledku připravuje podklady backendu e-shopu pro provolání endpointu na vytvoření žádosti o úvěr.
    * Javascriptový widget pro řešení kalkulačky splátek je k dispozici [zde](/docs/documentation/widgets/install)
 
-### 3. Home Creditem vystavená externí kalkulačka splátek
+### 3. Home Creditem vystavená externí kalkulačka splátek - Standalone
 > **Jde o jedinou variantu pro partnery spolupracující v režimu "Tipař"**
 
 Nejjednodušší cestou, kdy, kromě zabezpečení přesměrování klienta na stránku pro kalkulaci splátek skrz jednoduchý link, není potřeba žádný vývoj. 

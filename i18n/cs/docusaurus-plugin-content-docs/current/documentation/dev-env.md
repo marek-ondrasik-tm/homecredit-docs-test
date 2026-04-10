@@ -50,19 +50,19 @@ Prostředí, na kterém jsou k dispozici data podobná produkčním a na kterém
 
 Pro testovací účely jsou k dispozici následující varianty kalkulačky splátek:
 
-### 1. Vlastní řešení partnera 
+### 1. Vlastní řešení partnera - API
 Vývojově nejnáročnější variantou je zcela vlastní řešení partnera postavené na kalkulačních endpointech ([viz TD](../api/Reference/cancel-application)). 
 Výhodou tohoto řešení je např. možnost tvorby uživatelského rozhraní kalkulačky zcela dle představ a UX požadavků partnera.
 > Pozn: Je třeba využívat variantu endpointů na train prostředí
 > * CZ: https://apicz-test.homecredit.cz/verdun-train/...
 > * SK: https://apisk-test.homecredit.sk/verdun-train/...
 
-### 2. Částečné řešení partnera s využitím javascriptovéhéo widgetu
+### 2. Částečné řešení partnera s využitím javascriptovéhéo widgetu - Widget
 Zlatou střední cestou je řešení, kdy vlastní backend e-shopu využívá javascriptový widget od Home Creditu, který obstarává frontendovou část, výpočet vhodných nabídek a na základě výsledku připravuje podklady backendu e-shopu pro provolání endpointu na vytvoření žádosti o úvěr.
    * Javascriptový widget pro řešení kalkulačky splátek je k dispozici [zde](./widgets/install)
    * Testovací hodnoty jsou popsány v [návodu na instalaci widgetu](./widgets/install)
 
-### 3. Home Creditem vystavená externí kalkulačka splátek
+### 3. Home Creditem vystavená externí kalkulačka splátek - Standalone
 > **Jde o jedinou variantu pro partnery spolupracující v režimu "Tipař"**
 
 Nejjednodušší cestou, kdy, kromě zabezpečení přesměrování klienta na stránku pro kalkulaci splátek skrz jednoduchý link, není potřeba žádný vývoj
@@ -88,7 +88,7 @@ Vzorová URI k přesměrování může vypadat např.
 
 o   Ještě před samotnou implementací lze chování rozhraní poměrně jednoduše zkoušet pomocí aplikace [Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop), která se instaluje ve formě plug-inu do prohlížeče Chrome
 
-o   Úplné vzorové requesty, které lze právě pomocí aplikace Postman vyzkoušet, naleznete na konci tohoto dokumentu (případně v [TD](../api/Reference/home-credit-partner-api-order-future) – u těch je ale potřeba použít relevantní data)
+o   Úplné vzorové requesty, které lze právě pomocí aplikace Postman vyzkoušet, naleznete na konci tohoto dokumentu (případně v [TD](../api/Reference/home-credit-partner-api-order) – u těch je ale potřeba použít relevantní data)
 
 o   Podkladová data pro vzorové requesty lze společně s jednoduchým návodem nalézt také [zde](../api/Reference/create-application)
 
@@ -102,7 +102,7 @@ Při testování v integrační fázi, pokud chcete ověřit celý proces
 - přes jeho schválení a expedici/doručení
 - po jeho úspěšné dokončení
 
-je potřeba uměle nasimulovat klientovo chování ve front-endové aplikaci Home Creditu (MyLoan). K těmto účelům slouží speciální resource *Change application state*, jehož popis naleznete v technické dokumentaci [zde](../api/Reference/home-credit-partner-api-order-future#24-applicationresponse---major-changes). Tento resource funguje pouze na testovacích/integračních prostředích specifikovaných v tomto dokumentu (či technické dokumentaci).
+je potřeba uměle nasimulovat klientovo chování ve front-endové aplikaci Home Creditu (MyLoan). K těmto účelům slouží speciální resource *Change application state*, jehož popis naleznete v technické dokumentaci [zde](../api/Reference/home-credit-partner-api-order#24-applicationresponse---major-changes). Tento resource funguje pouze na testovacích/integračních prostředích specifikovaných v tomto dokumentu (či technické dokumentaci).
 
 ### Testovací průchod "schváleno" 
 Na testovacím prostředí (viz výše) existuje speciální účet pro schválení. Funkce účtu se aktivuje vyplněním položky ***příjmení = “Trener“*** při vytváření žádosti pomocí resource *Create Application* (v requestu volání `POST https://apicz-test.homecredit.cz/verdun-train/financing/v1/applications` musí být `customer.lastName = Trener`). Následně, ať už budete měnit stav objednávky pomocí speciálního resource *Change state*, nebo budete žádost vyplňovat „ručně“, bude tato žádost vždy schválena. Pro podpis smlouvy budete nakonec potřebovat OTP, které je pro testovací účely ***123456***.

@@ -50,19 +50,19 @@ B) Sale **with down payment** (store ID **024243**)
 
 The following payment calculator options are available for testing purposes:
 
-### 1. Partner's own solution 
+### 1. Partner's own solution - API 
 The most developmentally demanding variant is the partner's own solution based on calculation endpoints ([see TD](../api/Reference/cancel-application)). 
 The advantage of this solution is, for example, the possibility of creating a calculator user interface entirely according to the partner's ideas and UX requirements.
 > Note: It is necessary to use the endpoint variant in the train environment.
 > * CZ: https://apicz-test.homecredit.cz/verdun-train/...
 > * SK: https://apisk-test.homecredit.sk/verdun-train/...
 
-### 2. Partial partner solution using a JavaScript widget
+### 2. Partial partner solution using a JavaScript - Widget
 The golden mean is a solution where the e-shop's own backend uses a JavaScript widget from Home Credit, which handles the frontend part, calculates suitable offers, and, based on the result, prepares the e-shop backend data for calling the endpoint to create a loan application.
    * The JavaScript widget for the repayment calculator solution is available [here](./widgets/install)
    * Test values are described in the [widget installation guide](./widgets/install)
 
-### 3. External repayment calculator issued by Home Credit
+### 3. External repayment calculator issued by Home Credit - Standalone
 > **This is the only option for partners cooperating in the "Tipař" mode**
 
 The easiest way, where, apart from redirecting the client to the repayment calculation page via a simple link, no development is required
@@ -87,7 +87,7 @@ A sample URI for redirection may look like this, for example
 
 o   Even before implementation, the behavior of the interface can be tested quite easily using the [Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop) application, which is installed as a plug-in for the Chrome browser
 
-o   Complete sample requests that can be tested using the Postman application can be found at the end of this document (or in [TD](../api/Reference/home-credit-partner-api-order-future) – however, relevant data must be used for these)
+o   Complete sample requests that can be tested using the Postman application can be found at the end of this document (or in [TD](../api/Reference/home-credit-partner-api-order) – however, relevant data must be used for these)
 
 o   The underlying data for sample requests, along with simple instructions, can also be found [here](../api/Reference/create-application)
 
@@ -101,7 +101,7 @@ When testing in the integration phase, if you want to verify the entire process
 - through its approval and dispatch/delivery
 - to its successful completion
 
-it is necessary to artificially simulate the client's behavior in the Home Credit front-end application (MyLoan). For this purpose, use the special *Change application state* resource, which is described in the technical documentation [here](../api/Reference/home-credit-partner-api-order-future#24-applicationresponse---major-changes). This resource only works on the testing/integration environments specified in this document (or technical documentation).
+it is necessary to artificially simulate the client's behavior in the Home Credit front-end application (MyLoan). For this purpose, use the special *Change application state* resource, which is described in the technical documentation [here](../api/Reference/home-credit-partner-api-order#24-applicationresponse---major-changes). This resource only works on the testing/integration environments specified in this document (or technical documentation).
 
 ### Test run "approved"
 There is a special account for approval in the test environment (see above). The account function is activated by filling in the item ***last name = "Trener"*** when creating a request using the *Create Application* resource (in the request call `POST https://apicz-test.homecredit.cz/verdun-train/financing/v1/applications`, `customer.lastName = Trener` must be specified). Subsequently, whether you change the order status using the special *Change state* resource or fill out the application "manually," this application will always be approved. To sign the contract, you will ultimately need an OTP, which is ***123456*** for testing purposes.

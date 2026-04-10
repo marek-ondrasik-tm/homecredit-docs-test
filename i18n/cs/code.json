@@ -331,7 +331,7 @@
     "description": "The homepage title"
   },
   "homepage.tagline": {
-    "message": "Jednoduchá integrace ve čtyřech krocích — váš e-shop, vaše volby. REST API, widget nebo odkaz; provedeme vás.",
+    "message": "Jednoduchá integrace ve čtyřech krocích — váš e-shop, vaše volby. REST API, widget nebo odkaz provedeme vás.",
     "description": "The homepage tagline"
   },
   "homepage.button": {

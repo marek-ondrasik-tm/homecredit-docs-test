@@ -43,9 +43,9 @@
     "message": "API Reference",
     "description": "The label for category api in sidebar apiReference"
   },
-  "sidebar.apiReference.doc.api/Reference/home-credit-partner-api-order-future": {
+  "sidebar.apiReference.doc.api/Reference/home-credit-partner-api-order": {
     "message": "Úvod",
-    "description": "The label for doc api/Reference/home-credit-partner-api-order-future in sidebar apiReference"
+    "description": "The label for doc api/Reference/home-credit-partner-api-order in sidebar apiReference"
   },
   "sidebar.apiReference.category.Security": {
     "message": "Zabezpečení",
