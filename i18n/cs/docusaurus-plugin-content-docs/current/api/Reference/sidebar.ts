@@ -4,7 +4,7 @@ const sidebar: SidebarsConfig = {
   apisidebar: [
     {
       type: "doc",
-      id: "current/api/Reference/home-credit-partner-api-order-future",
+      id: "current/api/Reference/home-credit-partner-api-order",
     },
     {
       type: "category",
@@ -155,7 +155,7 @@ const sidebar: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "Zdroje pro kalkulátory splátek",
+      label: "Zdroje splátkové kalkulačky",
       link: {
         type: "doc",
         id: "current/api/Reference/installments-calculator-resources",

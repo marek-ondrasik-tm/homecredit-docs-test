@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: Home Credit - Partner API - ORDER - Future
+  title: Home Credit - Partner API - ORDER
   version: ""
   description: >-
     API documentation for Home Credit API for partners.
@@ -6004,16 +6004,15 @@ tags:
       Choose one of the following approaches to integrate installments calculator into your website:
 
 
-      - A) Implementing your own installment calculator, with your FE in your design that uses designated API resources ([described below](#implementing-own-installments-calculator)).
+      - A) API - Implementing your own installment calculator, with your FE in your design that uses designated API resources ([described below](#implementing-own-installments-calculator)).
 
 
-      - B) Integrating Home Credit's javascript widget (described in [special chapter](./java-script-widget-integration)) that:
+      - B) Widget - Integrating Home Credit's javascript widget (described in [special chapter](./java-script-widget-integration)) that:
         - provides GUI and front-end functionalities
         - process all needed calculations
         - provides necessary data to e-shop's back-end in order to easily use them within [*application* creation request](./create-application)
 
-      > NOTE: Implementation of installment calculator is optional. Customers can always use the installment calculator embedded in Home Credit's front-end.
-
+      - C) Standalone - An external installment calculator provided by Home Credit; partners are not required to implement their own installment calculator—see [here](/docs/documentation/dev-env#3-external-repayment-calculator-issued-by-home-credit---standalone)
 
       ## Implementing own installments calculator
 

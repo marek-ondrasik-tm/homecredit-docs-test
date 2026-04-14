@@ -247,7 +247,7 @@ const config: Config = {
             },
             {
               label: "API reference PSP",
-              to: "docs/api/Reference/home-credit-partner-api-order-future",
+              to: "docs/api/Reference/home-credit-partner-api-order",
             },
             {
               label: "API reference eshop",

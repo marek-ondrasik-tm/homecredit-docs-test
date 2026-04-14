@@ -25,7 +25,7 @@ function HomepageHeader() {
           </Heading>
           <p className={styles.heroSubtitle}>
             <Translate id="homepage.tagline" description="The homepage tagline">
-              Simple integration in four steps—your e-shop, your choices. REST API, widget, or link; we guide you through.
+              Simple integration in four steps—your e-shop, your choices. REST API, widget, or link we guide you through.
             </Translate>
           </p>
           <div className={styles.heroButtons}>

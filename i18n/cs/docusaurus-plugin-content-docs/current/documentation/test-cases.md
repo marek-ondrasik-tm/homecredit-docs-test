@@ -14,7 +14,7 @@ Scénáře:
 2. **CreateApplication**
 > na Train prostředí neodcházejí emaily ani SMS
 
-* Chcete-li simulovat různé stavy smluv, zhlédni [změny](../api/Reference/home-credit-partner-api-order-future#24-applicationresponse---major-changes)
+* Chcete-li simulovat různé stavy smluv, zhlédni [změny - API](/docs/api/Reference/home-credit-partner-api-order#24-applicationresponse---major-changes) a [změny - eshop](/docs/api/eshopReference/hc-oneclick-api-installments)
 * A) Průchod flow zákazníka **při zamítnutí** v MyLoan (HC front-end): 
   * Stačí vybrat *Exponovaná osoba - Ano* => smlouva bude vždy zamítnuta
 * B) Průchod flow zákazníka **při schválení** v MyLoan (HC front-end) s návratem zpět na e-shop:

@@ -51,7 +51,7 @@ const ApiReferenceFeatures: FeatureItem[] = [
       id: 'homepage.features.apiReference.resources',
       message: 'API Reference for payment gateway',
     }),
-    path: 'docs/api/Reference/home-credit-partner-api-order-future',
+    path: 'docs/api/Reference/home-credit-partner-api-order',
     imgPath: 'img/feature-api-examples.svg',
   },
 ];
