@@ -22,15 +22,15 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: "https://hc-docs.pages.dev",
+  url: "https://marek-ondrasik-tm.github.io",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: "/",
+  baseUrl: "/homecredit-docs-test/",
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: "facebook", // Usually your GitHub org/user name.
-  projectName: "docusaurus", // Usually your repo name.
+  organizationName: "marek-ondrasik-tm", // Usually your GitHub org/user name.
+  projectName: "homecredit-docs-test", // Usually your repo name.
 
   onBrokenLinks: "throw",
 
